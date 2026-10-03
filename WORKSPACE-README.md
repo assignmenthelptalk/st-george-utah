@@ -12,10 +12,11 @@
 | Inner page titles | ✅ `[Page] \| Water Softener St George Utah` (the old repeated "Water Softener Installation and Repair" suffix was removed) |
 | Homepage backlink variety | ✅ 4 anchor styles across 21 inner pages (4 exact, 6 naked URL, 5 partial, 6 plain). Hand-written here; the boilerplate has the reusable `HomeLink.astro` version |
 | Varied CTA button text | ✅ 4 installation and sizing pages use distinct button copy |
+| Homepage keyword sections | ✅ 3 H2 sections (about 70 words each): Best Water Softener for Utah, Water Softener Installation in St George Utah, Water Softener Resin Replacement in St George Utah. H2s are not links; each section ends with an underlined link to `/products/`, `/installation/` or `/resin-bed-replacement/`. Background shades alternate down the page |
 | Neighbourhood map | ✅ `StGeorgeMap.astro`, 5 pins, OpenStreetMap tiles with CSS inversion (never CARTO or Stadia) |
 | Hardness slider | ✅ `GPGSliderMini` on hard-water and comparison pages; defaults to 18 GPG so the badge reads "Very Hard" |
 | Favicon and logo | ✅ droplet-and-mesa mark; `favicon.svg`, `logo.svg`, `logo-mark.svg`, PNG sizes and `og-default.jpg` in `public/` |
-| Photography | ✅ 27 WebP images (17.5 MB of JPGs reduced to 1.4 MB) in `src/assets/images/`: 3 homepage, 20 page headers, 3 About banners, 1 unused portrait (`about-founders.webp`) |
+| Photography | ✅ 27 WebP images (17.5 MB of JPGs reduced to 1.4 MB) in `src/assets/images/`: 3 homepage, 20 page headers, 3 About banners, 1 unused portrait (`about-founders.webp`). The products and resin headers are also reused on the homepage keyword sections |
 | About page | ✅ founder, founding-year, customer and project figures removed (never invent them); founders section removed |
 | Content depth | ⏳ boilerplate wording with St George data filled in; not rewritten per page, not quality-gated |
 
@@ -110,6 +111,7 @@ Mirrors PROVISION.md step-for-step.
 - **Images are partly from the Albuquerque prompt set.** The neighbourhood, contact, new-construction and About page images (and the homepage hero's terracotta wall) show adobe homes and Sandia-style mountains. St George is red rock and tile roofs. Regenerate those with St George prompts from IMAGE-PROMPTS.md.
 - **Missing images:** whole-home-filtration header (falls back to the GPG stat card) and the About "Who Uses Our Services" banner (section is text only).
 - **Title length:** several inner-page titles run past about 60 characters once the brand suffix is added (for example water-quality at 76), so Google may truncate them.
+- **Homepage links:** the homepage keyword sections follow a set pattern (plain H2, underlined link below the copy). Keep new homepage sections consistent with it.
 - **Opening paragraphs** use the brand name as the sentence subject ("Water Softener St George Utah offers..."), which reads slightly awkwardly in places.
 - **`searchVol` is 0:** no keyword-tool access when this site was built.
 - **GPG range choice:** 13–24 comes from the city's own softener-setting recommendation. Third-party sources report 20–24 GPG as typical, so the real figure at a given tap is likely toward the upper end.
