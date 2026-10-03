@@ -1,64 +1,52 @@
-# water-softener-boilerplate
+# Water Softener St George Utah
 
-The factory template for a portfolio of exact-match-domain, rank-and-rent
-water softener lead-generation sites. **This repo is never deployed as a
-live site** — it exists to be cloned once per city.
+Rank-and-rent lead-generation site for **water softener St George, Utah**.
 
-Stack: Astro (static output) · Keystatic (local storage in this repo,
-GitHub storage once cloned to a live city site) · formsubmit.co for lead
-delivery. Workflow: local laptop → GitHub → Vercel auto-deploy. No VPS, no
-staging server, no server-side rendering.
+- Domain: https://watersoftenerstgeorgeutah.com (exact match for the target keyword "water softener st george utah")
+- Repo: https://github.com/assignmenthelptalk/st-george-utah
+- Stack: Astro 7 (static output) · Tailwind v4 · Leaflet map · formsubmit.co for the quote form · Vercel (adapter installed, project not yet created)
+- Cloned from `water-softener-boilerplate`. See [PROVISION.md](./PROVISION.md) for the provisioning process and [CLAUDE.md](./CLAUDE.md) for the design rules.
 
-## What this is
+## Local data
 
-- A city-agnostic set of 22 pages (home, water quality, hard water,
-  installation, comparison, FAQ, neighbourhoods, quote, products,
-  repair, resin bed replacement, brine tank cleaning, whole home
-  filtration, reverse osmosis, about, contact, salt-based-installation,
-  salt-free-installation, water-softener-sizing,
-  new-construction-installation, control-head-repair, free-water-test)
-  that read every piece of city-specific data from `src/site.config.ts` —
-  never hardcoded. Plus an optional, QDP-gated `[serviceArea]` dynamic
-  route (see PROVISION.md Step 5c) that extends a city toward the
-  portfolio's Core 30 page-count target — see the `local-gbp-core30`
-  skill in Local-SEO-Toolkit for that planning workflow.
-- A single config file (`src/site.config.ts`) that is the only thing you
-  edit to turn this into a specific city's site.
-- A Keystatic singleton for the business identity fields (phone, email,
-  address, hero copy) that get set once a site is rented, without touching
-  code.
+| Field | Value |
+|---|---|
+| City | St George, Utah (Washington County) |
+| Water hardness | 13–24 GPG, Very Hard (the City of St. George's 2023 water quality report recommends softener settings of 13–24 GPG) |
+| Water authority | City of St. George Water Services |
+| Water source | About 70% Virgin River water from the Washington County Water Conservancy District (Quail Creek plant), about 30% city wells and springs |
+| ZIP codes | 84770, 84790, 84791 |
+| Neighbourhoods | Bloomington, Bloomington Hills, Green Valley, Sun River, Little Valley |
+| Population | 95,342 (2020 Census) |
 
-## What this is not
+Everything above lives in `src/site.config.ts`, the only file that holds city data. Pages read from it and never hardcode city facts.
 
-- Not a live site. `vercel.json` sets `"public": false` and this repo has
-  no Vercel project attached to it.
-- Not multi-tenant — each city gets its own repo, cloned from this one.
+## Commands
 
-## Usage
+| Command | Action |
+|---|---|
+| `npm install` | Install dependencies |
+| `npm run dev` | Dev server at http://localhost:4321 |
+| `npm run build` | Type check (`astro check`) and build to `dist/` |
+| `npm run preview` | Preview the built site |
 
-See **[PROVISION.md](./PROVISION.md)** for the complete, step-by-step
-process of turning this boilerplate into a deployed city site.
+## Site structure
 
-## Target cities
+22 fixed pages plus `thank-you` (23 built): home, water quality, hard water, installation, comparison, FAQ, neighbourhoods, quote, products, repair, resin bed replacement, brine tank cleaning, whole home filtration, reverse osmosis, about, contact, salt-based installation, salt-free installation, water softener sizing, new construction installation, control head repair and free water test.
 
-15 exact-match domains, provisioned one at a time from this boilerplate via
-[PROVISION.md](./PROVISION.md). Henderson is first; the rest follow in the
-order listed.
+Notable pieces:
+- **Brand and titles:** brand is `Water Softener St George Utah` (exact match). The homepage title is `Water Softener St George Utah | Installation & Repair`, and inner pages use `[Page] | Water Softener St George Utah`.
+- **Homepage backlink variety:** the opening paragraph of each inner page links home using one of four anchor styles (exact, naked URL, partial, plain) to avoid repeating the exact-match anchor. The pattern is documented in PROVISION.md under "Homepage Backlink Variety" and implemented in the boilerplate as `HomeLink.astro`. This site still uses the hand-written version of the same pattern.
+- **Hardness slider:** `GPGSliderMini` on the hard-water and comparison pages. It starts at 18 GPG so the badge matches the site's "Very Hard" label.
+- **Neighbourhood map:** `StGeorgeMap.astro` (Leaflet with OpenStreetMap tiles) on the homepage, with five pins geocoded from OpenStreetMap.
+- **Branding:** droplet-and-red-rock-mesa mark in navy `#17496B` and terracotta `#C2562B`. Files are in `public/` (`favicon.svg`, `logo.svg`, `logo-mark.svg`, PNG sizes, `og-default.jpg`).
+- **Images:** 27 optimized WebP photos in `src/assets/images/`, wired through `astro:assets`. Image prompts are in [IMAGE-PROMPTS.md](./IMAGE-PROMPTS.md). Original JPGs are kept locally in `source-images/` (git-ignored).
 
-| # | City | State | Domain | GPG | Search Vol | Status |
-|---|------|-------|--------|-----|------------|--------|
-| 1 | Henderson | NV | watersoftenerhendersonnv.com | 16–18 | 50 | Provisioning |
-| 2 | Minneapolis | MN | watersoftenerminneapolis.com | 15–17 | 170 | Queued |
-| 3 | Salt Lake City | UT | watersoftenersaltlakecityut.com | 8–19 | 110 | Queued |
-| 4 | Lubbock | TX | watersoftenerlubbocktx.com | 20–22 | 110 | Queued |
-| 5 | Mesa | AZ | watersoftenermesaaz.com | 12–22 | 70 | Queued |
-| 6 | Scottsdale | AZ | watersoftenersscottsdaleaz.com | 12–20 | 70 | Queued |
-| 7 | Albuquerque | NM | watersofteneralbuquerque.com | 10–16 | 170 | Queued |
-| 8 | New Braunfels | TX | watersoftenernewbraunfelstx.com | 15–18 | 90 | Queued |
-| 9 | Round Rock | TX | watersoftenerroundrocktx.com | 20–28 | 140 | Queued |
-| 10 | Midland | TX | watersoftenermidlandtx.com | 18–22 | 70 | Queued |
-| 11 | Katy | TX | watersoftenerkatytx.com | 12–16 | 70 | Queued |
-| 12 | Fishers | IN | watersoftenerfishers.com | 18 | 50 | Queued |
-| 13 | Pflugerville | TX | watersoftenerpflugervilletx.com | 14–17 | 50 | Queued |
-| 14 | St. George | UT | watersoftenerstgeorgeut.com | 14–18 | 140 | Queued |
-| 15 | Georgetown | TX | watersoftenergeorgetowntx.com | 14–17 | 70 | Queued |
+## Still to do
+
+- Real phone number and email in `site.config.ts` (phone is hidden on the site until set).
+- Written page content: pages currently use the boilerplate wording with St George's data filled in. They have not been rewritten to the depth of the Indianapolis site or run through the quality gate.
+- Replace a few Albuquerque-style images (neighbourhood header, contact header, new-construction header, About driveway shot, homepage hero) with St George red-rock scenes.
+- Add images for the whole-home-filtration page header and the About "Who Uses Our Services" banner.
+- Verify search volume (`searchVol` is 0) and the population and ZIP figures against a source.
+- Deploy to Vercel, connect the domain, add Search Console and submit citations (PROVISION.md Steps 7 to 10).
