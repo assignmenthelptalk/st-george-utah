@@ -71,6 +71,8 @@ const footerNavLinks = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <!-- Loaded as a <link>, not @import, so it fetches in parallel with the
          rest of head instead of blocking on global.css first. 700 added
@@ -113,8 +115,9 @@ const footerNavLinks = [
 
     <header class="site-header">
       <div class="container site-header-inner">
-        <a class="logo" href="/">
-          {site.businessName}
+        <a class="logo" href="/" aria-label={`${site.businessName} home`}>
+          <img src="/logo-mark.svg" alt="" width="36" height="36" class="logo-mark" />
+          <span>{site.businessName}</span>
         </a>
 
         <button
@@ -287,6 +290,8 @@ const footerNavLinks = [
         color: var(--color-primary);
         text-decoration: none;
       }
+      .logo { display: inline-flex; align-items: center; gap: 0.6rem; }
+      .logo-mark { flex: none; border-radius: 8px; }
       .logo:hover { color: var(--color-accent); }
       .logo:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; border-radius: 2px; }
 
