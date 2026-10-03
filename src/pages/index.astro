@@ -167,7 +167,7 @@ const faqs = [
 
   <section class="section" style="background: var(--color-surface);">
     <div class="service-section-wrapper">
-      <h2 class="service-section-title"><a class="h2-link" href="/installation/">Water Softener Installation in {site.city}, {site.state}</a></h2>
+      <h2 class="service-section-title">Water Softener Installation in {site.city}, {site.state}</h2>
       <div class="service-section-grid">
         <div class="service-section-text">
           <p>
@@ -176,6 +176,7 @@ const faqs = [
             bypass, drain and brine line, programs the control head, and tests the water before leaving. Most
             installations finish in a single visit, and we walk you through the settings and salt refills before we go. A free in-home water test comes with every consultation.
           </p>
+          <a class="underline-link" href="/installation/">See Water Softener Installation in {site.city}</a>
         </div>
         <div class="service-section-media">
           <Image src={homeInstallation} alt={`Water softener installation in ${site.city}, ${site.stateAbbr}`} width={600} height={400} loading="lazy" />
@@ -477,9 +478,6 @@ const faqs = [
     }
     .underline-link:hover { color: var(--color-accent); }
     .underline-link:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; border-radius: 2px; }
-    .h2-link { color: inherit; text-decoration: none; }
-    .h2-link:hover { color: var(--color-accent); text-decoration: underline; text-underline-offset: 6px; }
-    .h2-link:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 4px; border-radius: 2px; }
     .service-section-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
