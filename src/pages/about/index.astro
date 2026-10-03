@@ -1,6 +1,11 @@
 ---
 import Layout from "../../components/Layout.astro";
 import PageHero from "../../components/PageHero.astro";
+import { Image } from "astro:assets";
+import aboutWhatWeDo from "../../assets/images/about-what-we-do.webp";
+import aboutTeam from "../../assets/images/about-team-service-call.webp";
+import aboutWater from "../../assets/images/about-clean-water.webp";
+import headerImage from "../../assets/images/header-about.webp";
 import { site } from "../../lib/site";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
@@ -97,6 +102,7 @@ const faqs = [
   description={`About ${site.businessName}. Serving ${site.city} and ${site.county} homeowners with professional water softener installation, repair, and maintenance. Free consultation available.`}
 >
   <PageHero
+    image={headerImage}
     breadcrumbs={[{ label: "About" }]}
     heading={`About ${site.businessName} | Trusted Local Specialists`}
     primaryCta={primaryCta}
@@ -117,13 +123,7 @@ const faqs = [
         <h2>What We Do | Water Softener {site.city} {site.stateAbbr} Services</h2>
       </div>
       <div class="about-media-wrap">
-        <img
-          src="/placeholder-water.svg"
-          alt="Before and after comparison of hard water vs soft water results"
-          width="900"
-          height="400"
-          loading="lazy"
-        />
+        <Image src={aboutWhatWeDo} alt="Chrome bathroom faucet and showerhead with heavy limescale beside the same fixtures cleaned after water softening" width={1000} height={450} loading="lazy" />
       </div>
       <div class="grid grid-2">
         {services.map((s) => (
@@ -144,13 +144,7 @@ const faqs = [
         <h2>What Makes {site.businessName} Different | Water Softener {site.city} {site.stateAbbr} Experts</h2>
       </div>
       <div class="about-media-wrap">
-        <img
-          src="/placeholder-water.svg"
-          alt="Team working on installation or service call"
-          width="900"
-          height="400"
-          loading="lazy"
-        />
+        <Image src={aboutTeam} alt="Two water softener technicians installing a system in a home utility room" width={1000} height={450} loading="lazy" />
       </div>
       <div class="grid grid-3">
         {differentiators.map((d) => (
@@ -168,15 +162,6 @@ const faqs = [
     <div class="container">
       <div class="section-header center">
         <h2>Who Uses Our Water Softener {site.city} {site.stateAbbr} Services</h2>
-      </div>
-      <div class="about-media-wrap">
-        <img
-          src="/placeholder-water.svg"
-          alt="Happy homeowner using clean water at home"
-          width="900"
-          height="400"
-          loading="lazy"
-        />
       </div>
       <ul class="about-audience-list">
         {audiences.map((a) => <li>{a}</li>)}
@@ -258,13 +243,7 @@ const faqs = [
         <h2>Frequently Asked Questions | Water Softener {site.city} {site.stateAbbr}</h2>
       </div>
       <div class="about-media-wrap">
-        <img
-          src="/placeholder-water.svg"
-          alt="Close up of clean water flowing"
-          width="900"
-          height="300"
-          loading="lazy"
-        />
+        <Image src={aboutWater} alt="Clean water splashing in motion" width={1000} height={450} loading="lazy" />
       </div>
       <div class="faq-list">
         {faqs.map((item) => (

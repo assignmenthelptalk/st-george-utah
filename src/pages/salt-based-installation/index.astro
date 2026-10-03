@@ -1,6 +1,7 @@
 ---
 import Layout from "../../components/Layout.astro";
 import PageHero from "../../components/PageHero.astro";
+import headerImage from "../../assets/images/header-salt-based-installation.webp";
 import { site } from "../../lib/site";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
@@ -32,6 +33,7 @@ const faqs = [
   description={`How salt-based water softener installation works in ${site.city}, what it costs, and why ion exchange is the standard fix for ${site.gpgLow}-${site.gpgHigh} GPG water.`}
 >
   <PageHero
+    image={headerImage}
     breadcrumbs={[{ label: "Installation", href: "/installation/" }, { label: "Salt-Based Installation" }]}
     heading={`Salt-Based Water Softener Installation in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

@@ -2,6 +2,7 @@
 import Layout from "../components/Layout.astro";
 import GPGSliderMini from "../components/GPGSliderMini.astro";
 import PageHero from "../components/PageHero.astro";
+import headerImage from "../assets/images/header-comparison.webp";
 import { site } from "../lib/site";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
@@ -14,6 +15,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   description={`Salt-based vs salt-free vs reverse osmosis water softeners in ${site.city}, ${site.stateAbbr}. Which system works at ${site.gpgLow}–${site.gpgHigh} GPG. Free system recommendation with every water test.`}
 >
   <PageHero
+    image={headerImage}
     breadcrumbs={[{ label: "Compare Systems" }]}
     heading={`Best Water Softener in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

@@ -1,6 +1,7 @@
 ---
 import Layout from "../../components/Layout.astro";
 import PageHero from "../../components/PageHero.astro";
+import headerImage from "../../assets/images/header-free-water-test.webp";
 import { site } from "../../lib/site";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
@@ -39,6 +40,7 @@ const faqs = [
   description={`Book a free in-home water hardness test in ${site.city}. No obligation, a written recommendation, and confirmation of ${site.waterAuthority}'s ${site.gpgLow}-${site.gpgHigh} GPG reading at your own tap.`}
 >
   <PageHero
+    image={headerImage}
     breadcrumbs={[{ label: "Water Quality", href: "/water-quality/" }, { label: "Free Water Test" }]}
     heading={`Free Water Test in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

@@ -1,6 +1,7 @@
 ---
 import Layout from "../components/Layout.astro";
 import PageHero from "../components/PageHero.astro";
+import headerImage from "../assets/images/header-installation.webp";
 import { site } from "../lib/site";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
@@ -13,6 +14,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   description={`Professional water softener installation in ${site.city}, ${site.stateAbbr}. Sized for ${site.gpgLow}–${site.gpgHigh} GPG from ${site.waterAuthority}. Free water test included. Same day service. No obligation.`}
 >
   <PageHero
+    image={headerImage}
     breadcrumbs={[{ label: "Installation" }]}
     heading={`Water Softener Installation in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

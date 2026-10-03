@@ -2,6 +2,10 @@
 import Layout from "../components/Layout.astro";
 import LocalSchema from "../components/LocalSchema.astro";
 import StGeorgeMap from "../components/StGeorgeMap.astro";
+import { Image } from "astro:assets";
+import homeHero from "../assets/images/home-hero.webp";
+import homeInstallation from "../assets/images/home-installation.webp";
+import homeHardWater from "../assets/images/home-hard-water.webp";
 import { site } from "../lib/site";
 
 const services = [
@@ -88,11 +92,11 @@ const faqs = [
       </div>
 
       <div class="hero-media">
-        <img
-          src="/placeholder-water.svg"
+        <Image
+          src={homeHero}
           alt={`Water softener system installed in a ${site.city}, ${site.stateAbbr} home`}
-          width="700"
-          height="600"
+          width={700}
+          height={600}
           loading="eager"
         />
       </div>
@@ -150,7 +154,7 @@ const faqs = [
           <a class="service-learn-more" href="/installation/">See Installation Details →</a>
         </div>
         <div class="service-section-media">
-          <img src="/placeholder-water.svg" alt={`Water softener installation in ${site.city}, ${site.stateAbbr}`} width="600" height="400" loading="lazy" />
+          <Image src={homeInstallation} alt={`Water softener installation in ${site.city}, ${site.stateAbbr}`} width={600} height={400} loading="lazy" />
         </div>
       </div>
     </div>
@@ -170,7 +174,7 @@ const faqs = [
           <a class="service-learn-more" href="/hard-water/">See Hard Water Effects →</a>
         </div>
         <div class="service-section-media">
-          <img src="/placeholder-water.svg" alt={`Hard water effects in ${site.city}, ${site.stateAbbr}`} width="600" height="400" loading="lazy" />
+          <Image src={homeHardWater} alt={`Hard water effects in ${site.city}, ${site.stateAbbr}`} width={600} height={400} loading="lazy" />
         </div>
       </div>
     </div>

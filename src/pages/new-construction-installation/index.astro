@@ -1,6 +1,7 @@
 ---
 import Layout from "../../components/Layout.astro";
 import PageHero from "../../components/PageHero.astro";
+import headerImage from "../../assets/images/header-new-construction-installation.webp";
 import { site } from "../../lib/site";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
@@ -28,6 +29,7 @@ const faqs = [
   description={`Plan water softener rough-in for a new ${site.city} home — loop placement, drain line, and builder coordination before drywall.`}
 >
   <PageHero
+    image={headerImage}
     breadcrumbs={[{ label: "Installation", href: "/installation/" }, { label: "New Construction" }]}
     heading={`New Construction Water Softener Installation in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

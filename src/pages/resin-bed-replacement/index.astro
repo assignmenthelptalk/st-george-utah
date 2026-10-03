@@ -1,6 +1,7 @@
 ---
 import Layout from "../../components/Layout.astro";
 import PageHero from "../../components/PageHero.astro";
+import headerImage from "../../assets/images/header-resin-bed-replacement.webp";
 import { site } from "../../lib/site";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
@@ -51,6 +52,7 @@ const faqs = [
   description={`Signs your ${site.city} water softener's resin bed has failed, what replacement costs, and how the process works.`}
 >
   <PageHero
+    image={headerImage}
     breadcrumbs={[{ label: "Repair", href: "/repair/" }, { label: "Resin Bed Replacement" }]}
     heading={`Resin Bed Replacement in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

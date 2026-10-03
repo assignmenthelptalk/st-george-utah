@@ -1,6 +1,7 @@
 ---
 import Layout from "../../components/Layout.astro";
 import PageHero from "../../components/PageHero.astro";
+import headerImage from "../../assets/images/header-salt-free-installation.webp";
 import { site } from "../../lib/site";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
@@ -32,6 +33,7 @@ const faqs = [
   description={`How salt-free water conditioner installation works in ${site.city}, who it's a fit for at ${site.gpgLow}-${site.gpgHigh} GPG, and what it costs.`}
 >
   <PageHero
+    image={headerImage}
     breadcrumbs={[{ label: "Installation", href: "/installation/" }, { label: "Salt-Free Installation" }]}
     heading={`Salt-Free Water Conditioner Installation in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

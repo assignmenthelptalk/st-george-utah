@@ -1,6 +1,7 @@
 ---
 import Layout from "../components/Layout.astro";
 import PageHero from "../components/PageHero.astro";
+import headerImage from "../assets/images/header-faq.webp";
 import { site } from "../lib/site";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
@@ -88,6 +89,7 @@ const faqSchema = {
   <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <PageHero
+    image={headerImage}
     breadcrumbs={[{ label: "FAQ" }]}
     heading={`Water Softener FAQ in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

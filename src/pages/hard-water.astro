@@ -2,6 +2,7 @@
 import Layout from "../components/Layout.astro";
 import GPGSliderMini from "../components/GPGSliderMini.astro";
 import PageHero from "../components/PageHero.astro";
+import headerImage from "../assets/images/header-hard-water.webp";
 import { site } from "../lib/site";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
@@ -14,6 +15,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   description={`Hard water effects in ${site.city}, ${site.stateAbbr}. ${site.city} water tests at ${site.gpgLow}–${site.gpgHigh} GPG from ${site.waterAuthority}. Learn how hard water damages appliances and how to protect your home.`}
 >
   <PageHero
+    image={headerImage}
     breadcrumbs={[{ label: "Hard Water Explained" }]}
     heading={`Hard Water Treatment in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

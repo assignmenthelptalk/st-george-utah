@@ -1,6 +1,7 @@
 ---
 import Layout from "../components/Layout.astro";
 import PageHero from "../components/PageHero.astro";
+import headerImage from "../assets/images/header-water-quality.webp";
 import { site } from "../lib/site";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
@@ -13,6 +14,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
   description={`${site.city} water quality report. ${site.waterAuthority} delivers ${site.gpgLow}–${site.gpgHigh} GPG water to every ${site.city} home. Full hardness data, WQA classification, and treatment recommendations.`}
 >
   <PageHero
+    image={headerImage}
     breadcrumbs={[{ label: "Water Quality" }]}
     heading={`${site.city} Water Quality Report | Trusted Local Specialists`}
     primaryCta={primaryCta}

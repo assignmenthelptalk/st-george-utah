@@ -1,6 +1,7 @@
 ---
 import Layout from "../../components/Layout.astro";
 import PageHero from "../../components/PageHero.astro";
+import headerImage from "../../assets/images/header-reverse-osmosis.webp";
 import { site } from "../../lib/site";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
@@ -32,6 +33,7 @@ const faqs = [
   description={`Best reverse osmosis systems for ${site.city}: what RO removes, price, and how installation works.`}
 >
   <PageHero
+    image={headerImage}
     breadcrumbs={[{ label: "Reverse Osmosis" }]}
     heading={`Reverse Osmosis Systems in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}

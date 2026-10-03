@@ -1,6 +1,7 @@
 ---
 import Layout from "../../components/Layout.astro";
 import PageHero from "../../components/PageHero.astro";
+import headerImage from "../../assets/images/header-control-head-repair.webp";
 import { site } from "../../lib/site";
 
 const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
@@ -36,6 +37,7 @@ const faqs = [
   description={`Signs your water softener's control head is failing, repair vs. replacement, and what a control head repair costs in ${site.city}.`}
 >
   <PageHero
+    image={headerImage}
     breadcrumbs={[{ label: "Repair", href: "/repair/" }, { label: "Control Head Repair" }]}
     heading={`Control Head Repair in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
     primaryCta={primaryCta}
