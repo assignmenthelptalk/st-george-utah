@@ -1,0 +1,107 @@
+---
+import Layout from "../components/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+---
+
+<Layout
+  title={`${site.city} Water Quality and Hardness Report`}
+  description={`${site.city} water quality report. ${site.waterAuthority} delivers ${site.gpgLow}–${site.gpgHigh} GPG water to every ${site.city} home. Full hardness data, WQA classification, and treatment recommendations.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Water Quality" }]}
+    heading={`${site.city} Water Quality Report | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}offers professional water hardness testing and quality reporting across {site.city} and {site.county}.
+      {" "}{site.waterAuthority} delivers {site.waterSource} at {site.gpgLow}–{site.gpgHigh} GPG to every {site.city} home,
+      classified as {site.gpgLabel} by the Water Quality Association. Free in-home water hardness test included with
+      every consultation. Results confirmed on the spot. No obligation to proceed.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-header">
+        <p>{site.city}'s public water supply is sourced from {site.waterSource} and managed by {site.waterAuthority}. Homes across {site.county} see hardness levels of {site.gpgLow}–{site.gpgHigh} grains per gallon (GPG), classified as {site.gpgLabel}.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Water Source</h3>
+          <p>{site.waterSource}</p>
+        </div>
+        <div class="card">
+          <h3>Managing Authority</h3>
+          <p>{site.waterAuthority}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Understanding {site.gpgLabel} Water</h2>
+        <p>Water hardness is measured in grains per gallon (GPG) of dissolved calcium and magnesium. {site.city}'s {site.gpgLow}–{site.gpgHigh} GPG range falls in the "{site.gpgLabel}" category:</p>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr><th>GPG Range</th><th>Classification</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0 – 1</td><td>Soft</td></tr>
+          <tr><td>1 – 3.5</td><td>Slightly Hard</td></tr>
+          <tr><td>3.5 – 7</td><td>Moderately Hard</td></tr>
+          <tr><td>7 – 10.5</td><td>Hard</td></tr>
+          <tr><td>10.5+</td><td>Very Hard</td></tr>
+          <tr class="highlight"><td>{site.gpgLow} – {site.gpgHigh}</td><td>{site.city}, {site.stateAbbr} ({site.gpgLabel})</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Hardness by ZIP Code</h2>
+        <p>Hardness readings can vary slightly by neighbourhood and distribution line. Approximate figures for {site.city} ZIP codes:</p>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr><th>ZIP Code</th><th>Approx. Hardness</th></tr>
+        </thead>
+        <tbody>
+          {site.zipCodes.map((zip) => (
+            <tr>
+              <td>{zip}</td>
+              <td>{site.gpgLow}–{site.gpgHigh} GPG ({site.gpgLabel})</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Get Your Exact Hardness Reading</h2>
+      <p>Book a <a href="/free-water-test/">free in-home water test</a> to know exactly what {site.city} water is doing to your plumbing.</p>
+      <a class="btn btn-primary" href="/quote/">Request a Free Water Test</a>
+    </div>
+  </section>
+
+  <style>
+    .highlight td { background: var(--color-primary-light); color: var(--color-primary-dark); font-weight: 700; }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>

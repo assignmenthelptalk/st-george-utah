@@ -1,0 +1,435 @@
+---
+import { site } from "../lib/site";
+
+const defaultGpg = Math.round((site.gpgLow + site.gpgHigh) / 2);
+const cityZoneLeftPct = (site.gpgLow / 40) * 100;
+const cityZoneWidthPct = Math.max(((site.gpgHigh - site.gpgLow) / 40) * 100, 2);
+---
+
+<section
+  class="gpg-slider-section"
+  data-city={site.city}
+  data-state-abbr={site.stateAbbr}
+  data-gpg-low={site.gpgLow}
+  data-gpg-high={site.gpgHigh}
+>
+  <div class="gpg-slider-inner">
+
+    <div class="gpg-slider-header">
+      <h2>See the Impact of Water Hardness</h2>
+      <p>{site.city} water tests at {site.gpgLow}–{site.gpgHigh} GPG. Drag the slider to see how different hardness levels affect your home — then see where {site.city} sits.</p>
+    </div>
+
+    <div class="gpg-slider-card">
+
+      <div class="gpg-display-row">
+        <div class="gpg-number-block">
+          <span class="gpg-number" id="gpg-number">{defaultGpg}</span>
+          <span class="gpg-unit">GPG</span>
+        </div>
+        <span class="gpg-badge" id="gpg-badge">{site.gpgLabel}</span>
+        <span class="city-tag" id="city-tag">← {site.city} is here</span>
+      </div>
+
+      <div class="gpg-track-wrapper">
+        <span class="track-end-label">0 GPG Soft</span>
+        <div class="gpg-track-inner">
+          <input
+            type="range"
+            id="gpg-slider"
+            min="0"
+            max="40"
+            value={defaultGpg}
+            step="1"
+            class="gpg-range-input"
+            aria-label="Water hardness in grains per gallon"
+          />
+          <div
+            class="city-zone"
+            style={`left: calc(${cityZoneLeftPct}% - 2px); width: ${cityZoneWidthPct}%;`}
+            title={`${site.city} ${site.stateAbbr}: ${site.gpgLow}–${site.gpgHigh} GPG`}
+          >
+            <span class="city-zone-label">{site.city} {site.stateAbbr}</span>
+          </div>
+        </div>
+        <span class="track-end-label">40 GPG Extreme</span>
+      </div>
+
+      <p class="gpg-description" id="gpg-description">
+        "Significant buildup throughout the home. {site.city}, {site.stateAbbr} sits in this range at {site.gpgLow}–{site.gpgHigh} GPG."
+      </p>
+
+      <div class="gpg-effects">
+        <p class="effects-title">How this affects your home:</p>
+        <ul class="effects-list" id="effects-list">
+          <li>Heavy scale on faucets, showerheads, and appliances</li>
+          <li>Soap barely lathers — excess product needed</li>
+          <li>Water heater efficiency dropping 24% per year (US Dept of Energy)</li>
+          <li>Plumbing repairs likely without treatment</li>
+        </ul>
+      </div>
+
+      <div class="gpg-recommendation visible" id="gpg-recommendation">
+        A salt-based softener is strongly recommended. {site.city} water sits here.
+      </div>
+
+      <a href="/quote/" class="gpg-cta">Get a Free {site.city} Water Test →</a>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .gpg-slider-section {
+    padding: 80px 24px;
+    background: var(--surface-base);
+  }
+  .gpg-slider-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .gpg-slider-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .gpg-slider-header h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4vw, 40px);
+    letter-spacing: -0.03em;
+    color: var(--surface-footer);
+  }
+  .gpg-slider-header p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .gpg-slider-card {
+    background: var(--surface-elevated);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .gpg-display-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .gpg-number-block {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .gpg-number {
+    font-family: var(--font-heading);
+    font-size: 72px;
+    line-height: 1;
+    color: var(--surface-footer);
+    transition: color 300ms ease;
+  }
+  .gpg-unit {
+    font-family: var(--font-body);
+    font-size: 24px;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+  .gpg-badge {
+    padding: 6px 16px;
+    border-radius: 24px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+  .city-tag {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-accent);
+    display: none;
+  }
+  .city-tag.visible { display: inline; }
+
+  .gpg-track-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .track-end-label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: #9CA3AF;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .gpg-track-inner {
+    position: relative;
+    flex: 1;
+  }
+  .gpg-range-input {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(
+      to right,
+      #16A34A 0%,
+      #CA8A04 25%,
+      #EA580C 50%,
+      #DC2626 65%,
+      #7C3AED 100%
+    );
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    display: block;
+  }
+  .gpg-range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid var(--color-primary);
+    box-shadow: 0 2px 8px rgba(15,110,120,0.30);
+    cursor: pointer;
+    transition: border-color 150ms ease, transform 150ms ease;
+  }
+  .gpg-range-input::-webkit-slider-thumb:hover {
+    border-color: var(--color-accent);
+    transform: scale(1.15);
+  }
+  .gpg-range-input::-webkit-slider-thumb:active {
+    transform: scale(1.05);
+  }
+  .gpg-range-input::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid var(--color-primary);
+    box-shadow: 0 2px 8px rgba(15,110,120,0.30);
+    cursor: pointer;
+    transition: border-color 150ms ease, transform 150ms ease;
+  }
+  .gpg-range-input::-moz-range-thumb:hover {
+    border-color: var(--color-accent);
+    transform: scale(1.15);
+  }
+  .gpg-range-input:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  .city-zone {
+    position: absolute;
+    top: -28px;
+    height: 4px;
+    background: rgba(230,81,0,0.40);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  .city-zone-label {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--color-accent);
+    white-space: nowrap;
+  }
+
+  .gpg-description {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--color-text);
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 3px solid var(--color-accent);
+  }
+
+  .gpg-effects { margin-bottom: 24px; }
+  .effects-title {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    margin-bottom: 12px;
+  }
+  .effects-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .effects-list li {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-text-muted);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+  .effects-list li:last-child { border-bottom: none; }
+  .effects-list li::before {
+    content: '•';
+    color: var(--color-accent);
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .gpg-recommendation {
+    background: var(--color-primary-light);
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-primary-dark);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    display: none;
+  }
+  .gpg-recommendation.visible { display: block; }
+
+  .gpg-cta {
+    display: block;
+    padding: 14px 24px;
+    background: var(--gradient-accent);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(230,81,0,0.30);
+    transition: transform 200ms cubic-bezier(0.34,1.56,0.64,1),
+                box-shadow 200ms ease;
+  }
+  .gpg-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(230,81,0,0.40);
+  }
+  .gpg-cta:active {
+    transform: translateY(0);
+  }
+  .gpg-cta:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 640px) {
+    .gpg-slider-card { padding: 24px 20px; }
+    .gpg-number { font-size: 56px; }
+    .gpg-track-wrapper { flex-direction: column; align-items: stretch; gap: 8px; }
+    .track-end-label { display: none; }
+    .gpg-slider-section { padding: 48px 16px; }
+  }
+</style>
+
+<script>
+  interface Tier {
+    max: number;
+    label: string;
+    badgeColor: string;
+    badgeBg: string;
+    description: string;
+    effects: string[];
+    recommendation: string | null;
+  }
+
+  const section = document.querySelector<HTMLElement>(".gpg-slider-section");
+  const cityName = section?.dataset.city ?? "";
+  const stateAbbr = section?.dataset.stateAbbr ?? "";
+  const cityGpgLow = Number(section?.dataset.gpgLow ?? 0);
+  const cityGpgHigh = Number(section?.dataset.gpgHigh ?? 0);
+
+  const tiers: Tier[] = [
+    { max: 1, label: "Soft", badgeColor: "#16A34A", badgeBg: "#DCFCE7",
+      description: "Ideal water quality. No softener needed at this level.",
+      effects: ["No scale buildup anywhere in the home", "Soap and shampoo lather easily", "Appliances run at full efficiency", "No plumbing scale risk"],
+      recommendation: null },
+    { max: 3, label: "Slightly Hard", badgeColor: "#65A30D", badgeBg: "#ECFCCB",
+      description: "Minor hardness. Most homeowners tolerate this without treatment.",
+      effects: ["Light spotting on glasses after dishwasher", "Minor soap scum on shower surfaces", "Minimal impact on appliance lifespan", "Low risk of plumbing scale"],
+      recommendation: null },
+    { max: 7, label: "Moderately Hard", badgeColor: "#CA8A04", badgeBg: "#FEF9C3",
+      description: "Noticeable hard water symptoms. A softener provides clear benefits at this level.",
+      effects: ["Scale deposits on faucets and showerheads", "Reduced soap and shampoo lather", "Some scale buildup inside appliances", "Moderate long-term plumbing risk"],
+      recommendation: "Consider a softener if symptoms bother you." },
+    { max: 10, label: "Hard", badgeColor: "#EA580C", badgeBg: "#FFF7ED",
+      description: "Clear hard water symptoms throughout the home. A softener is recommended.",
+      effects: ["Visible white scale on all fixtures", "Poor soap and shampoo lather", "Appliance efficiency dropping measurably", "Higher risk of costly plumbing repairs"],
+      recommendation: "A salt-based softener is recommended at this level." },
+    { max: 18, label: "Very Hard", badgeColor: "#DC2626", badgeBg: "#FEE2E2",
+      description: `Significant buildup throughout the home. ${cityName}, ${stateAbbr} sits in this range at ${cityGpgLow}–${cityGpgHigh} GPG.`,
+      effects: ["Heavy scale on faucets, showerheads, and appliances", "Soap barely lathers — excess product needed", "Water heater efficiency dropping 24% per year (US Dept of Energy)", "Plumbing repairs likely without treatment"],
+      recommendation: `A salt-based softener is strongly recommended. ${cityName} water sits here.` },
+    { max: 40, label: "Extremely Hard", badgeColor: "#7C3AED", badgeBg: "#EDE9FE",
+      description: "Severe mineral buildup. Treatment is essential to protect appliances and plumbing.",
+      effects: ["Severe scale throughout every water-using system", "Impossible to lather soap effectively", "Major appliance failure risk within 2–3 years", "High risk of pipe blockage and plumbing damage"],
+      recommendation: "A high-capacity salt-based softener is essential at this level." },
+  ];
+
+  // Whichever tier the city's own GPG range falls into — dynamic, not
+  // hardcoded to a specific tier, so this works for any city's data.
+  const cityTierMax = (tiers.find((t) => cityGpgHigh <= t.max) ?? tiers[tiers.length - 1]).max;
+
+  function getTier(value: number): Tier {
+    return tiers.find((t) => value <= t.max) || tiers[tiers.length - 1];
+  }
+
+  const slider = document.getElementById("gpg-slider") as HTMLInputElement | null;
+  const numEl = document.getElementById("gpg-number");
+  const badgeEl = document.getElementById("gpg-badge");
+  const descEl = document.getElementById("gpg-description");
+  const listEl = document.getElementById("effects-list");
+  const recEl = document.getElementById("gpg-recommendation");
+  const tagEl = document.getElementById("city-tag");
+
+  function update() {
+    if (!slider || !numEl || !badgeEl || !descEl || !listEl || !recEl || !tagEl) return;
+
+    const value = parseInt(slider.value, 10);
+    const tier = getTier(value);
+
+    numEl.textContent = String(value);
+    badgeEl.textContent = tier.label;
+    (badgeEl as HTMLElement).style.background = tier.badgeBg;
+    (badgeEl as HTMLElement).style.color = tier.badgeColor;
+    descEl.textContent = `"${tier.description}"`;
+    listEl.innerHTML = tier.effects.map((e) => `<li>${e}</li>`).join("");
+
+    if (tier.recommendation) {
+      recEl.textContent = tier.recommendation;
+      recEl.classList.add("visible");
+    } else {
+      recEl.classList.remove("visible");
+    }
+
+    tagEl.classList.toggle("visible", tier.max === cityTierMax);
+  }
+
+  slider?.addEventListener("input", update);
+  update();
+</script>

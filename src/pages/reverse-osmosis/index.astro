@@ -1,0 +1,167 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { site } from "../../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+
+const faqs = [
+  {
+    q: "What is the price of a reverse osmosis system?",
+    a: "Reverse osmosis systems typically run a few hundred dollars installed, depending on membrane stage count. Request a free quote for an exact price sized to your home.",
+  },
+  {
+    q: "What is the best reverse osmosis system for hard water?",
+    a: "The best RO system pairs a certified contaminant-removal rating with upstream softening, since unsoftened hard water scales and shortens membrane life. Check the manufacturer's stage count and certification before buying.",
+  },
+  {
+    q: "Do I still need reverse osmosis if I already have a water softener?",
+    a: "Yes, if drinking-water purity is the goal. A softener removes hardness minerals only. Reverse osmosis removes dissolved solids, nitrates, and chlorine byproducts a softener leaves behind, delivered through a dedicated drinking-water tap.",
+  },
+  {
+    q: "How often does an RO membrane need to be replaced?",
+    a: "Membrane and pre-filter replacement follows a manufacturer-set schedule, typically annually for pre-filters and every 2 to 3 years for the membrane itself.",
+  },
+];
+---
+
+<Layout
+  title={`Reverse Osmosis Systems in ${site.city}, ${site.stateAbbr}`}
+  description={`Best reverse osmosis systems for ${site.city}: what RO removes, price, and how installation works.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Reverse Osmosis" }]}
+    heading={`Reverse Osmosis Systems in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}offers reverse osmosis system installation and service across {site.city} and {site.county}. An
+      under-sink RO system removes up to 99 percent of dissolved solids from {site.waterAuthority} supply
+      water, including residual minerals, nitrates, chlorine byproducts, and other contaminants. Works best
+      paired with a whole-home softener that protects the RO membrane from scale damage at {site.gpgLow}
+      –{site.gpgHigh} GPG.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-header">
+        <p>Reverse osmosis removes up to roughly 99 percent of dissolved solids from tap water, including residual minerals, nitrates, and chlorine byproducts that pass through standard filtration and softening. Unlike a softener or whole-home filter, RO is a point-of-use system, typically installed under the kitchen sink, producing a dedicated purified drinking-water tap.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card card-featured">
+          <span class="badge">Recommended</span>
+          <h3>Reverse Osmosis System</h3>
+          <p>Under-sink drinking water purification for {site.city} homes. Works best paired with a whole-home softener that protects the RO membrane from scale at {site.gpgLow}-{site.gpgHigh} GPG.</p>
+          <ul class="feature-list">
+            <li>Removes dissolved solids standard filtration misses</li>
+            <li>Improves the taste of drinking and cooking water</li>
+            <li>Pairs with a softener for complete water treatment</li>
+            <li>Compact under-sink installation</li>
+          </ul>
+          <div class="card-ctas">
+            <a class="btn btn-primary btn-sm" href={site.affiliateRO} target="_blank" rel="noopener noreferrer sponsored">Check Price &amp; Availability</a>
+            <a class="card-secondary-cta" href="/quote/">Get a Free Consultation →</a>
+          </div>
+        </div>
+      </div>
+      <p class="disclosure">Some links above are affiliate links. We may earn a commission at no extra cost to you if you purchase through them.</p>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Reverse Osmosis System Price</h2>
+        <p>Reverse osmosis systems scale in price with membrane stage count. RO is typically the smaller investment compared to whole-home filtration since it treats one tap, not the whole house. Request a free quote for the exact price.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Do You Need Reverse Osmosis, Whole Home Filtration, or Both?</h2>
+        <p>Reverse osmosis serves drinking-water purity at one dedicated tap. <a href="/whole-home-filtration/">Whole home filtration</a> addresses chlorine taste, odor, and sediment across every tap in the house. The two are complementary — many homes benefit from both alongside a softener.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Reverse Osmosis Questions</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Ready for Pure Drinking Water in {site.city}?</h2>
+      <p>Check price and availability, or request a free consultation to size the right system for your home.</p>
+      <a class="btn btn-primary" href="/quote/">Get a Free Consultation →</a>
+    </div>
+  </section>
+
+  <style>
+    .card-featured { position: relative; border: 1.5px solid var(--color-accent); }
+    .card-featured .badge {
+      position: absolute;
+      top: -12px;
+      left: 24px;
+      background: var(--color-accent);
+      color: #ffffff;
+    }
+    .feature-list { list-style: none; margin: 16px 0 20px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+    .feature-list li {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      padding-left: 22px;
+      position: relative;
+    }
+    .feature-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-primary);
+    }
+    .card-ctas { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: auto; padding-top: 4px; }
+    .card-secondary-cta {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: color var(--duration-micro) ease;
+    }
+    .card-secondary-cta:hover { color: var(--color-accent); }
+    .card-secondary-cta:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; border-radius: 2px; }
+    .disclosure { font-size: 0.75rem; color: var(--color-text-muted); margin-top: 24px; }
+    .faq-list { max-width: 760px; margin: 24px auto 0; }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>

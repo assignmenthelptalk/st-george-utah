@@ -1,0 +1,138 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { site } from "../../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+
+const signs = [
+  { name: "Constant Regeneration", detail: "The unit regenerates far more often than its programmed schedule, wasting salt and water on every extra cycle." },
+  { name: "No Regeneration at All", detail: "The control head never triggers a cycle, letting resin exhaust while hard water passes straight through." },
+  { name: "Wrong Time or Day", detail: "Regeneration fires at the wrong hour or on the wrong day, usually pointing to a lost or drifting internal clock." },
+  { name: "Display Errors or Blank Screen", detail: "An error code, frozen display, or completely blank screen signals a electronics or power-board fault inside the head." },
+  { name: "Motor Grinding or Stuck", detail: "A control head motor that grinds, stalls, or fails to turn the internal piston prevents the valve from cycling correctly." },
+];
+
+const faqs = [
+  {
+    q: "Can a control head be reprogrammed instead of replaced?",
+    a: "Yes — a drifting clock, wrong hardness setting, or incorrect regeneration schedule is a reprogramming fix, not a replacement, and takes under 30 minutes on a working head.",
+  },
+  {
+    q: "When does a control head need full replacement?",
+    a: "A cracked piston, failed motor, or dead circuit board on a unit over 10 years old is usually cheaper to replace outright than to source parts for, especially on discontinued models.",
+  },
+  {
+    q: `Does control head failure mean the whole softener is done?`,
+    a: `No. The resin tank and brine tank typically outlast the control head — a head swap on an otherwise sound system is a common, cost-effective repair in ${site.city}.`,
+  },
+];
+---
+
+<Layout
+  title={`Water Softener Control Head Repair, ${site.city}`}
+  description={`Signs your water softener's control head is failing, repair vs. replacement, and what a control head repair costs in ${site.city}.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Repair", href: "/repair/" }, { label: "Control Head Repair" }]}
+    heading={`Control Head Repair in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}offers water softener control head repair and replacement across {site.city} and {site.county}. The
+      control head manages regeneration cycles. A faulty control valve causes the softener to regenerate
+      continuously, not at all, or at wrong intervals, passing hard water at {site.gpgLow}–{site.gpgHigh} GPG
+      through untreated. Free diagnostic included with every repair call. All major control head brands
+      diagnosed and serviced. Same day availability.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p>The control head is the electronic brain of a water softener — it tracks water use, triggers regeneration, and manages the internal piston that redirects water flow. At {site.gpgLow}-{site.gpgHigh} GPG, per {site.waterAuthority}, a {site.city} softener's control head cycles more often than in a softer-water market, which shortens its working life compared to city with lower hardness.</p>
+      </div>
+
+      <h2>Five Signs of Control Head Failure</h2>
+      <p>Five symptoms point specifically to the control head rather than the resin bed or brine tank:</p>
+      <div class="grid grid-3">
+        {signs.map((s) => (
+          <div class="card">
+            <h3>{s.name}</h3>
+            <p>{s.detail}</p>
+          </div>
+        ))}
+      </div>
+      <p>See our full <a href="/repair/">water softener repair page</a> if your symptoms point to the resin bed or brine tank instead.</p>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Repair vs. Replacement</h2>
+        <p>Two factors decide which makes sense for a given control head.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Repair When...</h3>
+          <p>The issue is a programming drift, a sensor fault, or a single replaceable part on a head under 10 years old — most control head calls fall into this category.</p>
+        </div>
+        <div class="card">
+          <h3>Replace When...</h3>
+          <p>The circuit board or motor has failed on a discontinued model, or the head is original to a system over 12 years old and parts availability is limited.</p>
+        </div>
+      </div>
+      <p>According to {site.waterAuthority}'s hardness data for {site.county}, most control heads in this market need attention between years 8 and 12 — get a free diagnostic to find out where yours stands.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Control Head Repair Cost in {site.city}</h2>
+        <p>Reprogramming or a sensor fix typically runs $75 to $150. A motor or circuit board replacement runs $150 to $350 in parts and labor, and a full head swap on an aging system runs $250 to $500 — always with a written quote before work begins.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Control Head Repair Questions</h2>
+        <p>Three questions come up most on {site.city} control head calls.</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Control Head Acting Up in {site.city}?</h2>
+      <p>Free in-home diagnostic with every repair call.</p>
+      <a class="btn btn-primary" href="/contact/">Book a Repair Call →</a>
+    </div>
+  </section>
+
+  <style>
+    .faq-list { max-width: 760px; margin: 24px auto 0; }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>

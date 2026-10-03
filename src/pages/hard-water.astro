@@ -1,0 +1,83 @@
+---
+import Layout from "../components/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+---
+
+<Layout
+  title={`Hard Water Treatment in ${site.city}, ${site.stateAbbr}`}
+  description={`Hard water effects in ${site.city}, ${site.stateAbbr}. ${site.city} water tests at ${site.gpgLow}–${site.gpgHigh} GPG from ${site.waterAuthority}. Learn how hard water damages appliances and how to protect your home.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Hard Water Explained" }]}
+    heading={`Hard Water Treatment in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}offers hard water treatment and scale prevention services across {site.city} and {site.county}. At
+      {site.gpgLow}–{site.gpgHigh} GPG from {site.waterAuthority}, calcium and magnesium deposits build up on
+      fixtures, inside appliances, and inside supply lines within weeks of installation. A salt-based ion
+      exchange softener removes these minerals completely at the main water entry point. Free in-home water
+      test available. Same day service.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-header">
+        <p>At {site.gpgLabel} levels, {site.city} tap water carries enough dissolved calcium and magnesium to leave visible and invisible damage throughout your home over time.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Appliance Damage</h3>
+          <p>Scale buildup inside water heaters, dishwashers, and washing machines reduces efficiency and can cut appliance lifespan by years in {site.gpgLabel.toLowerCase()} water areas like {site.city}.</p>
+        </div>
+        <div class="card">
+          <h3>Pipe Scale</h3>
+          <p>Mineral deposits narrow pipe diameter over time, reducing water pressure and increasing the risk of clogs in older {site.city} homes.</p>
+        </div>
+        <div class="card">
+          <h3>Skin & Hair Effects</h3>
+          <p>Hard water can leave skin feeling dry and hair looking dull, since mineral residue interferes with soap and shampoo rinsing cleanly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Visible Signs of Hard Water in {site.city}</h2>
+      </div>
+      <ul class="signs-list">
+        <li>White, chalky spots on dishes, faucets, and shower glass</li>
+        <li>Soap and shampoo that won't lather well</li>
+        <li>Stiff, scratchy laundry even after washing</li>
+        <li>Reduced water pressure from scale-narrowed pipes</li>
+        <li>Rising water heater energy bills</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Stop the Damage Before It Adds Up</h2>
+      <p>A properly sized softener eliminates hardness minerals before they reach your plumbing and appliances.</p>
+      <a class="btn btn-primary" href="/quote/">Free Consultation</a>
+    </div>
+  </section>
+
+  <style>
+    .signs-list { display: grid; gap: 12px; max-width: 640px; padding-left: 20px; }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>

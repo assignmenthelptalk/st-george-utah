@@ -1,0 +1,139 @@
+---
+import Layout from "../components/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+
+const faqs = [
+  {
+    q: `How hard is the water in ${site.city}, ${site.stateAbbr}?`,
+    a: `${site.city} water measures ${site.gpgLow}–${site.gpgHigh} grains per gallon (GPG), classified as ${site.gpgLabel}. It comes from ${site.waterSource}, managed by ${site.waterAuthority}.`,
+  },
+  {
+    q: `Do I really need a water softener in ${site.city}?`,
+    a: `At ${site.gpgLabel.toLowerCase()} levels, most ${site.city} homes benefit from softening to protect appliances, reduce scale buildup, and improve soap and shampoo performance.`,
+  },
+  {
+    q: `How much does a water softener cost to install in ${site.city}?`,
+    a: `Installed systems in ${site.city} typically run $800–$3,500 depending on system size and household water usage.`,
+  },
+  {
+    q: `How long does installation take?`,
+    a: `Most residential installations in ${site.county} are completed in half a day to a full day, depending on existing plumbing.`,
+  },
+  {
+    q: `What size softener do I need for my ${site.city} home?`,
+    a: `Sizing depends on household size and ${site.city}'s ${site.gpgLow}–${site.gpgHigh} GPG hardness reading. We calculate exact grain capacity as part of your free quote.`,
+  },
+  {
+    q: `Is salt-based or salt-free better for ${site.gpgLabel.toLowerCase()} water?`,
+    a: `Salt-based softeners actually remove hardness minerals and are generally recommended for ${site.gpgLabel.toLowerCase()} water like ${site.city}'s. Salt-free conditioners only crystallize minerals rather than removing them.`,
+  },
+  {
+    q: `Will a softener fix low water pressure caused by scale buildup?`,
+    a: `A softener prevents new scale from forming, but existing scale in old pipes may need separate descaling or pipe replacement in older ${site.city} homes.`,
+  },
+  {
+    q: `How often do I need to add salt?`,
+    a: `Most households refill the brine tank every 4–8 weeks, depending on water usage and hardness level.`,
+  },
+  {
+    q: `Does a softener remove chlorine or other contaminants?`,
+    a: `No — a standalone softener only targets hardness minerals. A softener/filter combo system also addresses chlorine and sediment from ${site.waterAuthority}'s supply.`,
+  },
+  {
+    q: `Can I install a water softener myself?`,
+    a: `DIY installation is possible but risks incorrect sizing, code violations, and warranty issues. Professional installation ensures the system is sized correctly for ${site.city}'s water and installed to code.`,
+  },
+  {
+    q: `Do you service all of ${site.county}?`,
+    a: `Yes, including ${site.neighbourhoods.join(", ")} and surrounding areas.`,
+  },
+  {
+    q: `What's the difference between a softener and reverse osmosis?`,
+    a: `A softener treats water for the whole house to prevent scale. Reverse osmosis is a separate, targeted filtration system — usually under the kitchen sink — for drinking and cooking water quality.`,
+  },
+  {
+    q: `Will a water softener increase my water bill?`,
+    a: `Modern demand-initiated softeners regenerate only when needed, minimizing extra water use compared to older timer-based systems.`,
+  },
+  {
+    q: `How long do water softeners last?`,
+    a: `A well-maintained system typically lasts 10–15 years, though this varies with water hardness and usage in ${site.city} homes.`,
+  },
+  {
+    q: `How do I get a quote for my ${site.city} home?`,
+    a: `Fill out the free quote form on this site with your address and household size, and we'll follow up with a no-obligation recommendation.`,
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+
+<Layout
+  title={`Water Softener FAQ ${site.city}, ${site.stateAbbr}`}
+  description={`Common water softener questions from ${site.city}, ${site.stateAbbr} homeowners. ${site.city} water hardness, installation cost, system sizing, and maintenance — all answered.`}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <PageHero
+    breadcrumbs={[{ label: "FAQ" }]}
+    heading={`Water Softener FAQ in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}provides water softener information and consultation services across {site.city} and {site.county}.
+      The questions below cover the most common topics from {site.city} homeowners: water hardness at
+      {site.gpgLow}–{site.gpgHigh} GPG, installation cost, system sizing, repair, and maintenance. Book a free
+      in-home water test for a personalised recommendation.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Still Have Questions?</h2>
+      <p>Get a free, personalized quote for your {site.city} home.</p>
+      <a class="btn btn-primary" href="/quote/">Free Consultation</a>
+    </div>
+  </section>
+
+  <style>
+    /* Item chrome (borders, chevron, reveal animation) lives in global.css
+       .faq-item rules, shared with any future accordion elsewhere. */
+    .faq-list { max-width: 760px; margin: 24px auto 0; }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>

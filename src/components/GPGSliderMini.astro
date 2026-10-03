@@ -1,0 +1,214 @@
+---
+import { site } from "../lib/site";
+
+const defaultGpg = Math.round((site.gpgLow + site.gpgHigh) / 2);
+---
+
+<div class="gpg-mini-card">
+  <div class="gpg-mini-header">
+    <h3>{site.city} Water at {site.gpgLow}–{site.gpgHigh} GPG</h3>
+    <p>Drag to compare — {site.city} water sits in the {site.gpgLabel} range.</p>
+  </div>
+  <div class="gpg-mini-row">
+    <span class="gpg-mini-number" id="mini-gpg-number">{defaultGpg}</span>
+    <span class="gpg-mini-unit">GPG</span>
+    <span class="gpg-mini-badge" id="mini-gpg-badge">{site.gpgLabel}</span>
+  </div>
+  <input
+    type="range"
+    id="mini-gpg-slider"
+    min="0"
+    max="40"
+    value={defaultGpg}
+    step="1"
+    class="gpg-mini-range-input"
+    aria-label="Water hardness in grains per gallon"
+  />
+  <div class="gpg-mini-labels">
+    <span>0 Soft</span><span>40 Extreme</span>
+  </div>
+  <p class="gpg-mini-rec" id="mini-gpg-rec">
+    At {site.gpgLow}–{site.gpgHigh} GPG a salt-based softener is strongly recommended over a salt-free conditioner.
+  </p>
+</div>
+
+<style>
+  .gpg-mini-card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: var(--shadow-card);
+    padding: 28px;
+    margin: 0 0 40px;
+  }
+  .gpg-mini-header { margin-bottom: 20px; }
+  .gpg-mini-header h3 {
+    font-family: var(--font-heading);
+    color: var(--surface-footer);
+    margin-bottom: 4px;
+  }
+  .gpg-mini-header p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .gpg-mini-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .gpg-mini-number {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    line-height: 1;
+    color: var(--surface-footer);
+    transition: color 300ms ease;
+  }
+  .gpg-mini-unit {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+  .gpg-mini-badge {
+    padding: 4px 12px;
+    border-radius: 24px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  .gpg-mini-range-input {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(
+      to right,
+      #16A34A 0%,
+      #CA8A04 25%,
+      #EA580C 50%,
+      #DC2626 65%,
+      #7C3AED 100%
+    );
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0 0 6px;
+    display: block;
+  }
+  .gpg-mini-range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid var(--color-primary);
+    box-shadow: 0 2px 8px rgba(15,110,120,0.30);
+    cursor: pointer;
+    transition: border-color 150ms ease, transform 150ms ease;
+  }
+  .gpg-mini-range-input::-webkit-slider-thumb:hover {
+    border-color: var(--color-accent);
+    transform: scale(1.15);
+  }
+  .gpg-mini-range-input::-webkit-slider-thumb:active {
+    transform: scale(1.05);
+  }
+  .gpg-mini-range-input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid var(--color-primary);
+    box-shadow: 0 2px 8px rgba(15,110,120,0.30);
+    cursor: pointer;
+    transition: border-color 150ms ease, transform 150ms ease;
+  }
+  .gpg-mini-range-input::-moz-range-thumb:hover {
+    border-color: var(--color-accent);
+    transform: scale(1.15);
+  }
+  .gpg-mini-range-input:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  .gpg-mini-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: #9CA3AF;
+    margin-bottom: 16px;
+  }
+
+  .gpg-mini-rec {
+    background: var(--color-primary-light);
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-primary-dark);
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>
+
+<script>
+  interface MiniTier { max: number; label: string; badgeColor: string; badgeBg: string }
+
+  const miniTiers: MiniTier[] = [
+    { max: 1, label: "Soft", badgeColor: "#16A34A", badgeBg: "#DCFCE7" },
+    { max: 3, label: "Slightly Hard", badgeColor: "#65A30D", badgeBg: "#ECFCCB" },
+    { max: 7, label: "Moderately Hard", badgeColor: "#CA8A04", badgeBg: "#FEF9C3" },
+    { max: 10, label: "Hard", badgeColor: "#EA580C", badgeBg: "#FFF7ED" },
+    { max: 18, label: "Very Hard", badgeColor: "#DC2626", badgeBg: "#FEE2E2" },
+    { max: 40, label: "Extremely Hard", badgeColor: "#7C3AED", badgeBg: "#EDE9FE" },
+  ];
+
+  function getMiniTier(value: number): MiniTier {
+    return miniTiers.find((t) => value <= t.max) || miniTiers[miniTiers.length - 1];
+  }
+
+  function getRecommendation(value: number): string {
+    if (value <= 7) {
+      return "Salt-free conditioner may be sufficient at this hardness level.";
+    }
+    if (value <= 15) {
+      return "A salt-based softener is recommended. Salt-free conditioners are less effective above 7 GPG.";
+    }
+    return "At this hardness level only a salt-based softener fully removes calcium and magnesium. Salt-free conditioners do not work effectively above 15 GPG.";
+  }
+
+  const slider = document.getElementById("mini-gpg-slider") as HTMLInputElement | null;
+  const numEl = document.getElementById("mini-gpg-number");
+  const badgeEl = document.getElementById("mini-gpg-badge");
+  const recEl = document.getElementById("mini-gpg-rec");
+
+  function update() {
+    if (!slider || !numEl || !badgeEl || !recEl) return;
+
+    const value = parseInt(slider.value, 10);
+    const tier = getMiniTier(value);
+
+    numEl.textContent = String(value);
+    badgeEl.textContent = tier.label;
+    (badgeEl as HTMLElement).style.background = tier.badgeBg;
+    (badgeEl as HTMLElement).style.color = tier.badgeColor;
+    recEl.textContent = getRecommendation(value);
+  }
+
+  slider?.addEventListener("input", update);
+  update();
+</script>

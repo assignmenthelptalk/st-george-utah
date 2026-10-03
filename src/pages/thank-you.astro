@@ -1,0 +1,24 @@
+---
+/**
+ * thank-you.astro — formsubmit.co redirect target for QuoteForm's _next
+ * field. Not one of the 8 primary pages, but required for the quote form's
+ * success redirect to land somewhere real instead of a 404.
+ */
+import Layout from "../components/Layout.astro";
+import { site } from "../lib/site";
+---
+
+<Layout title="Thank You" description="Your water softener quote request has been received." noindex>
+  <section class="section thank-you">
+    <div class="container">
+      <h1>Thanks — We've Got Your Request</h1>
+      <p>A member of our {site.city} team will follow up shortly with your free water softener quote.</p>
+      <a class="btn btn-primary" href="/">Back to Home</a>
+    </div>
+  </section>
+
+  <style>
+    .thank-you { text-align: center; padding-block: clamp(80px, 14vw, 160px); }
+    .thank-you p { max-width: 48ch; margin: 0 auto 24px; color: var(--color-text-muted); }
+  </style>
+</Layout>

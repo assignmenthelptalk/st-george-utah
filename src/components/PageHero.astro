@@ -1,0 +1,368 @@
+---
+/**
+ * PageHero — split inner-page hero: content left, real photo (or a GPG
+ * stat card fallback when no photo is available) right. Replaces the
+ * old single-column `.page-header` + separate `.page-header-image-section`
+ * pattern that every inner page used before this component existed.
+ *
+ * Colors/fonts are adapted to this project's actual design tokens
+ * (--color-primary/--color-accent, blue) rather than the green/navy
+ * values from the original spec, which don't exist anywhere in this
+ * codebase's theme.
+ */
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import Breadcrumbs from "./Breadcrumbs.astro";
+import { site } from "../lib/site";
+
+interface CtaLink {
+  href: string;
+  text: string;
+}
+
+interface Props {
+  breadcrumbs: Array<{ label: string; href?: string }>;
+  heading: string;
+  primaryCta: CtaLink;
+  secondaryCta: CtaLink;
+  /** Real photo for the right column. Omit to render the GPG stat card
+   * fallback instead — this is the only fallback path, so it must never
+   * reference a specific city/GPG value directly; it reads site.* live. */
+  image?: ImageMetadata;
+}
+
+const { breadcrumbs, heading, primaryCta, secondaryCta, image } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="page-hero-bg" aria-hidden="true"></div>
+
+  <div class="page-hero-inner">
+    <div class="page-hero-content">
+      <Breadcrumbs items={breadcrumbs} />
+
+      <div class="page-hero-badges">
+        <span class="page-hero-badge">✓ Licensed and Insured</span>
+        <span class="page-hero-badge">✓ Free Water Test</span>
+        <span class="page-hero-badge">✓ Same Day Service</span>
+        <span class="page-hero-badge">✓ No Obligation</span>
+      </div>
+
+      <h1 class="page-hero-h1">{heading}</h1>
+
+      <div class="page-hero-opening">
+        <slot name="opening" />
+      </div>
+
+      <div class="page-hero-ctas">
+        <a href={primaryCta.href} class="page-hero-btn-primary">{primaryCta.text}</a>
+        <a href={secondaryCta.href} class="page-hero-btn-secondary">{secondaryCta.text}</a>
+      </div>
+    </div>
+
+    <div class="page-hero-visual">
+      {image ? (
+        <Image
+          src={image}
+          alt={`${heading.replace(" | Trusted Local Specialists", "")} — water softener service`}
+          class="page-hero-img"
+          loading="eager"
+          decoding="async"
+          width={600}
+          height={480}
+        />
+      ) : (
+        <div class="page-hero-stat-card">
+          <div class="page-hero-stat-gpg">{site.gpgLow}–{site.gpgHigh}</div>
+          <div class="page-hero-stat-unit">GPG</div>
+          <div class="page-hero-stat-label">{site.gpgLabel}</div>
+          <div class="page-hero-stat-source">Source: {site.waterAuthority}</div>
+          <div class="page-hero-stat-badge">Water Quality Association</div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── PAGE HERO — SPLIT LAYOUT ── */
+  .page-hero {
+    position: relative;
+    background: var(--surface-footer);
+    overflow: hidden;
+    min-height: 420px;
+    display: flex;
+    align-items: stretch;
+  }
+
+  /* Subtle diagonal gradient overlay for depth */
+  .page-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      var(--surface-footer) 0%,
+      var(--color-primary-dark) 60%,
+      var(--color-primary) 100%
+    );
+    opacity: 0.92;
+    z-index: 0;
+  }
+
+  /* Inner grid — two columns, exactly half/half on desktop */
+  .page-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    min-height: 420px;
+  }
+
+  /* LEFT — content column */
+  .page-hero-content {
+    padding: 56px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    --breadcrumb-color: rgba(255, 255, 255, 0.65);
+    --breadcrumb-hover-color: #ffffff;
+    --breadcrumb-current-color: #ffffff;
+  }
+  .page-hero-content :global(.breadcrumbs) { padding: 0 0 14px; }
+
+  /* Trust badges */
+  .page-hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .page-hero-badge {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 4px;
+    padding: 4px 10px;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  /* H1 */
+  .page-hero-h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(24px, 3.5vw, 42px);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  /* Opening paragraph — Glendale Elite pattern, moved up into the hero */
+  .page-hero-opening {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    max-width: 540px;
+  }
+  .page-hero-opening :global(.brand-link) {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .page-hero-opening :global(.brand-link:hover) {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .page-hero-opening :global(.brand-link:focus-visible) {
+    outline: 3px solid #ffffff;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* CTA row */
+  .page-hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Primary button — brand accent, not the spec's green */
+  .page-hero-btn-primary {
+    display: inline-block;
+    padding: 13px 26px;
+    background: var(--color-accent);
+    color: #ffffff;
+    border-radius: var(--radius-brand);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(29, 78, 216, 0.28);
+    transition: background-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+  }
+  .page-hero-btn-primary:hover {
+    background: var(--color-accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(29, 78, 216, 0.38);
+  }
+  .page-hero-btn-primary:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
+  }
+  .page-hero-btn-primary:active { transform: scale(0.98); }
+
+  /* Secondary button — white outline */
+  .page-hero-btn-secondary {
+    display: inline-block;
+    padding: 13px 26px;
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: var(--radius-brand);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 150ms ease, border-color 150ms ease;
+  }
+  .page-hero-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #ffffff;
+  }
+  .page-hero-btn-secondary:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
+  }
+  .page-hero-btn-secondary:active { transform: scale(0.98); }
+
+  /* RIGHT — visual column */
+  .page-hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 320px;
+  }
+
+  /* Real image — fills the right column flush */
+  .page-hero-img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 0;
+  }
+
+  /* GPG stat card fallback */
+  .page-hero-stat-card {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 40px 36px;
+    text-align: center;
+    width: 100%;
+    max-width: 320px;
+    backdrop-filter: blur(8px);
+  }
+  .page-hero-stat-gpg {
+    font-family: var(--font-heading);
+    font-size: clamp(52px, 7vw, 80px);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .page-hero-stat-unit {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .page-hero-stat-label {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-accent-light, var(--color-accent));
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+  .page-hero-stat-source {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .page-hero-stat-badge {
+    display: inline-block;
+    padding: 5px 14px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.04em;
+  }
+
+  /* Mobile — stack vertically, image above content */
+  @media (max-width: 768px) {
+    .page-hero { min-height: auto; }
+    .page-hero-inner {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 0;
+      min-height: auto;
+    }
+    .page-hero-content {
+      padding: 48px 20px 32px;
+      align-items: center;
+      text-align: center;
+    }
+    .page-hero-badges { justify-content: center; }
+    .page-hero-opening { text-align: center; }
+    .page-hero-ctas {
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+    }
+    .page-hero-btn-primary,
+    .page-hero-btn-secondary {
+      width: 100%;
+      text-align: center;
+    }
+    .page-hero-visual {
+      min-height: 240px;
+      order: -1;
+    }
+    .page-hero-img {
+      height: 240px;
+      border-radius: 0;
+    }
+    .page-hero-stat-card {
+      margin: 0 20px 32px;
+      padding: 28px 24px;
+    }
+  }
+</style>

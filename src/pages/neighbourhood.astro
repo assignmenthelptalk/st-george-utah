@@ -1,0 +1,74 @@
+---
+import Layout from "../components/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+---
+
+<Layout
+  title={`Water Softener Service Areas in ${site.city}, ${site.stateAbbr}`}
+  description={`Water softener service areas in ${site.city}, ${site.stateAbbr}. We serve all ${site.city} neighbourhoods and surrounding ${site.county} communities. Free water test included with every consultation.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Neighbourhoods" }]}
+    heading={`Water Softener Service Areas in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}provides water softener installation and service across every {site.city} neighbourhood and
+      surrounding {site.county} community. {site.waterAuthority} delivers the same {site.gpgLow}
+      –{site.gpgHigh} GPG supply citywide. Every neighbourhood receives the same {site.gpgLabel} water
+      classification. Free in-home water test available across all service areas. Same day service. No
+      obligation.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-header">
+        <p>We install and service water softeners throughout {site.city}, {site.stateAbbr}, and every neighbourhood shares the same {site.gpgLow}–{site.gpgHigh} GPG ({site.gpgLabel}) water from {site.waterSource}.</p>
+      </div>
+    </div>
+  </section>
+
+  {site.neighbourhoods.map((neighbourhood) => (
+    <section class="section neighbourhood-section" id={neighbourhood.toLowerCase().replace(/\s+/g, "-")}>
+      <div class="container">
+        <h2>{neighbourhood}</h2>
+        <p>
+          Homeowners in {neighbourhood} deal with the same {site.gpgLabel.toLowerCase()} water as the rest of {site.city} —
+          {" "}{site.gpgLow}–{site.gpgHigh} GPG sourced from {site.waterSource}. We provide free water testing and
+          same-week installation for {neighbourhood} residents.
+        </p>
+        <a class="btn btn-secondary btn-sm neighbourhood-cta" href="/quote/">Free Consultation for {neighbourhood}</a>
+      </div>
+    </section>
+  ))}
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Don't See Your Neighbourhood?</h2>
+      <p>We serve all of {site.city} and surrounding {site.county}. Reach out for a free quote wherever you are.</p>
+      <a class="btn btn-primary" href="/quote/">Free Consultation</a>
+    </div>
+  </section>
+
+  <style>
+    .neighbourhood-section:nth-of-type(odd) { background: var(--color-surface); }
+    .neighbourhood-section h2 { margin-bottom: 8px; }
+    /* Offsets the anchor-scroll target below the sticky site header (plus
+       utility bar) so a deep link from the Locations nav dropdown doesn't
+       land with the heading hidden underneath. */
+    .neighbourhood-section { scroll-margin-top: 120px; }
+    .neighbourhood-cta { margin-top: 16px; }
+    .neighbourhood-cta:not(:hover) { color: var(--color-primary); border-color: var(--color-primary); }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>

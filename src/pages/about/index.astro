@@ -1,0 +1,333 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { site } from "../../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+
+const services = [
+  {
+    name: "Water Softener Installation",
+    body: "We install high quality water softener systems designed to remove hard minerals from your water supply. The result is cleaner water, longer lasting appliances, and better overall water quality.",
+    href: "/installation/",
+  },
+  {
+    name: "Water Testing",
+    body: "We test your water to determine hardness levels and identify mineral issues. This ensures you get the right system, not a generic solution.",
+    href: "/water-quality/",
+  },
+  {
+    name: "Water Softener Repair",
+    body: "We diagnose and repair water softener systems to restore performance quickly. This helps prevent costly replacements and downtime.",
+    href: "/repair/",
+  },
+  {
+    name: "Water Softener Maintenance",
+    body: "We provide ongoing maintenance services including system checks and optimization. Regular servicing extends the lifespan of your system.",
+    href: null,
+  },
+];
+
+const differentiators = [
+  { name: "Fast Installation", body: "Most installations are scheduled within 24 to 48 hours. We prioritize speed without compromising quality." },
+  { name: "Custom Water Softener Systems", body: "We recommend systems based on your actual water test results, not generic packages like many big box competitors." },
+  { name: "Transparent Pricing", body: "No hidden fees or upsells. You receive clear, upfront pricing before any work begins." },
+  { name: "Local Water Expertise", body: `We understand ${site.city}'s water conditions, allowing us to deliver more effective long term solutions than national providers.` },
+  { name: "Full Service Support", body: "From testing to installation to maintenance, we handle everything. Companies like Culligan or EcoWater often separate these services. We keep it seamless." },
+];
+
+const audiences = [
+  `Homeowners dealing with hard water in ${site.city}`,
+  "Families wanting cleaner, softer water",
+  "Property managers maintaining rental properties",
+  "Real estate investors upgrading property value",
+  "New homeowners installing water softener systems",
+];
+
+const steps = [
+  { step: "Step 1", text: "Schedule a water test", icon: "droplet" },
+  { step: "Step 2", text: "Get a custom system recommendation", icon: "clipboard" },
+  { step: "Step 3", text: "Fast installation within 1 to 2 days", icon: "wrench" },
+  { step: "Step 4", text: "Ongoing maintenance and support", icon: "shield" },
+];
+
+const keyFacts = [
+  { label: "Company Name", value: site.businessName },
+  { label: "Type", value: `Water Softener ${site.city} ${site.stateAbbr} Company` },
+  { label: "Headquarters", value: `${site.city}, ${site.state}, USA` },
+  { label: "Website", value: site.siteUrl.replace(/^https?:\/\//, "") },
+  { label: "Core Offering", value: `Water Softener ${site.city} ${site.stateAbbr} installation and service` },
+  { label: "Pricing", value: "Custom quotes based on home size and system type" },
+  { label: "Contract Terms", value: "No long term contracts" },
+  { label: "Services", value: "Installation, water testing, maintenance, repair" },
+  { label: "Communication", value: "Phone, email, SMS" },
+  { label: "Notable Clients", value: "Local homeowners and property managers" },
+  { label: "Competitors", value: "Culligan, EcoWater Systems, RainSoft" },
+  { label: "Social", value: "Facebook, Google Business Profile" },
+];
+
+const faqs = [
+  {
+    q: `Do I need a water softener in ${site.city}?`,
+    a: `Yes, ${site.city} is known for hard water. A water softener helps prevent scale buildup and improves water quality.`,
+  },
+  {
+    q: "How long does water softener installation take?",
+    a: "Most installations are completed within a few hours, depending on your home setup.",
+  },
+  {
+    q: `How much does a Water Softener ${site.city} ${site.stateAbbr} system cost?`,
+    a: "Pricing depends on system size and water conditions. We provide upfront quotes after testing your water.",
+  },
+  {
+    q: "How often does maintenance need to be done?",
+    a: "Routine maintenance is recommended every few months, depending on usage and system type.",
+  },
+  {
+    q: "Can you repair existing water softeners?",
+    a: "Yes, we repair most major brands and restore system performance quickly.",
+  },
+];
+---
+
+<Layout
+  title={`About ${site.businessName}`}
+  description={`About ${site.businessName}. Serving ${site.city} and ${site.county} homeowners with professional water softener installation, repair, and maintenance. Free consultation available.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "About" }]}
+    heading={`About ${site.businessName} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}is a Water Softener {site.city} {site.stateAbbr} company that installs and services water softener
+      systems for homeowners and property owners. We help eliminate hard water problems like scale buildup, dry
+      skin, and appliance damage by installing reliable, high performance systems tailored to {site.city} homes.
+    </p>
+  </PageHero>
+
+  <!-- What We Do -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2>What We Do | Water Softener {site.city} {site.stateAbbr} Services</h2>
+      </div>
+      <div class="about-media-wrap">
+        <img
+          src="/placeholder-water.svg"
+          alt="Before and after comparison of hard water vs soft water results"
+          width="900"
+          height="400"
+          loading="lazy"
+        />
+      </div>
+      <div class="grid grid-2">
+        {services.map((s) => (
+          <div class="card">
+            <h3>{s.name} {site.city} {site.stateAbbr}</h3>
+            <p>{s.body}</p>
+            {s.href && <a class="service-learn-more" href={s.href}>Learn more →</a>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What Makes Us Different -->
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>What Makes {site.businessName} Different | Water Softener {site.city} {site.stateAbbr} Experts</h2>
+      </div>
+      <div class="about-media-wrap">
+        <img
+          src="/placeholder-water.svg"
+          alt="Team working on installation or service call"
+          width="900"
+          height="400"
+          loading="lazy"
+        />
+      </div>
+      <div class="grid grid-3">
+        {differentiators.map((d) => (
+          <div class="card">
+            <h3>{d.name}</h3>
+            <p>{d.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Uses Our Services -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Who Uses Our Water Softener {site.city} {site.stateAbbr} Services</h2>
+      </div>
+      <div class="about-media-wrap">
+        <img
+          src="/placeholder-water.svg"
+          alt="Happy homeowner using clean water at home"
+          width="900"
+          height="400"
+          loading="lazy"
+        />
+      </div>
+      <ul class="about-audience-list">
+        {audiences.map((a) => <li>{a}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2>How Our Water Softener {site.city} {site.stateAbbr} Service Works</h2>
+      </div>
+      <div class="grid grid-2">
+        {steps.map((s) => (
+          <div class="card step-card">
+            <span class="step-icon" aria-hidden="true">
+              {s.icon === "droplet" && (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2c0 0-7 8.5-7 13a7 7 0 0 0 14 0c0-4.5-7-13-7-13z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {s.icon === "clipboard" && (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <rect x="6" y="4" width="12" height="17" rx="2" stroke="currentColor" stroke-width="1.8" />
+                  <path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                  <line x1="9" y1="11" x2="15" y2="11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                  <line x1="9" y1="15" x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+              )}
+              {s.icon === "wrench" && (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {s.icon === "shield" && (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+            </span>
+            <p class="card-title">{s.step}</p>
+            <p>{s.text}</p>
+          </div>
+        ))}
+      </div>
+      <div class="about-process-meta">
+        <p><strong>Communication:</strong> Phone, email, SMS</p>
+        <p><strong>Response Time:</strong> Same day replies</p>
+        <p><strong>Installation Time:</strong> A few hours for most homes</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts -->
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Key Facts | Water Softener {site.city} {site.stateAbbr} Company</h2>
+      </div>
+      <table class="data-table">
+        <tbody>
+          {keyFacts.map((f) => (
+            <tr>
+              <td><strong>{f.label}</strong></td>
+              <td>{f.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Frequently Asked Questions | Water Softener {site.city} {site.stateAbbr}</h2>
+      </div>
+      <div class="about-media-wrap">
+        <img
+          src="/placeholder-water.svg"
+          alt="Close up of clean water flowing"
+          width="900"
+          height="300"
+          loading="lazy"
+        />
+      </div>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>{site.businessName} is your trusted local expert</h2>
+      <p>For Water Softener {site.city} {site.stateAbbr} installation, repair, and maintenance — get a free, no-obligation quote today.</p>
+      <a class="btn btn-primary" href="/contact/">Get in Touch →</a>
+    </div>
+  </section>
+
+  <style>
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+    .about-media-wrap { margin: 0 0 32px; border-radius: var(--radius, 8px); overflow: hidden; }
+    .about-media-wrap img { display: block; width: 100%; height: auto; }
+    .about-audience-list {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+    .about-audience-list li {
+      padding: 14px 18px;
+      background: var(--surface-elevated, #fff);
+      border-radius: 8px;
+      border: 1px solid var(--color-border, #e5e5e5);
+    }
+    .about-process-meta {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+    }
+    .about-process-meta p { margin: 0; }
+    .step-card { text-align: center; }
+    .step-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      margin: 0 auto 16px;
+    }
+  </style>
+</Layout>

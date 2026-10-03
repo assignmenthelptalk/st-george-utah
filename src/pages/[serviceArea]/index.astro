@@ -1,0 +1,37 @@
+---
+/**
+ * Dynamic service-area route — generates one page per verified entry in
+ * site.config.ts's `serviceAreas` array. With an empty array (the
+ * boilerplate default) this generates zero pages, which is correct.
+ */
+import Layout from "../../components/Layout.astro";
+import ServiceAreaLayout from "../../components/ServiceAreaLayout.astro";
+import { site } from "../../lib/site";
+import type { ServiceArea } from "../../site.config";
+
+export async function getStaticPaths() {
+  // Only generate a page for entries that have actually passed the QDP
+  // test (PROVISION.md Step 5c) — an unverified or failed entry in the
+  // array must never produce a live page, even if someone has started
+  // filling in its data.
+  return site.serviceAreas
+    .filter((area) => area.qdp.verified && area.qdp.verdict === "PASS")
+    .map((area) => ({
+      params: { serviceArea: area.slug },
+      props: { area },
+    }));
+}
+
+interface Props {
+  area: ServiceArea;
+}
+
+const { area } = Astro.props;
+---
+
+<Layout
+  title={`Water Softener Installation in ${area.city}, ${area.stateAbbr}`}
+  description={area.metaDesc}
+>
+  <ServiceAreaLayout {...area} h1={`Water Softener Installation in ${area.city}, ${area.stateAbbr} | Trusted Local Specialists`} />
+</Layout>

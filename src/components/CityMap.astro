@@ -1,0 +1,707 @@
+---
+/**
+ * CityMap.astro — Generic city neighbourhood hardness map (PROVISIONING TEMPLATE)
+ *
+ * This component is NOT rendered anywhere in the boilerplate. It is a
+ * starting point that provisioners copy and adapt per city — see
+ * PROVISION.md Step 5b ("City Map") for the full walkthrough.
+ *
+ * PROVISIONING INSTRUCTIONS:
+ * 1. Copy this file to src/components/[City]Map.astro (e.g. MinneapolisMap.astro)
+ * 2. Fill in MAP_CONFIG below with the city's centre coordinates and bounds
+ * 3. Fill in the neighbourhoods array with real, verified coordinates
+ *    (use OpenStreetMap to find lat/lng per neighbourhood — see PROVISION.md)
+ * 4. Install leaflet: npm install leaflet @types/leaflet
+ * 5. Add to astro.config.mjs: vite: { ssr: { noExternal: ['leaflet'] } }
+ * 6. Add to Layout.astro head:
+ *    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+ *          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+ * 7. Import and add <[City]Map /> to index.astro after the GPG stat block
+ *
+ * TILE LAYER NOTE (important — read before choosing a tile provider):
+ * - CARTO dark tiles (basemaps.cartocdn.com): NOW REQUIRE AN API KEY, even
+ *   for unauthenticated requests. Every tile returns an "API KEY REQUIRED"
+ *   watermark baked into the image instead of erroring. Do NOT use CARTO.
+ *   Confirmed broken via direct tile fetch, September 2026.
+ * - Stadia Maps (tiles.stadiamaps.com): also requires authentication.
+ * - WORKING SOLUTION: OpenStreetMap tiles with a CSS inversion filter
+ *   scoped to .leaflet-tile-pane only. Markers, popups, and controls sit on
+ *   separate Leaflet panes and are NOT affected by the filter.
+ *   CSS: filter: invert(1) hue-rotate(190deg) brightness(1.18) contrast(0.85) saturate(0.65)
+ *   This produces a dark navy map that matches the site design system.
+ * See CLAUDE.md → "Map Component — Tile Layer Rule" for the same note.
+ *
+ * NOTE ON LEAFLET NOT BEING A BOILERPLATE DEPENDENCY:
+ * This file uses a dynamic `import("leaflet")` inside the client script so
+ * the boilerplate itself never needs leaflet installed — this component is
+ * never rendered here, only copied out during provisioning (Step 4 above).
+ * The `@ts-expect-error` above that import is intentional: it suppresses
+ * the "module not found" type error until the provisioner installs the
+ * package in the city site's own package.json.
+ */
+
+import { site } from "../lib/site";
+---
+
+<section class="city-map-section">
+  <div class="city-map-inner">
+
+    <div class="city-map-header">
+      <h2>{site.city} Neighbourhood Water Hardness</h2>
+      <p>
+        Every {site.city} neighbourhood receives {site.gpgLow}–{site.gpgHigh} GPG
+        water from {site.waterAuthority}.
+        Click your neighbourhood to see what that means for your home.
+      </p>
+    </div>
+
+    <div class="city-map-panel">
+
+      <!-- Left: map -->
+      <div class="city-map-left">
+        <div id="city-map"></div>
+        <button
+          class="map-reset-btn"
+          id="map-reset-btn"
+          aria-label={`Reset map to ${site.city} view`}
+        >
+          ⌖ Reset View
+        </button>
+        <div class="map-legend" aria-hidden="true">
+          <span class="legend-selected">● Selected Area</span>
+          <span class="legend-available">○ Available Data</span>
+        </div>
+      </div>
+
+      <!-- Right: report panel -->
+      <div class="city-map-right">
+
+        <div class="report-header">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="white">
+            <path d="M13 2L4.09 12.26h6.65L9.61 22 20 11.74h-6.65z"></path>
+          </svg>
+          Neighbourhood Report
+        </div>
+
+        <div class="report-body">
+
+          <!-- Default state -->
+          <div class="report-default" id="report-default">
+            <div class="report-default-icon">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none"
+                   stroke="#CBD5E1" stroke-width="1.5">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <p>Click a pin on the map to see the hardness report for your neighbourhood.</p>
+          </div>
+
+          <!-- Active state — hidden until pin click -->
+          <div class="report-active" id="report-active" style="display:none">
+
+            <div class="report-field">
+              <span class="field-label">NEIGHBOURHOOD</span>
+              <span class="field-value" id="report-name"></span>
+            </div>
+
+            <div class="report-field">
+              <span class="field-label">HARDNESS LEVEL</span>
+              <div class="gpg-row">
+                <span class="gpg-number" id="report-gpg"></span>
+                <span class="gpg-unit">GPG</span>
+                <span class="gpg-badge">VERY HARD</span>
+              </div>
+            </div>
+
+            <div class="report-wqa" id="report-wqa"></div>
+
+            <div class="report-issues-wrapper">
+              <p class="issues-heading" id="issues-heading"></p>
+              <ul class="report-issues" id="report-issues"></ul>
+            </div>
+
+            <a href="/quote/" class="report-cta" id="report-cta">
+              Free Consultation →
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="map-footnote">
+      All {site.city} neighbourhoods receive water from {site.waterAuthority}
+      at a consistent {site.gpgLow}–{site.gpgHigh} GPG hardness level.
+    </p>
+
+  </div>
+</section>
+
+<style>
+  /* ── TILE INVERSION — dark navy effect ── */
+  /* Scoped to tile pane only — markers/popups on separate panes, unaffected */
+  :global(#city-map .leaflet-tile-pane) {
+    filter: invert(1) hue-rotate(190deg) brightness(1.18) contrast(0.85) saturate(0.65);
+  }
+
+  /* ── SECTION ── */
+  .city-map-section {
+    padding: 80px 24px;
+    background: var(--surface-elevated);
+  }
+  .city-map-inner { max-width: 1100px; margin: 0 auto; }
+  .city-map-header { text-align: center; margin-bottom: 40px; }
+  .city-map-header h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4vw, 42px);
+    letter-spacing: -0.03em;
+    color: var(--surface-footer);
+  }
+  .city-map-header p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ── SPLIT PANEL ── */
+  .city-map-panel {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 24px;
+    align-items: start;
+  }
+  .city-map-left { position: relative; }
+  #city-map {
+    height: 460px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(15,110,120,0.15);
+    background: var(--surface-footer);
+  }
+
+  /* ── RESET BUTTON — top right, never overlaps the bottom-left legend ── */
+  .map-reset-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 1000;
+    padding: 8px 14px;
+    background: white;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-primary);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: border-color 150ms ease,
+                box-shadow 150ms ease,
+                transform 150ms ease;
+  }
+  .map-reset-btn:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(15,110,120,0.20);
+    transform: translateY(-1px);
+  }
+  .map-reset-btn:active { transform: scale(0.97); }
+  .map-reset-btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+
+  /* ── LEGEND ── */
+  .map-legend {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(10,46,51,0.85);
+    backdrop-filter: blur(4px);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 1000;
+    pointer-events: none;
+  }
+  .legend-selected {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    color: #60A5FA;
+  }
+  .legend-available {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ── PINS ── */
+  :global(.map-pin-default) {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    border: 2px solid rgba(255,255,255,0.45);
+    cursor: pointer;
+    transition: border-color 150ms ease,
+                background 150ms ease,
+                transform 150ms ease;
+  }
+  :global(.map-pin-default:hover) {
+    border-color: white;
+    background: rgba(255,255,255,0.28);
+    transform: scale(1.15);
+  }
+  :global(.map-pin-active) {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #2563EB;
+    border: 3px solid white;
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.30);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+  }
+  :global(.map-pin-pulse) {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: rgba(37,99,235,0.18);
+    animation: pin-pulse 2s ease-out infinite;
+    pointer-events: none;
+  }
+  @keyframes pin-pulse {
+    0%   { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(2); opacity: 0; }
+  }
+
+  /* ── HOVER TOOLTIP ── */
+  :global(.map-tooltip-wrapper) {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  :global(.map-tooltip-wrapper::before) { display: none !important; }
+  :global(.map-hover-tooltip) {
+    background: white;
+    border-radius: 10px;
+    padding: 10px 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25), 0 1px 4px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    min-width: 120px;
+    text-align: center;
+  }
+  :global(.tooltip-name) {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    color: #111827;
+    white-space: nowrap;
+  }
+  :global(.tooltip-gpg) {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: #6B7280;
+    font-weight: 500;
+  }
+
+  /* ── MAP LABEL POPUP ── */
+  :global(.map-label-popup .leaflet-popup-content-wrapper) {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.20);
+  }
+  :global(.map-label-popup .leaflet-popup-content) {
+    margin: 8px 16px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+  }
+  :global(.map-label-popup .leaflet-popup-tip) { background: white; }
+
+  /* ── REPORT PANEL ── */
+  .city-map-right {
+    background: var(--surface-base);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    position: sticky;
+    top: 80px;
+  }
+  .report-header {
+    background: #2563EB;
+    color: white;
+    padding: 15px 20px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .report-body { padding: 24px; }
+  .report-default { text-align: center; padding: 32px 16px; }
+  .report-default-icon { margin-bottom: 16px; }
+  .report-default p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: #9CA3AF;
+  }
+  .report-field { margin-bottom: 20px; }
+  .field-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .field-value {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    color: #111827;
+    display: block;
+  }
+  .gpg-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .gpg-number {
+    font-family: var(--font-heading);
+    font-size: 48px;
+    color: #111827;
+    line-height: 1;
+  }
+  .gpg-unit {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: #6B7280;
+    font-weight: 500;
+  }
+  .gpg-badge {
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    background: #FEE2E2;
+    color: #991B1B;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .report-wqa :global(.wqa-note) {
+    background: var(--color-primary-light);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--color-primary-dark, var(--color-primary));
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .issues-heading {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #374151;
+    margin-bottom: 10px;
+  }
+  .report-issues {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+  }
+  .report-issues li {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: #6B7280;
+    padding: 7px 0;
+    border-bottom: 1px solid #F3F4F6;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+  }
+  .report-issues li::before {
+    content: '•';
+    color: var(--color-accent);
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  .report-cta {
+    display: block;
+    padding: 13px 20px;
+    background: var(--color-accent);
+    color: white;
+    text-align: center;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(230,81,0,0.28);
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+  .report-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(230,81,0,0.38);
+  }
+  .report-cta:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+
+  /* ── FOOTNOTE ── */
+  .map-footnote {
+    margin-top: 20px;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: #9CA3AF;
+    line-height: 1.6;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .city-map-panel { grid-template-columns: 1fr; }
+    .city-map-right { order: -1; position: static; }
+    #city-map { height: 300px; }
+    .gpg-number { font-size: 36px; }
+    .city-map-section { padding: 48px 16px; }
+  }
+</style>
+
+<script>
+  // ─────────────────────────────────────────────────────────────────────
+  // NOTE: leaflet is intentionally NOT a boilerplate dependency — this file
+  // is never rendered here, only copied out per city during provisioning
+  // (see the frontmatter comment above). The dynamic import below is
+  // resolved at runtime only, once a provisioner has run
+  // `npm install leaflet @types/leaflet` in the city site's own repo.
+  // ─────────────────────────────────────────────────────────────────────
+
+  interface Neighbourhood {
+    name: string;
+    coords: [number, number];
+    gpgRange: string;
+    wqaNote: string;
+    issues: string[];
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    // ─────────────────────────────────────────────────────────────────
+    // MAP CONFIG — fill these values when provisioning a new city
+    // Find coordinates using: https://www.openstreetmap.org (right-click → Show address)
+    // Find the bounding box using: https://boundingbox.klokantech.com
+    // ─────────────────────────────────────────────────────────────────
+    const CITY_LAT = 0; // TODO: replace with the real city centre latitude
+    const CITY_LNG = 0; // TODO: replace with the real city centre longitude
+    const BOUNDS_SOUTH = 0; // TODO: southwest corner of the service area
+    const BOUNDS_WEST = 0;
+    const BOUNDS_NORTH = 0; // TODO: northeast corner of the service area
+    const BOUNDS_EAST = 0;
+
+    const MAP_CONFIG = {
+      centre: [CITY_LAT, CITY_LNG] as [number, number],
+      zoom: 12,
+      minZoom: 11, // prevents zooming out to show the wider metro area
+      maxZoom: 14,
+      bounds: {
+        sw: [BOUNDS_SOUTH, BOUNDS_WEST] as [number, number],
+        ne: [BOUNDS_NORTH, BOUNDS_EAST] as [number, number],
+      },
+    };
+
+    // ─────────────────────────────────────────────────────────────────
+    // NEIGHBOURHOOD DATA — fill this array when provisioning a new city
+    // Each entry needs: name, coords [lat, lng], gpgRange, wqaNote, issues[]
+    // Verify every coordinate using OpenStreetMap or Google Maps.
+    // Only list VERIFIED residential neighbourhoods — not roads or parks.
+    // ─────────────────────────────────────────────────────────────────
+    const NEIGHBOURHOOD_1_LAT = 0; // TODO: replace with a verified coordinate
+    const NEIGHBOURHOOD_1_LNG = 0;
+
+    const neighbourhoods: Neighbourhood[] = [
+      {
+        name: "NEIGHBOURHOOD_1_NAME",
+        coords: [NEIGHBOURHOOD_1_LAT, NEIGHBOURHOOD_1_LNG],
+        gpgRange: "GPG_LOW–GPG_HIGH",
+        wqaNote:
+          'Anything above 10.5 GPG is considered "Very Hard" by the Water Quality Association.',
+        issues: ["ISSUE_1", "ISSUE_2", "ISSUE_3", "ISSUE_4"],
+      },
+      // Add one entry per neighbourhood — 4 to 8 entries recommended.
+      // Fewer entries with accurate data beats more entries with invented data.
+    ];
+
+    // ─────────────────────────────────────────────────────────────────
+    // MAP INITIALISATION — do not modify below this line during provisioning
+    // ─────────────────────────────────────────────────────────────────
+    const mapEl = document.getElementById("city-map");
+    if (!mapEl) return;
+
+    const L = (await import("leaflet")).default;
+
+    const map = L.map(mapEl, {
+      center: MAP_CONFIG.centre,
+      zoom: MAP_CONFIG.zoom,
+      minZoom: MAP_CONFIG.minZoom,
+      maxZoom: MAP_CONFIG.maxZoom,
+      zoomControl: true,
+      attributionControl: true,
+    });
+
+    // ── TILE LAYER ──
+    // OSM with CSS inversion — dark navy aesthetic, no API key required.
+    // Do NOT switch to CARTO (requires an API key) or Stadia Maps (also
+    // requires authentication) — see the tile layer note at the top of
+    // this file and in CLAUDE.md.
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      subdomains: "abc",
+      maxZoom: 19,
+    }).addTo(map);
+
+    // ── BOUNDS LOCK ──
+    const cityBounds = L.latLngBounds(MAP_CONFIG.bounds.sw, MAP_CONFIG.bounds.ne);
+    map.setMaxBounds(cityBounds);
+    map.on("drag", () => {
+      map.panInsideBounds(cityBounds, { animate: false });
+    });
+
+    // ── PIN ICONS ──
+    function defaultIcon() {
+      return L.divIcon({
+        className: "",
+        html: '<div class="map-pin-default"></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11],
+        popupAnchor: [0, -14],
+      });
+    }
+
+    function activeIcon() {
+      return L.divIcon({
+        className: "",
+        html: `<div class="map-pin-active">
+                 <span class="map-pin-pulse"></span>
+                 <svg viewBox="0 0 24 24" width="12" height="12" fill="white">
+                   <path d="M13 2L4.09 12.26h6.65L9.61 22 20 11.74h-6.65z"/>
+                 </svg>
+               </div>`,
+        iconSize: [28, 28],
+        iconAnchor: [14, 14],
+        popupAnchor: [0, -18],
+      });
+    }
+
+    // ── REPORT PANEL ELEMENTS ──
+    const reportDefault = document.getElementById("report-default");
+    const reportActive = document.getElementById("report-active");
+    const reportName = document.getElementById("report-name");
+    const reportGpg = document.getElementById("report-gpg");
+    const reportWqa = document.getElementById("report-wqa");
+    const issuesHeading = document.getElementById("issues-heading");
+    const reportIssues = document.getElementById("report-issues");
+    const reportCta = document.getElementById("report-cta");
+
+    // ── RESET VIEW BUTTON ──
+    const resetBtn = document.getElementById("map-reset-btn");
+    if (resetBtn) {
+      resetBtn.addEventListener("click", () => {
+        map.setView(MAP_CONFIG.centre, MAP_CONFIG.zoom, { animate: true });
+        if (activePopup) map.closePopup(activePopup);
+      });
+    }
+
+    // ── MARKERS ──
+    let activeMarker: ReturnType<typeof L.marker> | null = null;
+    let activePopup: ReturnType<typeof L.popup> | null = null;
+
+    neighbourhoods.forEach((hood) => {
+      const marker = L.marker(hood.coords, { icon: defaultIcon() }).addTo(map);
+
+      // Hover tooltip — name and GPG reading on mouseover
+      marker.bindTooltip(
+        `<div class="map-hover-tooltip">
+           <span class="tooltip-name">${hood.name}</span>
+           <span class="tooltip-gpg">${hood.gpgRange} GPG</span>
+         </div>`,
+        {
+          permanent: false,
+          direction: "bottom",
+          offset: [0, 8],
+          opacity: 1,
+          className: "map-tooltip-wrapper",
+        },
+      );
+
+      // Click handler — close tooltip, activate pin, update report panel
+      marker.on("click", () => {
+        marker.closeTooltip();
+
+        if (activeMarker && activeMarker !== marker) {
+          activeMarker.setIcon(defaultIcon());
+        }
+        if (activePopup) map.closePopup(activePopup);
+
+        marker.setIcon(activeIcon());
+        activeMarker = marker;
+
+        // Centre map on clicked neighbourhood
+        map.setView(hood.coords, MAP_CONFIG.zoom, { animate: true });
+
+        // White label popup on map
+        activePopup = L.popup({
+          closeButton: false,
+          className: "map-label-popup",
+          offset: [0, -12],
+        })
+          .setLatLng(hood.coords)
+          .setContent(`<strong>${hood.name}</strong>`)
+          .openOn(map);
+
+        // Update report panel
+        if (reportDefault) reportDefault.style.display = "none";
+        if (reportActive) {
+          reportActive.style.display = "block";
+          reportActive.style.opacity = "0";
+          reportActive.style.transform = "translateY(6px)";
+          requestAnimationFrame(() => {
+            reportActive.style.transition = "opacity 220ms ease, transform 220ms ease";
+            reportActive.style.opacity = "1";
+            reportActive.style.transform = "translateY(0)";
+          });
+        }
+
+        if (reportName) reportName.textContent = hood.name;
+        if (reportGpg) reportGpg.textContent = hood.gpgRange;
+        if (reportWqa) reportWqa.innerHTML = `<div class="wqa-note">ℹ️ ${hood.wqaNote}</div>`;
+        if (issuesHeading) issuesHeading.textContent = `Common issues in ${hood.name}:`;
+        if (reportIssues) reportIssues.innerHTML = hood.issues.map((i) => `<li>${i}</li>`).join("");
+        if (reportCta) reportCta.textContent = `Free Consultation for ${hood.name} →`;
+      });
+    });
+  });
+</script>

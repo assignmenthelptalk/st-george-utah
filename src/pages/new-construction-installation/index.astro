@@ -1,0 +1,113 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { site } from "../../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+
+const faqs = [
+  {
+    q: "When should a water softener be planned during new construction?",
+    a: "Before drywall goes up. The rough-in stage is when a dedicated loop, drain line, and outlet can be added without cutting into finished walls later.",
+  },
+  {
+    q: "Does the builder or the homeowner arrange this?",
+    a: `Either can. Some ${site.city} builders include a pre-plumbed loop as a standard option; if yours doesn't, we coordinate directly with your builder or GC on rough-in timing.`,
+  },
+  {
+    q: "Can a softener be added after the home is built instead?",
+    a: `Yes — most ${site.city} installs happen in existing homes. Pre-planning during construction just avoids exposed plumbing or a less convenient equipment location later.`,
+  },
+];
+---
+
+<Layout
+  title={`New Construction Water Softener Installation, ${site.city}`}
+  description={`Plan water softener rough-in for a new ${site.city} home — loop placement, drain line, and builder coordination before drywall.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Installation", href: "/installation/" }, { label: "New Construction" }]}
+    heading={`New Construction Water Softener Installation in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}offers water softener installation for new construction homes across {site.city} and {site.county}.
+      New {site.city} builds receive {site.gpgLow}–{site.gpgHigh} GPG water from {site.waterAuthority} from
+      day one. Installing a softener during construction is the cleanest and most cost-effective point, since
+      plumbing rough-in is already exposed. Free consultation available for builders and homeowners. Same day
+      service across {site.county}.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p>Planning for a softener before drywall means a dedicated water loop, a floor drain or standpipe, and a nearby outlet are already in place when the unit arrives — no exposed pipe runs or retrofit cutting later. At {site.city}'s {site.gpgLow}-{site.gpgHigh} GPG reading, every new build benefits from this step regardless of final system choice.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Dedicated Loop</h3>
+          <p>A bypass loop on the main line lets the softener install or come out for service without shutting off water to the whole house.</p>
+        </div>
+        <div class="card">
+          <h3>Drain and Power</h3>
+          <p>A floor drain or standpipe within hose reach, plus a grounded outlet, keep the eventual install code-compliant and simple.</p>
+        </div>
+        <div class="card">
+          <h3>Equipment Location</h3>
+          <p>Utility room, basement, or garage placement decided early avoids a cramped or awkward spot chosen after everything else is built.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Timeline for New Construction Installs</h2>
+        <p>Rough-in coordination typically adds one site visit during the plumbing phase, then a second visit for final equipment installation once the home is move-in ready. According to {site.waterAuthority}, {site.city}'s hardness reading holds steady across new and established neighbourhoods alike — get a free quote to schedule your rough-in visit.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2>New Construction Questions</h2>
+        <p>Three questions come up most from {site.city} builders and homeowners.</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Building in {site.city}? Plan Your Rough-In</h2>
+      <p>Free consultation with your builder or GC on loop, drain, and equipment placement.</p>
+      <a class="btn btn-primary" href="/quote/">Get a Free Water Softener Quote in {site.city}</a>
+    </div>
+  </section>
+
+  <style>
+    .faq-list { max-width: 760px; margin: 24px auto 0; }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>

@@ -1,0 +1,201 @@
+---
+/**
+ * QuoteForm — plain formsubmit.co POST. No JavaScript required for the
+ * submission itself; formsubmit.co handles delivery and the redirect.
+ * A secondary contact option — phone is the primary conversion path in
+ * this phone-call-based rank-and-rent model.
+ *
+ * NOTE: the first submission to a new businessEmail triggers a one-time
+ * activation email from formsubmit.co that must be confirmed before
+ * leads start arriving in the inbox.
+ */
+import { site } from "../lib/site";
+
+interface Props {
+  /** Optional heading override for embedding on pages other than /quote/ */
+  heading?: string;
+}
+
+const { heading = "Get Your Free Water Test & Quote" } = Astro.props;
+
+// Repeated across the trust-signal row — kept as one source so the three
+// items can't drift out of sync if the wording ever changes.
+const trustSignals = ["Free Consultation", "No obligation", `Local ${site.city} installer`];
+---
+
+<form
+  class="quote-form card"
+  action={`https://formsubmit.co/${site.businessEmail}`}
+  method="POST"
+>
+  <h3>{heading}</h3>
+
+  <input type="hidden" name="_subject" value={`New lead — ${site.city}, ${site.stateAbbr} water softener quote`} />
+  <input type="hidden" name="_next" value={`${site.siteUrl}/thank-you/`} />
+  <input type="hidden" name="_captcha" value="false" />
+  <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+  <div class="form-field">
+    <label for="qf-name">Full Name <span class="req">*</span></label>
+    <input id="qf-name" name="name" type="text" required autocomplete="name" />
+  </div>
+
+  <div class="form-field">
+    <label for="qf-phone">Phone <span class="req">*</span></label>
+    <input id="qf-phone" name="phone" type="tel" required autocomplete="tel" />
+  </div>
+
+  <div class="form-field">
+    <label for="qf-email">Email <span class="req">*</span></label>
+    <input id="qf-email" name="email" type="email" required autocomplete="email" />
+  </div>
+
+  <div class="form-field">
+    <label for="qf-address">Service Address <span class="req">*</span></label>
+    <input id="qf-address" name="address" type="text" required autocomplete="street-address" placeholder={`Street, ${site.city}, ${site.stateAbbr}`} />
+  </div>
+
+  <div class="form-field">
+    <label for="qf-message">Anything else we should know?</label>
+    <textarea id="qf-message" name="message" rows="3"></textarea>
+  </div>
+
+  <div class="form-checkbox-row">
+    <input type="checkbox" id="qf-consent" name="consent" required />
+    <label for="qf-consent">
+      I agree to be contacted about my quote and consent to my information being processed for this purpose. <span class="req">*</span>
+    </label>
+  </div>
+
+  {site.businessEmail === "BUSINESS_EMAIL" ? (
+    <p class="form-not-configured">
+      Form not yet configured. Update businessEmail in site.config.ts.
+    </p>
+  ) : (
+    <button type="submit" class="btn btn-primary form-submit">Request My Free Consultation</button>
+  )}
+
+  <p class="trust-signals-intro">Every request includes:</p>
+  <ul class="trust-signals">
+    {trustSignals.map((signal) => (
+      <li>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2.5 7.2 5.4 10 11.5 3.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        {signal}
+      </li>
+    ))}
+  </ul>
+</form>
+
+<style>
+  /* Elevated surface + layered primary-tinted shadow, not a flat card border */
+  .quote-form {
+    background: var(--surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-brand);
+    box-shadow: var(--shadow-card);
+    padding: 28px;
+  }
+  .quote-form h3 {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+  }
+
+  .form-field { margin-bottom: 16px; }
+  .form-field label {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 6px;
+  }
+  .req { color: #dc2626; }
+
+  .form-field input,
+  .form-field textarea {
+    width: 100%;
+    padding: 16px;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    background: var(--surface-base);
+    border: 1px solid #cbd5e1;
+    border-radius: var(--radius-brand);
+    outline: none;
+    transition: border-color var(--duration-micro) ease, box-shadow var(--duration-micro) ease;
+  }
+  .form-field input:hover,
+  .form-field textarea:hover { border-color: var(--color-primary); }
+  .form-field input:focus-visible,
+  .form-field textarea:focus-visible,
+  .form-field input:focus,
+  .form-field textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-light);
+    outline: 3px solid transparent; /* ring rendered via box-shadow so it follows border-radius */
+    outline-offset: 2px;
+  }
+
+  .form-checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .form-checkbox-row input { width: 18px; height: 18px; margin-top: 3px; flex-shrink: 0; accent-color: var(--color-primary); }
+  .form-checkbox-row input:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+  .form-checkbox-row label { font-size: 0.8125rem; color: var(--color-text-muted); }
+
+  /* Primary conversion action: accent orange, heading-font label, spring hover */
+  .form-submit {
+    display: block;
+    width: 100%;
+    padding: 14px 0;
+    font-family: var(--font-heading);
+    font-size: 1.0625rem;
+    color: #ffffff;
+    background: var(--gradient-accent);
+    border: none;
+    border-radius: var(--radius-brand);
+    box-shadow: var(--shadow-card);
+    cursor: pointer;
+    transition: transform var(--duration-micro) var(--ease-spring),
+                box-shadow var(--duration-micro) var(--ease-spring);
+  }
+  .form-submit:hover { transform: scale(1.02); box-shadow: var(--shadow-button-hover); }
+  .form-submit:active { transform: scale(0.98); background: var(--color-accent-dark); }
+  .form-submit:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+
+  .form-not-configured {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    background: var(--color-primary-light);
+    border-radius: var(--radius-brand);
+    padding: 14px 16px;
+    text-align: center;
+  }
+
+  .trust-signals-intro {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted);
+    margin: 16px 0 6px;
+  }
+  .trust-signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+  .trust-signals li { display: inline-flex; align-items: center; gap: 6px; }
+  .trust-signals svg { color: var(--color-primary); flex-shrink: 0; }
+</style>

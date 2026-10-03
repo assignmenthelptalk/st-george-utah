@@ -1,0 +1,40 @@
+---
+/**
+ * LocalSchema — emits LocalBusiness JSON-LD for the water treatment
+ * service area. Reads exclusively from src/lib/site.ts (site.config.ts),
+ * so it is identical for every page and automatically correct once a
+ * city is provisioned.
+ */
+import { site } from "../lib/site";
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: site.businessName,
+  url: site.siteUrl,
+  telephone: site.phoneNumber !== "PHONE_NUMBER" ? site.phoneNumber : undefined,
+  email: site.businessEmail !== "BUSINESS_EMAIL" ? site.businessEmail : undefined,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address || undefined,
+    addressLocality: site.city,
+    addressRegion: site.stateAbbr,
+    addressCountry: "US",
+  },
+  areaServed: [site.city, ...site.neighbourhoods].map((name) => ({
+    "@type": "City",
+    name,
+  })),
+  serviceType: "Water Softener Installation & Water Treatment",
+  // Placeholder until the rented business confirms real hours in Keystatic.
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "08:00",
+    closes: "17:00",
+  },
+  sameAs: site.googleBusinessUrl ? [site.googleBusinessUrl] : undefined,
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />

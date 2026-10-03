@@ -1,0 +1,96 @@
+---
+import Layout from "../components/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+---
+
+<Layout
+  title={`Best Water Softener in ${site.city}, ${site.stateAbbr}`}
+  description={`Salt-based vs salt-free vs reverse osmosis water softeners in ${site.city}, ${site.stateAbbr}. Which system works at ${site.gpgLow}–${site.gpgHigh} GPG. Free system recommendation with every water test.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Compare Systems" }]}
+    heading={`Best Water Softener in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}offers water softener system comparison and selection guidance for {site.city} homeowners. At
+      {site.gpgLow}–{site.gpgHigh} GPG from {site.waterAuthority}, not every system works. Salt-free
+      conditioners do not remove calcium and magnesium at this hardness level. Salt-based ion exchange is the
+      only system that fully eliminates hardness minerals above 10 GPG. Free system recommendation included
+      with every free water test.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="section-header">
+        <p>At {site.gpgLow}–{site.gpgHigh} GPG, {site.city} homes need to weigh true softening against lower-maintenance conditioning. Here's how the two approaches compare.</p>
+      </div>
+
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th></th><th>Salt-Based Softener</th><th>Salt-Free Conditioner</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Removes hardness minerals</td><td>Yes</td><td>No — crystallizes minerals instead</td></tr>
+            <tr><td>Best for {site.gpgLabel} water</td><td>Yes</td><td>Better suited to slightly/moderately hard water</td></tr>
+            <tr><td>Ongoing maintenance</td><td>Requires salt refills</td><td>No salt required</td></tr>
+            <tr><td>Water waste (regeneration)</td><td>Some, modern systems are efficient</td><td>None</td></tr>
+            <tr><td>Skin/hair softness benefit</td><td>Yes</td><td>Limited</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <p class="eyebrow">Our Recommendation</p>
+        <h2>SpringWell Systems for {site.city} Homes</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>SpringWell Softener</h3>
+          <p>A dedicated salt-based softener sized for {site.gpgLabel.toLowerCase()} water — the most effective option for {site.city}'s {site.gpgLow}–{site.gpgHigh} GPG hardness.</p>
+          <a class="btn btn-primary btn-sm" href={site.affiliateSoftener} target="_blank" rel="noopener noreferrer sponsored">View Softener</a>
+        </div>
+        <div class="card">
+          <h3>SpringWell Softener + Filter Combo</h3>
+          <p>Combines hardness removal with whole-home filtration for chlorine and sediment carried through {site.waterAuthority}'s supply.</p>
+          <a class="btn btn-primary btn-sm" href={site.affiliateCombo} target="_blank" rel="noopener noreferrer sponsored">View Combo</a>
+        </div>
+        <div class="card">
+          <h3>SpringWell Reverse Osmosis</h3>
+          <p>Add under-sink RO filtration for the best-tasting, cleanest drinking and cooking water.</p>
+          <a class="btn btn-primary btn-sm" href={site.affiliateRO} target="_blank" rel="noopener noreferrer sponsored">View RO System</a>
+        </div>
+      </div>
+      <p class="disclosure">Some links above are affiliate links. We may earn a commission at no extra cost to you if you purchase through them.</p>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Not Sure Which System Fits Your Home?</h2>
+      <p>Get a free recommendation based on your household size and {site.city}'s actual water hardness.</p>
+      <a class="btn btn-primary" href="/quote/">Free Consultation</a>
+    </div>
+  </section>
+
+  <style>
+    .table-scroll { overflow-x: auto; }
+    .disclosure { font-size: 0.75rem; color: var(--color-text-muted); margin-top: 24px; }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>

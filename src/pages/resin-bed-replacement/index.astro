@@ -1,0 +1,187 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { site } from "../../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+
+const signs = [
+  {
+    name: "Hard Water Returning",
+    detail: "Water tests hard again even right after a completed regeneration cycle — the clearest sign the resin bed itself, not just the salt level, has failed.",
+  },
+  {
+    name: "Resin Beads in Your Water",
+    detail: "Small tan or yellow granules showing up in faucet aerators, toilet tanks, or ice makers mean the resin bed is physically breaking down.",
+  },
+  {
+    name: "Longer Regeneration Cycles",
+    detail: "Cycles that run noticeably longer or more often than they used to, without a corresponding improvement in water softness.",
+  },
+  {
+    name: "Rising Salt Usage",
+    detail: "Salt consumption climbs while the water stays just as hard — the resin is no longer exchanging ions effectively.",
+  },
+];
+
+const faqs = [
+  {
+    q: "How long does water softener resin last?",
+    a: "Most resin beds last 10 to 15 years under normal conditions. Heavy iron content, chlorine or chloramine exposure, and frequent regeneration cycles all shorten that lifespan.",
+  },
+  {
+    q: "Can I replace water softener resin myself?",
+    a: "Yes, with resin matched to your tank's exact grain capacity and basic tools. Mismatched resin volume is the most common DIY mistake and causes premature channeling.",
+  },
+  {
+    q: "Will replacing the resin fix a softener that isn't regenerating at all?",
+    a: "Usually not. No regeneration at all typically points to the control head or timer, not the resin — that calls for a broader repair diagnosis.",
+  },
+  {
+    q: "Is resin bed replacement covered under warranty?",
+    a: "It varies by manufacturer. Opening the tank yourself can void some warranties, so check your manufacturer's terms before attempting a DIY replacement.",
+  },
+];
+---
+
+<Layout
+  title={`Water Softener Resin Bed Replacement in ${site.city}, ${site.stateAbbr}`}
+  description={`Signs your ${site.city} water softener's resin bed has failed, what replacement costs, and how the process works.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Repair", href: "/repair/" }, { label: "Resin Bed Replacement" }]}
+    heading={`Resin Bed Replacement in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}offers water softener resin bed replacement services across {site.city} and {site.county}. Resin
+      beds typically last 10 to 15 years at {site.gpgLow}–{site.gpgHigh} GPG. A softener passing hard water
+      despite regular regeneration is the primary sign of resin exhaustion. Free diagnostic included with
+      every service call. Same day availability. Written quote before work begins.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p>A resin bed is the part of a water softener that actually removes calcium and magnesium. When it fails, the system keeps running but stops softening water. At {site.gpgLow}-{site.gpgHigh} GPG, {site.city} softeners cycle more often than in a moderate-hardness market, which wears resin down faster than the national average.</p>
+      </div>
+
+      <h2>Signs Your Water Softener Needs a New Resin Bed</h2>
+      <div class="grid grid-2">
+        {signs.map((s) => (
+          <div class="card">
+            <h3>{s.name}</h3>
+            <p>{s.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Why Resin Fails Faster in {site.city}</h2>
+        <p>At {site.gpgLow}-{site.gpgHigh} GPG water supplied via {site.waterSource}, resin beads exchange ions more frequently than they would in a softer-water market, physically wearing them down sooner. Chlorine or chloramine disinfection from {site.waterAuthority} is a known additional factor in resin degradation, on top of iron fouling and bacterial buildup.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Resin Bed Replacement Cost</h2>
+        <p>Resin-only replacement typically costs less than a full system swap, scaling with tank size and grain capacity. We provide a free diagnostic and a written quote before any work begins — no fixed price without seeing the system first.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>How Resin Bed Replacement Works</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="process-step">
+          <span class="process-number">1</span>
+          <h3>Diagnose and Bypass</h3>
+          <p>Confirm resin failure with a water test, then shut off supply and engage the bypass valve.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-number">2</span>
+          <h3>Drain and Replace</h3>
+          <p>Drain and open the tank, remove the old resin, flush out fines, and add new resin matched to the tank's grain capacity.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-number">3</span>
+          <h3>Reprogram and Test</h3>
+          <p>Reassemble the control head, reprogram it, and run an initial regeneration cycle before the system goes back into service.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Resin Replacement or Whole-System Replacement?</h2>
+        <p>Resin replacement usually makes sense for a system under about 8 to 10 years old that's otherwise in good condition. A control head that's also failing, or a system past its expected lifespan, usually favors full replacement. See our <a href="/repair/">water softener repair</a> page for the broader repair-vs-replace picture.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Resin Bed Replacement Questions</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Water Softener Not Softening in {site.city}?</h2>
+      <p>Free in-home diagnostic to confirm whether resin failure is the cause.</p>
+      <a class="btn btn-primary" href="/contact/">Book a Diagnostic →</a>
+    </div>
+  </section>
+
+  <style>
+    .process-step { text-align: center; padding: 0 12px; }
+    .process-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full, 9999px);
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      font-family: var(--font-heading);
+      font-size: 1.125rem;
+      margin-bottom: 14px;
+    }
+    .process-step h3 { margin-bottom: 8px; }
+    .faq-list { max-width: 760px; margin: 24px auto 0; }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>

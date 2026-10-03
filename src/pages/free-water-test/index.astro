@@ -1,0 +1,119 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { site } from "../../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+
+const included = [
+  { name: "Tap Hardness Reading", detail: "We test your actual water at the kitchen or bathroom tap, not just the citywide average, since fixture age and plumbing material can shift the reading slightly." },
+  { name: "Iron and Sediment Check", detail: "A quick visual and chemical check for iron staining or sediment, both of which change which system type fits best." },
+  { name: "Fixture and Household Walkthrough", detail: "We count bathrooms, major appliances, and household size to calculate the grain capacity your home actually needs." },
+  { name: "Written Recommendation", detail: "A no-obligation written recommendation and price range based on your test results, not a generic estimate." },
+];
+
+const faqs = [
+  {
+    q: "Is the water test really free with no obligation?",
+    a: "Yes. The in-home test, walkthrough, and written recommendation cost nothing whether or not you move forward with a system.",
+  },
+  {
+    q: "How long does a free water test take?",
+    a: "Most visits take 20 to 30 minutes, including the tap reading, iron/sediment check, and a short walkthrough of your plumbing setup.",
+  },
+  {
+    q: `Why test my water if ${site.city}'s hardness is already known?`,
+    a: `${site.waterAuthority}'s ${site.gpgLow}-${site.gpgHigh} GPG figure is a citywide average — your exact reading, iron content, and fixture layout still determine the right system size, which the in-home test confirms directly.`,
+  },
+  {
+    q: "Can I get a virtual consultation instead of an in-home visit?",
+    a: "Yes — a virtual consultation covers the same household walkthrough and recommendation using photos and a video call, useful if an in-person visit doesn't fit your schedule.",
+  },
+];
+---
+
+<Layout
+  title={`Free Water Test in ${site.city}, ${site.stateAbbr}`}
+  description={`Book a free in-home water hardness test in ${site.city}. No obligation, a written recommendation, and confirmation of ${site.waterAuthority}'s ${site.gpgLow}-${site.gpgHigh} GPG reading at your own tap.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Water Quality", href: "/water-quality/" }, { label: "Free Water Test" }]}
+    heading={`Free Water Test in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/water-quality/", text: "See the Full Water Report" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}provides free in-home water hardness testing across {site.city} and {site.county}. We test your
+      water at the tap and confirm your exact GPG reading from {site.waterAuthority} supply lines at your
+      address. Most {site.city} homes test at {site.gpgLow}–{site.gpgHigh} GPG, classified {site.gpgLabel}.
+      Results in minutes. No obligation to proceed. Same day availability.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p>{site.waterAuthority} reports {site.city}'s water at {site.gpgLow}-{site.gpgHigh} GPG, classified {site.gpgLabel} — but the reading at your own tap can vary slightly by plumbing age and fixture type. A free in-home test confirms your exact number before you spend anything on a system, see the full <a href="/water-quality/">{site.city} water quality report</a> for the citywide data behind it.</p>
+      </div>
+
+      <h2>What's Included</h2>
+      <p>Four things happen during every free water test visit:</p>
+      <div class="grid grid-2">
+        {included.map((item) => (
+          <div class="card">
+            <h3>{item.name}</h3>
+            <p>{item.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header">
+        <h2>What Happens After the Test</h2>
+        <p>You get a written recommendation on the spot — a specific grain capacity, system type, and price range based on your actual results, not a generic estimate. If you want to move forward, we schedule installation directly; if not, keep the results with no further obligation. See our <a href="/water-softener-sizing/">sizing guide</a> for how we calculate the number your test confirms.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Free Water Test Questions</h2>
+        <p>Four questions come up most before a {site.city} test visit.</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Book Your Free Water Test in {site.city}</h2>
+      <p>No cost, no obligation, and a written recommendation the same visit.</p>
+      <a class="btn btn-primary" href="/quote/">Get a Free Water Softener Quote in {site.city}</a>
+    </div>
+  </section>
+
+  <style>
+    .faq-list { max-width: 760px; margin: 24px auto 0; }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>

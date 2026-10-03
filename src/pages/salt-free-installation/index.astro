@@ -1,0 +1,150 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { site } from "../../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+
+const faqs = [
+  {
+    q: "Does a salt-free conditioner remove hardness minerals?",
+    a: `No. A salt-free conditioner crystallizes calcium and magnesium into a form that will not stick to pipes or fixtures, but the minerals stay in ${site.city}'s water — a salt-based softener is the only system type that removes them, see our salt-based installation page for that option.`,
+  },
+  {
+    q: "Who should choose salt-free over salt-based?",
+    a: `Households on a sodium-restricted diet, homes on a septic system sensitive to brine discharge, or anyone who wants scale prevention without a drain line or salt refills — at ${site.city}'s ${site.gpgLow}-${site.gpgHigh} GPG reading, both approaches address the same problem differently.`,
+  },
+  {
+    q: "How long does salt-free installation take?",
+    a: "Most installs finish in 1 to 2 hours since there is no brine tank, drain line, or bypass valve to plumb — the unit installs inline on the main water supply.",
+  },
+  {
+    q: "Does a salt-free system need maintenance?",
+    a: "The conditioning media cartridge typically needs replacement every 3 to 6 years depending on water usage, with no salt, electricity, or regeneration cycle to manage in between.",
+  },
+];
+---
+
+<Layout
+  title={`Salt-Free Water Softener Installation in ${site.city}, ${site.stateAbbr}`}
+  description={`How salt-free water conditioner installation works in ${site.city}, who it's a fit for at ${site.gpgLow}-${site.gpgHigh} GPG, and what it costs.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Installation", href: "/installation/" }, { label: "Salt-Free Installation" }]}
+    heading={`Salt-Free Water Conditioner Installation in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}offers salt-free water conditioner installation and guidance across {site.city} and {site.county}.
+      Salt-free conditioners do not remove hardness minerals. They alter the mineral structure to reduce scale
+      adhesion. At {site.gpgLow}–{site.gpgHigh} GPG from {site.waterAuthority}, a salt-based system is the
+      recommended solution for full hardness removal. Free consultation available to identify the right
+      system for your household.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p>A salt-free conditioner uses template-assisted crystallization (TAC) media to convert dissolved calcium and magnesium into microscopic crystals that pass through {site.city}'s {site.gpgLow}-{site.gpgHigh} GPG plumbing without bonding to pipes or fixtures. Unlike a salt-based softener, it needs no drain line, no electricity, and no salt — but it does not remove the minerals, see our full <a href="/comparison/">salt-based vs salt-free comparison</a> for the complete tradeoff.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Single-Cartridge Design</h3>
+          <p>One inline cartridge handles conditioning — no second tank, no brine reservoir, and no floor space beyond the cartridge housing itself.</p>
+        </div>
+        <div class="card">
+          <h3>Zero-Maintenance Operation</h3>
+          <p>No salt bags to carry, no regeneration schedule to program, and no drain line to inspect between cartridge replacements every 3 to 6 years.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>How Salt-Free Installation Works</h2>
+        <p>Two steps get a conditioner running, faster than a two-tank softener install.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="process-step">
+          <span class="process-number">1</span>
+          <h3>Inline Placement</h3>
+          <p>We install the cartridge housing directly on the main supply line, typically near the water heater or main shutoff, with unions on both sides for future cartridge swaps.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-number">2</span>
+          <h3>Flow and Pressure Test</h3>
+          <p>We confirm flow rate and pressure hold steady through the unit at {site.city} household demand levels before closing out the job.</p>
+        </div>
+      </div>
+      <p>According to {site.waterAuthority}, {site.city}'s {site.gpgLow}-{site.gpgHigh} GPG reading is consistent across {site.county} — get a free quote to see if conditioning fits your home.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Salt-Free Conditioner Cost in {site.city}</h2>
+        <p>A salt-free conditioner typically installs for $1,000 to $2,200, with replacement cartridges running $150 to $400 every few years. That is often less upfront work than a two-tank softener, though it will not reduce a high hardness reading the way ion exchange does — see the <a href="/installation/">full installation cost breakdown</a> for every system tier.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Salt-Free Installation Questions</h2>
+        <p>Four questions come up most on {site.city} conditioner calls.</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Get a Salt-Free Installation Quote</h2>
+      <p>Free in-home consultation to confirm conditioning fits your household's needs.</p>
+      <a class="btn btn-primary" href="/quote/">Get a Free Water Softener Quote in {site.city}</a>
+    </div>
+  </section>
+
+  <style>
+    .process-step { text-align: center; padding: 0 12px; }
+    .process-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full, 9999px);
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      font-family: var(--font-heading);
+      font-size: 1.125rem;
+      margin-bottom: 14px;
+    }
+    .process-step h3 { margin-bottom: 8px; }
+    .faq-list { max-width: 760px; margin: 24px auto 0; }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>

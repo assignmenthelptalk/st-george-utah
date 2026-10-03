@@ -1,0 +1,182 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { site } from "../../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+
+const problems = [
+  {
+    name: "Salt Bridge",
+    detail: "Salt crystals fuse into a solid bridge in the brine tank, preventing regeneration. Water passes through hard even though the tank looks full.",
+  },
+  {
+    name: "Resin Bead Failure",
+    detail: "Resin beads exhaust over time. Symptoms include hard water despite regeneration and resin beads appearing in tap water.",
+  },
+  {
+    name: "Control Valve Fault",
+    detail: "The control valve manages regeneration cycles. A faulty valve causes the softener to regenerate continuously, not at all, or at wrong intervals.",
+  },
+  {
+    name: "Brine Tank Issues",
+    detail: "Overfilling, underfilling, or dirty brine tanks reduce regeneration effectiveness and waste salt.",
+  },
+  {
+    name: "Low Water Pressure",
+    detail: "Scale buildup inside supply lines narrows the pipe bore over time, reducing flow rate to fixtures throughout the home.",
+  },
+  {
+    name: "System Not Softening",
+    detail: "If water tests hard despite the softener running, the system needs immediate diagnosis. Causes include a bypass valve left open, exhausted resin, or programming errors.",
+  },
+];
+
+const faqs = [
+  {
+    q: "How do I know if my water softener needs repair?",
+    a: "Signs include hard water symptoms returning, salt not being consumed, the brine tank overfilling or not draining, or the unit making unusual noises during regeneration.",
+  },
+  {
+    q: `How much does water softener repair cost in ${site.city}?`,
+    a: "Cost depends on the fault, from a simple reset or salt bridge clearing to control valve replacement or resin replacement. We provide a free diagnostic and a written quote before any work begins.",
+  },
+  {
+    q: "Is it better to repair or replace a water softener?",
+    a: "Systems under 10 years old are almost always worth repairing. Older systems are often better replaced, especially when the control valve is also aging. We give an honest recommendation after diagnosis.",
+  },
+  {
+    q: "How long does water softener repair take?",
+    a: "Most common repairs are completed same-visit. Resin replacement and major valve work typically take 1 to 2 days.",
+  },
+  {
+    q: "Do you repair all water softener brands?",
+    a: `Yes. Repairs cover all major residential water softener brands in ${site.city}, including Kinetico, Culligan, EcoWater, Morton, GE, and Whirlpool. Brand does not affect the diagnostic or repair process.`,
+  },
+];
+---
+
+<Layout
+  title={`Water Softener Repair in ${site.city}, ${site.stateAbbr}`}
+  description={`Water softener repair and maintenance in ${site.city}, ${site.stateAbbr}. Free diagnostic with every repair call. All major brands serviced across ${site.city} and ${site.county}. Same day service available.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Repair" }]}
+    heading={`Water Softener Repair in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}offers water softener repair and maintenance services across {site.city} and {site.county}. We
+      diagnose and repair all major water softener brands, including Kinetico, Culligan, EcoWater, Morton, GE,
+      and Whirlpool. Free diagnostic included with every repair call. Same day service available across
+      {site.city} and {site.county}. Written repair quote before any work begins. No surprise charges.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p>Fast local diagnosis and repair for all major softener brands. Free diagnostic with every repair call.</p>
+      </div>
+
+      <h2>Common Water Softener Problems</h2>
+      <div class="grid grid-3">
+        {problems.map((p) => (
+          <div class="card">
+            <h3>{p.name}</h3>
+            <p>{p.detail}</p>
+          </div>
+        ))}
+      </div>
+      <p>If you already know a Control Valve Fault is the issue, jump straight to our <a href="/control-head-repair/">control head repair page</a> — otherwise see how we diagnose each of these below.</p>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>How We Diagnose Water Softener Problems</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="process-step">
+          <span class="process-number">1</span>
+          <h3>Free In-Home Diagnostic</h3>
+          <p>We test your water at the tap and at the softener output to confirm whether the unit is softening, and inspect the brine tank, resin tank, control valve, and bypass valve.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-number">2</span>
+          <h3>Diagnosis and Quote</h3>
+          <p>After inspection we identify the fault and provide a written quote before any repair work begins, with an honest recommendation based on system age and fault type.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-number">3</span>
+          <h3>Same-Day Repair Where Possible</h3>
+          <p>Most common repairs are completed same-visit. Resin replacement and major valve repairs are typically completed within 48 hours of diagnosis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Water Softener Maintenance in {site.city}</h2>
+        <p>At {site.gpgLow}-{site.gpgHigh} GPG, {site.city} softeners work harder than systems in softer-water cities. Annual maintenance extends system life significantly. A maintenance visit includes brine tank cleaning, resin bed inspection, salt check, regeneration cycle verification, and a water hardness test to confirm the system is removing minerals effectively.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Water Softener Repair Questions</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Water Softener Not Working in {site.city}?</h2>
+      <p>Free in-home diagnostic with every repair call.</p>
+      <a class="btn btn-primary" href="/contact/">Book a Repair Call →</a>
+    </div>
+  </section>
+
+  <style>
+    .process-step { text-align: center; padding: 0 12px; }
+    .process-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full, 9999px);
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      font-family: var(--font-heading);
+      font-size: 1.125rem;
+      margin-bottom: 14px;
+    }
+    .process-step h3 { margin-bottom: 8px; }
+    .faq-list { max-width: 760px; margin: 24px auto 0; }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>

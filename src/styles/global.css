@@ -1,0 +1,332 @@
+/* =============================================================================
+   Water Softener Boilerplate — Design System
+   =============================================================================
+   Deep teal (#0F6E78) as primary, warm orange (#E65100) reserved for CTAs
+   and key highlights, DM Serif Display for headings, Inter for body/labels/
+   navigation. This file is NOT city-specific — every city site cloned from
+   this boilerplate inherits it unchanged; only src/site.config.ts differs
+   per city. Legacy --brand-* / --font-display names are kept as aliases so
+   any selector not explicitly migrated still renders on-brand instead of
+   silently falling back to an unstyled default.
+   ============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Brand colors — exact hex values from the site's design tokens */
+  --color-primary:       #0F6E78;
+  --color-primary-dark:  #0A4F57; /* hero gradient endpoint */
+  --color-primary-light: #E1F5EE;
+  --color-accent:        #E65100;
+  --color-accent-dark:   #C2410C; /* accent hover/active state */
+  --color-accent-light:  #FDE4D0; /* light accent tint for badges */
+
+  /* Depth system: base -> elevated -> floating, never one flat z-plane */
+  --surface-base:     #ffffff;
+  --surface-elevated: #F8FFFE;
+  --surface-footer:   #0A2E33; /* darkened primary, footer only */
+
+  /* Never the same font for headings and body */
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  /* Legacy aliases — keep any un-migrated selector on-brand */
+  --brand-primary:      var(--color-primary);
+  --brand-secondary:    var(--color-primary-dark);
+  --brand-accent:       var(--color-accent);
+  --brand-accent-dark:  var(--color-accent-dark);
+  --brand-accent-light: var(--color-accent-light);
+  --font-display:       var(--font-heading);
+
+  --color-text:       #0f172a;
+  --color-text-muted: #475569;
+  --color-surface:    var(--surface-elevated);
+  --color-border:     #e2e8f0;
+
+  --radius-sm:    4px;
+  --radius-md:    8px;
+  --radius-lg:    8px;
+  --radius-xl:    20px;
+  --radius-full:  9999px;
+  --radius-brand: 8px;
+
+  /* Layered, color-tinted shadows — never a flat shadow-md */
+  --shadow-card:         0 1px 2px rgba(15, 110, 120, 0.06), 0 4px 16px rgba(15, 110, 120, 0.10);
+  --shadow-card-hover:   0 2px 4px rgba(15, 110, 120, 0.08), 0 12px 28px rgba(15, 110, 120, 0.14);
+  --shadow-button-hover: 0 2px 8px rgba(230, 81, 0, 0.25);
+  --shadow-nav:          0 1px 0 rgba(15, 110, 120, 0.08), 0 4px 16px rgba(15, 110, 120, 0.05);
+  --shadow-floating:     0 8px 24px rgba(15, 110, 120, 0.16);
+  --shadow-sm: var(--shadow-card);
+  --shadow-md: var(--shadow-card);
+  --shadow-lg: var(--shadow-floating);
+
+  /* Spring feel on buttons; transform/opacity only, per CLAUDE.md */
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-micro: 200ms;
+  --duration-large: 300ms;
+
+  --gradient-accent:  linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  --gradient-primary: linear-gradient(160deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--surface-base);
+  line-height: 1.6;
+}
+
+/* H1-H4 always the display heading font, tight tracking on H1/H2 per spec */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+h1, h2 { letter-spacing: -0.03em; line-height: 1.15; }
+p { line-height: 1.75; }
+
+/* Body copy links: primary by default, accent only reserved for CTAs */
+a {
+  color: var(--color-primary);
+  transition: color var(--duration-micro) ease;
+}
+a:hover { color: var(--color-accent); }
+a:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; border-radius: 2px; }
+a:active { color: var(--color-accent-dark); }
+
+img { max-width: 100%; display: block; }
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: clamp(48px, 6vw, 96px) 0;
+}
+
+.section-dark {
+  background: var(--gradient-primary);
+  color: #e0f2fe;
+}
+.section-dark h1, .section-dark h2, .section-dark h3 {
+  color: #ffffff;
+}
+.section-dark a:not(.btn) { color: #ffffff; }
+.section-dark a:not(.btn):hover { color: var(--color-primary-light); }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 12px;
+}
+
+.section-header { max-width: 640px; margin: 0 0 32px; }
+.section-header.center { margin-left: auto; margin-right: auto; text-align: center; }
+
+/* Buttons: transform/opacity only, spring easing, full interactive-state set */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 14px 28px;
+  border-radius: var(--radius-brand);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform var(--duration-micro) var(--ease-spring),
+              box-shadow var(--duration-micro) var(--ease-spring),
+              background-color var(--duration-micro) ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: scale(0.98); }
+.btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+
+.btn-primary {
+  background: var(--gradient-accent);
+  color: #ffffff;
+  box-shadow: var(--shadow-card);
+}
+.btn-primary:hover { box-shadow: var(--shadow-button-hover); }
+.btn-primary:active { background: var(--color-accent-dark); }
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+}
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.6); transform: translateY(-1px); }
+.btn-secondary:focus-visible { outline-color: #ffffff; }
+.btn-secondary:active { transform: scale(0.98); background: rgba(255, 255, 255, 0.28); }
+
+/* Section cards: elevated surface, layered primary-tinted shadow, lift on hover */
+.card {
+  background: var(--surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-brand);
+  box-shadow: var(--shadow-card);
+  padding: 24px;
+  transition: transform var(--duration-micro) var(--ease-spring),
+              box-shadow var(--duration-micro) var(--ease-spring);
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card-hover); }
+
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+table.data-table th, table.data-table td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+table.data-table th {
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--color-primary);
+}
+table.data-table tbody tr:nth-child(even) { background: var(--surface-elevated); }
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+@media (max-width: 720px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* Compact inner-page hero, shared by all 7 non-homepage pages so they read
+   as one consistent system rather than 7 pages each improvising a header. */
+.page-header {
+  background: var(--gradient-primary);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 28px 0 32px;
+  /* Recolors the nested Breadcrumbs component for this dark background */
+  --breadcrumb-color: var(--color-primary-light);
+  --breadcrumb-hover-color: #ffffff;
+  --breadcrumb-current-color: #ffffff;
+}
+.page-header .breadcrumbs { padding: 0 0 10px; }
+.page-header .eyebrow { color: var(--color-accent-light); }
+.page-header h1 {
+  color: #ffffff;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin: 6px 0 0;
+}
+
+/* Brand backlink — used on 10+ pages (see grep for "brand-backlink") but
+   had no CSS definition anywhere in the boilerplate until now, so every
+   instance rendered completely unstyled. Ported from watersoftenerhendersonnv,
+   where this pattern is fully styled. */
+.brand-backlink {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+.brand-link {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+.brand-link:hover { color: var(--color-accent); text-decoration: underline; }
+.brand-link:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Opening paragraph — Glendale Elite pattern: brand name first, one
+   paragraph, confidence signals only. Shared here (not per-page) so
+   every page reads identically. */
+.page-opening {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  margin: 0 0 32px;
+  max-width: 860px;
+}
+
+/* FAQ accordion: native <details>/<summary> so open/close needs no JS and
+   no height animation — only the answer's opacity/transform animates,
+   honouring the "transform and opacity only" rule. */
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+  padding: 4px 0;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  list-style: none;
+  cursor: pointer;
+  padding: 16px 2px;
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  color: var(--color-primary);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::marker { content: ""; }
+.faq-item summary:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; border-radius: 2px; }
+.faq-item summary:hover { color: var(--color-accent); }
+.faq-item summary:hover .faq-chevron { color: var(--color-accent); }
+.faq-chevron {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  transition: transform var(--duration-micro) var(--ease-spring), color var(--duration-micro) ease;
+}
+.faq-item[open] .faq-chevron { transform: rotate(180deg); }
+.faq-item p {
+  font-family: var(--font-body);
+  color: var(--color-text-muted);
+  margin: 0 0 18px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity var(--duration-large) ease, transform var(--duration-large) var(--ease-spring);
+}
+.faq-item[open] p { opacity: 1; transform: translateY(0); }
+
+/* Shared small pill badge — used on recommendation cards and similar
+   result panels. */
+.badge {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--color-primary-dark);
+  background: var(--color-primary-light);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}

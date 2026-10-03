@@ -1,0 +1,73 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import QuoteForm from "../../components/QuoteForm.astro";
+import { site } from "../../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+---
+
+<Layout
+  title={`Contact ${site.businessName}`}
+  description={`Contact ${site.businessName}. Free in-home water hardness test available today. Same day service across ${site.city} and ${site.county}. No obligation.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Contact" }]}
+    heading={`Contact ${site.businessName} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}provides free water testing and no-obligation consultation across {site.city} and {site.county}.
+      Free in-home water hardness test available today. Same day availability. Pricing confirmed before any
+      work begins. No surprise charges. Call or fill in the form below to schedule.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="grid grid-2 contact-grid">
+        <div class="contact-details">
+          <h2>Get in Touch</h2>
+          <p>Call for a free consultation, or fill out the form and we'll get back to you with a no-obligation quote.</p>
+
+          {site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER" && (
+            <p class="contact-detail-row">
+              <strong>Phone:</strong>{" "}
+              <a href={`tel:${site.phoneNumber}`}>{site.phoneNumber}</a>
+            </p>
+          )}
+
+          {site.address && (
+            <p class="contact-detail-row">
+              <strong>Address:</strong> {site.address}
+            </p>
+          )}
+
+          <p class="contact-detail-row">
+            <strong>Service Area:</strong> {site.city} and {site.county}
+          </p>
+        </div>
+
+        <div class="contact-form-wrap">
+          <QuoteForm heading="Free Water Test & Quote" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .contact-grid { align-items: start; gap: 40px; }
+    .contact-details h2 { margin-bottom: 12px; }
+    .contact-detail-row { margin: 12px 0; font-family: var(--font-body); }
+    .contact-detail-row a { color: var(--color-primary); font-weight: 600; text-decoration: none; }
+    .contact-detail-row a:hover { color: var(--color-accent); }
+    @media (max-width: 860px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</Layout>

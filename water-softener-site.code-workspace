@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "name": "Local-SEO-Toolkit",
+      "path": "C:\\Users\\lenevo\\Local-SEO-Toolkit"
+    },
+    {
+      "name": "CITY_NAME Water Softener Site",
+      "path": "C:\\Users\\lenevo\\waterSoftenerProjects\\REPO_NAME"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "node_modules": true,
+      ".astro": true,
+      "dist": true
+    },
+    "editor.wordWrap": "on"
+  }
+}

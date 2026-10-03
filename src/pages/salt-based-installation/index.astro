@@ -1,0 +1,155 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { site } from "../../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+
+const faqs = [
+  {
+    q: "Does a salt-based softener actually remove hardness minerals?",
+    a: `Yes. Ion exchange resin swaps calcium and magnesium for sodium as water passes through the tank, which is the only process that removes hardness minerals from ${site.city}'s ${site.gpgLow}-${site.gpgHigh} GPG supply rather than just conditioning it.`,
+  },
+  {
+    q: "How long does salt-based installation take?",
+    a: "Most single-tank installs finish in 2 to 4 hours, including the bypass valve, drain line, and brine tank hookup. A whole-home combo unit typically adds 1 to 2 hours.",
+  },
+  {
+    q: "Will a salt-based softener raise my water bill?",
+    a: "Regeneration uses roughly 25 to 50 gallons of water per cycle, 2 to 3 times a week for an average household — a small addition compared to the plumbing and appliance damage untreated hard water causes over time.",
+  },
+  {
+    q: `Is salt-based the right choice for ${site.city}'s water?`,
+    a: `At ${site.gpgLow}-${site.gpgHigh} GPG, per ${site.waterAuthority}'s reading, a salt-based system is the most reliable fix — see our salt-free comparison if you want a no-sodium alternative first.`,
+  },
+];
+---
+
+<Layout
+  title={`Salt-Based Water Softener Installation in ${site.city}, ${site.stateAbbr}`}
+  description={`How salt-based water softener installation works in ${site.city}, what it costs, and why ion exchange is the standard fix for ${site.gpgLow}-${site.gpgHigh} GPG water.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Installation", href: "/installation/" }, { label: "Salt-Based Installation" }]}
+    heading={`Salt-Based Water Softener Installation in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}offers salt-based water softener installation across {site.city} and {site.county}. Salt-based ion
+      exchange is the only system that fully removes calcium and magnesium at {site.gpgLow}–{site.gpgHigh}
+      GPG. Salt-free conditioners crystallize minerals rather than removing them and are not effective above
+      10 GPG. Every system is sized to your household and your confirmed {site.city} GPG reading. Free water
+      test included.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p>A salt-based softener removes calcium and magnesium from {site.city}'s {site.gpgLow}-{site.gpgHigh} GPG supply through ion exchange, swapping hardness minerals for sodium as water passes through a resin tank. This is different from a salt-free conditioner, which alters mineral structure but leaves the minerals in the water — see our <a href="/salt-free-installation/">salt-free installation page</a> if you want a no-sodium option instead.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Two-Tank Design</h3>
+          <p>A resin tank and a brine tank work together: the resin tank softens water on demand, and the brine tank stores the salt solution used to regenerate the resin every few days.</p>
+        </div>
+        <div class="card">
+          <h3>Set-and-Forget Operation</h3>
+          <p>Once installed, the control head regenerates automatically on a schedule or by metered water use — no manual intervention beyond adding salt every 4 to 6 weeks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>How Salt-Based Installation Works</h2>
+        <p>Three steps get a new system running, each building on the last.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="process-step">
+          <span class="process-number">1</span>
+          <h3>Sizing at Your Tap</h3>
+          <p>We confirm household size and fixture count against {site.city}'s {site.gpgLow}-{site.gpgHigh} GPG reading to pick the right resin volume — see our <a href="/water-softener-sizing/">sizing guide</a> for the math.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-number">2</span>
+          <h3>Bypass, Drain, and Brine Hookup</h3>
+          <p>We tie the unit into the main line with a bypass valve, run a dedicated drain line for regeneration discharge, and connect the brine tank.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-number">3</span>
+          <h3>Programming and Water Test</h3>
+          <p>We program the control head to {site.city}'s actual hardness reading, run a full regeneration cycle, and test the softened water at the tap before we leave.</p>
+        </div>
+      </div>
+      <p>According to {site.waterAuthority}, hardness holds steady at this reading across {site.county} — get a free quote to schedule installation.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Salt-Based Installation Cost in {site.city}</h2>
+        <p>A single-tank salt-based system typically runs $800 to $2,500 installed, depending on grain capacity and existing plumbing access. A whole-home combo unit that pairs softening with filtration costs more — see the full <a href="/installation/">installation cost breakdown</a> for every system tier.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Salt-Based Installation Questions</h2>
+        <p>Four questions come up most on {site.city} installation calls.</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Get a Salt-Based Installation Quote</h2>
+      <p>Free in-home sizing and a written quote before any work begins.</p>
+      <a class="btn btn-primary" href="/quote/">Get a Free Water Softener Quote in {site.city}</a>
+    </div>
+  </section>
+
+  <style>
+    .process-step { text-align: center; padding: 0 12px; }
+    .process-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full, 9999px);
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      font-family: var(--font-heading);
+      font-size: 1.125rem;
+      margin-bottom: 14px;
+    }
+    .process-step h3 { margin-bottom: 8px; }
+    .faq-list { max-width: 760px; margin: 24px auto 0; }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>

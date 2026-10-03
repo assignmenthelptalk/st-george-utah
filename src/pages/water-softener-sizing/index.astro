@@ -1,0 +1,137 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { site } from "../../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+
+const gpgMid = Math.round(((site.gpgLow + site.gpgHigh) / 2) * 10) / 10;
+
+const sizingRows = [
+  { household: "1–2 people", dailyGrains: Math.round(2 * 75 * gpgMid), system: "24,000-grain system" },
+  { household: "3–4 people", dailyGrains: Math.round(4 * 75 * gpgMid), system: "32,000-grain system" },
+  { household: "5–6 people", dailyGrains: Math.round(6 * 75 * gpgMid), system: "40,000-grain system" },
+  { household: "7+ people", dailyGrains: Math.round(8 * 75 * gpgMid), system: "48,000–64,000-grain system" },
+];
+
+const faqs = [
+  {
+    q: "What happens if a water softener is undersized?",
+    a: `An undersized system exhausts its resin bed before its regeneration cycle, letting ${site.gpgLow}-${site.gpgHigh} GPG hard water pass through unsoftened until the next cycle runs.`,
+  },
+  {
+    q: "What happens if a water softener is oversized?",
+    a: "An oversized system regenerates less often, which sounds efficient but actually lets resin sit longer between cleanings and wastes salt and water per cycle at a volume the household doesn't need.",
+  },
+  {
+    q: "Does household size alone determine the right size?",
+    a: `No. Household size, ${site.city}'s ${site.gpgLow}-${site.gpgHigh} GPG hardness, fixture count, and peak-hour flow rate all factor in — the table below is a starting estimate, and a free in-home test confirms the exact number for your home.`,
+  },
+];
+---
+
+<Layout
+  title={`Water Softener Sizing Guide for ${site.city} Homes`}
+  description={`How to size a water softener correctly for ${site.city}'s ${site.gpgLow}-${site.gpgHigh} GPG water, by household size, with the industry-standard grain-capacity formula.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Installation", href: "/installation/" }, { label: "Sizing Guide" }]}
+    heading={`Water Softener Sizing in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}offers water softener sizing guidance and consultation across {site.city} and {site.county}.
+      Correct sizing at {site.gpgLow}–{site.gpgHigh} GPG prevents premature regeneration cycles that waste
+      salt and water, and prevents undersized systems from passing hard water. Every free water test includes
+      a sizing recommendation based on your confirmed GPG reading and household water usage.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p>Grain capacity is calculated as household size × 75 gallons of daily water use per person × {site.city}'s hardness reading in GPG. At {site.gpgLow}-{site.gpgHigh} GPG, per {site.waterAuthority}, this formula gives a starting point — see the sizing table below for four common household sizes.</p>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>Household Size</th><th>Approx. Daily Grain Need</th><th>Typical System Size</th></tr>
+        </thead>
+        <tbody>
+          {sizingRows.map((row) => (
+            <tr>
+              <td>{row.household}</td>
+              <td>{row.dailyGrains.toLocaleString()} grains</td>
+              <td>{row.system}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p>These figures assume {site.city}'s midpoint hardness of {gpgMid} GPG and a standard 3-day reserve between regenerations — your exact fixture count and peak flow rate can shift the right size up or down a tier.</p>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Common Sizing Mistakes</h2>
+        <p>Three mistakes account for most sizing complaints we see in {site.city}:</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Guessing from a Big-Box Chart</h3>
+          <p>National sizing charts assume average hardness nationwide, not {site.city}'s actual {site.gpgLow}-{site.gpgHigh} GPG reading — the wrong input produces the wrong system size.</p>
+        </div>
+        <div class="card">
+          <h3>Counting Only Bedrooms</h3>
+          <p>Bedroom count ignores actual occupancy and fixture load, both of which drive real daily water use more directly than square footage.</p>
+        </div>
+        <div class="card">
+          <h3>Sizing for Today, Not 10 Years</h3>
+          <p>A growing family or a planned bathroom addition changes the right grain capacity — sizing slightly ahead avoids a second install later.</p>
+        </div>
+      </div>
+      <p>Get a free in-home water test to confirm the exact size for your household before you buy.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Sizing Questions</h2>
+        <p>Three questions come up most on {site.city} sizing calls.</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Get Your Exact Sizing Confirmed</h2>
+      <p>Free in-home water test and sizing recommendation, no obligation.</p>
+      <a class="btn btn-primary" href="/quote/">Get a Free Water Softener Quote in {site.city}</a>
+    </div>
+  </section>
+
+  <style>
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+    .faq-list { max-width: 760px; margin: 24px auto 0; }
+  </style>
+</Layout>

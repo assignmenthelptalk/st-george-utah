@@ -1,0 +1,542 @@
+---
+import { SEO } from "astro-seo";
+import { site } from "../lib/site";
+import "../styles/global.css";
+import "../styles/tailwind.css";
+
+interface Props {
+  title: string;
+  /** Full literal <title> text, bypassing the sitewide "{title} | {businessName}"
+   * construction — for pages (like the homepage) that need a specific exact
+   * title order instead. */
+  fullTitle?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { title, fullTitle, description = site.metaDescription, noindex = false } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, site.siteUrl).toString();
+
+const servicesDropdown = [
+  { href: "/water-quality/", label: "Water Quality" },
+  { href: "/hard-water/", label: "Hard Water" },
+  { href: "/installation/", label: "Installation" },
+  { href: "/repair/", label: "Repair" },
+  { href: "/resin-bed-replacement/", label: "Resin Bed Replacement" },
+  { href: "/comparison/", label: "Comparison" },
+  { href: "/neighbourhood/", label: "Neighbourhoods" },
+];
+
+const productsDropdown = [
+  { href: "/products/", label: "Water Softener" },
+  { href: "/whole-home-filtration/", label: "Whole House Filtration" },
+  { href: "/reverse-osmosis/", label: "Reverse Osmosis" },
+];
+
+// Locations dropdown — every city site has site.neighbourhoods, so this
+// works out of the box for any clone. Requires each neighbourhood section
+// on neighbourhood.astro to carry a matching id (see that file).
+const locationsDropdown = site.neighbourhoods.map((hood) => ({
+  href: `/neighbourhood/#${hood.toLowerCase().replace(/\s+/g, "-")}`,
+  label: hood,
+}));
+
+const verifiedServiceAreas = site.serviceAreas.filter((a) => a.qdp.verified && a.qdp.verdict === "PASS");
+
+// Footer keeps a flat single row of every real page, including verified
+// service-area pages by name — not a column layout, just more items in
+// the same list.
+const footerNavLinks = [
+  { href: "/", label: "Home" },
+  { href: "/water-quality/", label: "Water Quality" },
+  { href: "/hard-water/", label: "Hard Water" },
+  { href: "/installation/", label: "Installation" },
+  { href: "/repair/", label: "Repair" },
+  { href: "/comparison/", label: "Compare" },
+  { href: "/products/", label: "Products" },
+  { href: "/whole-home-filtration/", label: "Whole Home Filtration" },
+  { href: "/reverse-osmosis/", label: "Reverse Osmosis" },
+  { href: "/faq/", label: "FAQ" },
+  { href: "/neighbourhood/", label: "Locations" },
+  { href: "/about/", label: "About" },
+  ...verifiedServiceAreas.map((area) => ({ href: `/${area.slug}/`, label: area.city })),
+  { href: "/contact/", label: "Contact" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Loaded as a <link>, not @import, so it fetches in parallel with the
+         rest of head instead of blocking on global.css first. 700 added
+         alongside the requested 400/500/600 because several UI elements
+         (eyebrow labels, table headers, footer heading) already set
+         font-weight: 700 on Inter — omitting it would force the browser to
+         synthesize a fake bold instead of rendering the real cut. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <SEO
+      title={fullTitle || `${title} | ${site.businessName}: Water Softener Installation and Repair`}
+      description={description}
+      canonical={canonical}
+      noindex={noindex}
+      openGraph={{
+        basic: {
+          title,
+          type: "website",
+          image: `${site.siteUrl}/og-default.jpg`,
+          url: canonical,
+        },
+      }}
+      twitter={{ card: "summary_large_image" }}
+    />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body>
+    <!-- Utility bar — thin strip above the main nav, phone-call-first -->
+    <div class="utility-bar">
+      <div class="container utility-bar-inner">
+        <span class="utility-bar-left">Serving {site.city}, {site.stateAbbr} &middot; Licensed and Insured</span>
+        {site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER" && (
+          <a href={`tel:${site.phoneNumber}`} class="utility-phone">
+            {site.phoneNumber}
+          </a>
+        )}
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="logo" href="/">
+          {site.businessName}
+        </a>
+
+        <button
+          type="button"
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          aria-label="Toggle menu"
+        >
+          <!-- Inline SVG per CLAUDE.md — no icon library installed -->
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+            <path class="nav-toggle-bar nav-toggle-bar-top" d="M3 6H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <path class="nav-toggle-bar nav-toggle-bar-mid" d="M3 11H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <path class="nav-toggle-bar nav-toggle-bar-bottom" d="M3 16H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+
+        <nav id="primary-nav" class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="/">Home</a></li>
+
+            <li class="nav-has-dropdown">
+              <button type="button" class="nav-has-dropdown-btn" aria-haspopup="true">
+                Services
+              </button>
+              <div class="nav-dropdown">
+                {servicesDropdown.map((item) => (
+                  <a href={item.href}>{item.label}</a>
+                ))}
+              </div>
+            </li>
+
+            <li class="nav-has-dropdown">
+              <button type="button" class="nav-has-dropdown-btn" aria-haspopup="true">
+                Products
+              </button>
+              <div class="nav-dropdown">
+                {productsDropdown.map((item) => (
+                  <a href={item.href}>{item.label}</a>
+                ))}
+              </div>
+            </li>
+
+            <li class="nav-has-dropdown">
+              <button type="button" class="nav-has-dropdown-btn" aria-haspopup="true">
+                Locations
+              </button>
+              <div class="nav-dropdown">
+                {locationsDropdown.map((item) => (
+                  <a href={item.href}>{item.label}</a>
+                ))}
+              </div>
+            </li>
+
+            <li><a href="/about/">About</a></li>
+            <li><a class="nav-contact-btn" href="/contact/">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span class="footer-brand">{site.businessName}</span>
+        {site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER" && (
+          <a class="footer-phone" href={`tel:${site.phoneNumber}`}>{site.phoneNumber}</a>
+        )}
+
+        <nav class="footer-nav" aria-label="Footer">
+          {footerNavLinks.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))}
+        </nav>
+
+        <div class="footer-bottom">
+          <div>
+            <p class="footer-copyright">&copy; {new Date().getFullYear()} {site.businessName}. All rights reserved.</p>
+            <p class="footer-disclaimer">This website connects {site.city} homeowners with licensed local water softener installers serving {site.county}.</p>
+          </div>
+          <p class="footer-copyright">{site.city}, {site.stateAbbr}</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Accessible mobile menu toggle — animates transform/opacity only (see
+      // Layout's .site-nav rules), never max-height/display, to avoid reflow
+      // and to honour the "transform and opacity only" animation rule.
+      const toggle = document.querySelector<HTMLButtonElement>(".nav-toggle");
+      const nav = document.getElementById("primary-nav");
+
+      toggle?.addEventListener("click", () => {
+        const isOpen = nav?.classList.toggle("is-open") ?? false;
+        toggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      nav?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("is-open");
+          toggle?.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && nav?.classList.contains("is-open")) {
+          nav.classList.remove("is-open");
+          toggle?.setAttribute("aria-expanded", "false");
+          toggle?.focus();
+        }
+      });
+
+      // Services, Products, and Locations are pure-CSS hover/focus-within dropdowns on
+      // desktop (see .nav-has-dropdown in <style> below) and flat
+      // always-visible indented lists on mobile — neither needs JavaScript.
+      // The hamburger toggle above is the only JS-driven nav interaction.
+    </script>
+
+    <style>
+      /* ---------- Utility bar ---------- */
+      .utility-bar {
+        background: var(--surface-footer);
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .utility-bar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding-block: 8px;
+        font-family: var(--font-body);
+        font-size: 13px;
+      }
+      .utility-phone {
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .utility-phone:hover { color: var(--color-accent-light, var(--color-accent)); }
+      .utility-phone:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.6); outline-offset: 2px; }
+      @media (max-width: 640px) {
+        .utility-bar-left { display: none; }
+        .utility-bar-inner { justify-content: center; }
+      }
+
+      /* Sticky nav with a subtle primary-tinted bottom shadow (CLAUDE.md nav spec) */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: var(--surface-base);
+        box-shadow: var(--shadow-nav);
+      }
+      .site-header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding-block: 16px;
+        position: relative;
+      }
+      .logo {
+        font-family: var(--font-heading);
+        font-weight: 400;
+        font-size: 1.25rem;
+        color: var(--color-primary);
+        text-decoration: none;
+      }
+      .logo:hover { color: var(--color-accent); }
+      .logo:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; border-radius: 2px; }
+
+      .site-nav > ul {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .site-nav a {
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 0.9375rem;
+        color: var(--color-text-muted);
+        text-decoration: none;
+        transition: color var(--duration-micro) ease;
+      }
+      .site-nav a:hover { color: var(--color-primary); }
+      .site-nav a:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; border-radius: 2px; }
+      .site-nav a:active { color: var(--color-primary-dark); }
+
+      /* Nav dropdowns (Services / Products / Locations) — pure CSS hover/focus-within,
+         no JS on desktop. Both share this one set of rules via the
+         .nav-has-dropdown class. */
+      .nav-has-dropdown { position: relative; }
+      .nav-has-dropdown-btn {
+        background: none;
+        border: none;
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 0.9375rem;
+        color: var(--color-text-muted);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0;
+      }
+      .nav-has-dropdown-btn::after {
+        content: '▾';
+        font-size: 10px;
+        transition: transform 200ms ease;
+      }
+      .nav-has-dropdown:hover .nav-has-dropdown-btn,
+      .nav-has-dropdown:focus-within .nav-has-dropdown-btn { color: var(--color-primary); }
+      .nav-has-dropdown:hover .nav-has-dropdown-btn::after,
+      .nav-has-dropdown:focus-within .nav-has-dropdown-btn::after { transform: rotate(180deg); }
+      .nav-has-dropdown-btn:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; border-radius: 2px; }
+
+      .nav-has-dropdown .nav-dropdown {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        background: var(--surface-base);
+        border-radius: var(--radius-brand);
+        box-shadow: var(--shadow-floating);
+        min-width: 200px;
+        padding: 8px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-6px);
+        transition: opacity 200ms ease,
+                    visibility 200ms ease,
+                    transform 200ms ease;
+        z-index: 999;
+      }
+      .nav-has-dropdown:hover .nav-dropdown,
+      .nav-has-dropdown:focus-within .nav-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .nav-dropdown a {
+        display: block;
+        padding: 10px 20px;
+        font-family: var(--font-body);
+        font-size: 14px;
+        color: var(--color-text);
+        text-decoration: none;
+        white-space: nowrap;
+        transition: background-color 150ms ease, color 150ms ease;
+      }
+      .nav-dropdown a:hover { background: var(--color-primary-light); color: var(--color-primary); }
+      .nav-dropdown a:focus-visible {
+        outline: 3px solid var(--color-primary);
+        outline-offset: -3px;
+      }
+
+      /* Contact — orange pill button, last nav item. Uses the "a.nav-contact-btn"
+         type+class selector form so it out-specificities the generic
+         ".site-nav a" rules above — a bare class selector would lose to
+         those and render muted text instead of a white button label. */
+      a.nav-contact-btn {
+        padding: 9px 18px;
+        background: var(--color-accent);
+        color: #ffffff;
+        border-radius: 6px;
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 150ms ease, box-shadow 150ms ease;
+        box-shadow: var(--shadow-card);
+      }
+      a.nav-contact-btn:hover {
+        color: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-button-hover);
+      }
+      a.nav-contact-btn:focus-visible {
+        outline: 3px solid var(--color-accent);
+        outline-offset: 2px;
+      }
+      a.nav-contact-btn:active { color: #ffffff; transform: scale(0.98); }
+
+      /* Hamburger button: hidden on desktop, only shown under the nav breakpoint */
+      .nav-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: var(--color-primary);
+        cursor: pointer;
+        border-radius: var(--radius-brand);
+        transition: background-color var(--duration-micro) ease, transform var(--duration-micro) var(--ease-spring);
+      }
+      .nav-toggle:hover { background: var(--color-primary-light); }
+      .nav-toggle:active { transform: scale(0.94); }
+      .nav-toggle:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+
+      @media (max-width: 860px) {
+        .nav-toggle { display: inline-flex; order: 3; }
+        .site-header-inner { flex-wrap: wrap; }
+
+        /* Dropdown panel: transform + opacity only, per the animation rule */
+        .site-nav {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          order: 5;
+          background: var(--surface-base);
+          box-shadow: var(--shadow-nav);
+          padding: 8px 20px 20px;
+          transform: translateY(-8px);
+          opacity: 0;
+          pointer-events: none;
+          transition: transform var(--duration-large) var(--ease-spring), opacity var(--duration-micro) ease;
+        }
+        .site-nav.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+        .site-nav > ul { flex-direction: column; align-items: stretch; gap: 4px; }
+        .site-nav a { display: block; padding: 10px 4px; }
+
+        /* Each dropdown (Services / Products / Locations) becomes a static label with
+           all its sub-links always shown, indented, directly below it — a
+           flat list, not a collapsible accordion, since mobile has no
+           hover and the whole nav panel is already collapsed behind the
+           hamburger. */
+        .nav-has-dropdown-btn { pointer-events: none; padding: 10px 4px; }
+        .nav-has-dropdown-btn::after { content: ''; }
+        .nav-has-dropdown .nav-dropdown {
+          position: static;
+          visibility: visible;
+          opacity: 1;
+          transform: none;
+          box-shadow: none;
+          padding: 0 0 4px 16px;
+          min-width: 0;
+        }
+        .nav-dropdown a { color: var(--color-text-muted); padding: 8px 4px; }
+
+        /* Contact — full-width button at the bottom of the mobile list */
+        a.nav-contact-btn { display: block; width: 100%; text-align: center; margin-top: 8px; }
+      }
+
+      /* ---------- Minimal single-row footer ---------- */
+      .site-footer {
+        background: var(--surface-footer);
+        padding: 40px 24px 24px;
+        color: rgba(255, 255, 255, 0.70);
+        margin-top: 64px;
+      }
+      .footer-inner { max-width: 1000px; margin: 0 auto; padding: 0; }
+      .footer-brand {
+        font-family: var(--font-heading);
+        font-size: 20px;
+        color: #ffffff;
+        margin-bottom: 8px;
+        display: block;
+      }
+      .footer-phone {
+        font-family: var(--font-body);
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.70);
+        text-decoration: none;
+        display: block;
+        margin-bottom: 24px;
+        transition: color 150ms ease;
+      }
+      .footer-phone:hover { color: #ffffff; }
+      .footer-phone:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.50); outline-offset: 2px; }
+      .footer-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 20px;
+        margin-bottom: 32px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      }
+      .footer-nav a {
+        font-family: var(--font-body);
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.60);
+        text-decoration: none;
+        transition: color 150ms ease;
+      }
+      .footer-nav a:hover { color: #ffffff; }
+      .footer-nav a:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.50); outline-offset: 2px; }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .footer-copyright {
+        font-family: var(--font-body);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.40);
+        line-height: 1.6;
+        margin: 0;
+      }
+      .footer-disclaimer {
+        font-family: var(--font-body);
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.30);
+        line-height: 1.6;
+        margin: 8px 0 0;
+        font-style: italic;
+      }
+      @media (max-width: 640px) {
+        .footer-nav { gap: 6px 14px; }
+        .footer-bottom { flex-direction: column; }
+      }
+    </style>
+  </body>
+</html>

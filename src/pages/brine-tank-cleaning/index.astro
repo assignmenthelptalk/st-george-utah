@@ -1,0 +1,178 @@
+---
+import Layout from "../../components/Layout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { site } from "../../lib/site";
+
+const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
+  ? { href: `tel:${site.phoneNumber}`, text: `📞 ${site.phoneNumber}` }
+  : { href: "/contact/", text: "📞 Call for a Free Consultation" };
+
+const signs = [
+  {
+    name: "Salt Bridge",
+    detail: "A hardened crust forms above the water level in the brine tank, so salt can't dissolve into the water even though the tank looks full.",
+  },
+  {
+    name: "Salt Mush",
+    detail: "Salt dissolves into a thick sludge at the bottom of the tank instead of a clean brine solution, blocking the float valve and intake screen.",
+  },
+  {
+    name: "Standing Water",
+    detail: "Brine water that doesn't drain down during regeneration usually points to a clogged injector or a stuck float valve.",
+  },
+  {
+    name: "Hard Water Despite Regeneration",
+    detail: "If the tank isn't producing usable brine, the resin bed never gets properly recharged, and water tests hard even on schedule.",
+  },
+];
+
+const faqs = [
+  {
+    q: "How often does a water softener brine tank need cleaning?",
+    a: "Most manufacturers recommend cleaning the brine tank once a year as part of routine maintenance, more often in areas with very hard water or high iron content.",
+  },
+  {
+    q: "Can I clean my own brine tank?",
+    a: "Yes, for routine cleaning — drain it, remove leftover salt, scrub with soap and water, and rinse thoroughly. A hardened salt bridge or a stuck float valve often needs a professional diagnostic.",
+  },
+  {
+    q: "What causes a salt bridge?",
+    a: "High humidity, using the wrong salt type, or overfilling the tank all encourage salt to fuse into a solid crust above the water line.",
+  },
+  {
+    q: "Does a dirty brine tank damage the softener?",
+    a: "Yes — over time it can affect the resin bed's ability to fully regenerate, shortening the resin's effective lifespan and reducing softening performance.",
+  },
+];
+---
+
+<Layout
+  title={`Water Softener Brine Tank Cleaning in ${site.city}, ${site.stateAbbr}`}
+  description={`Signs your ${site.city} water softener's brine tank needs cleaning, what it costs, and how the process works.`}
+>
+  <PageHero
+    breadcrumbs={[{ label: "Repair", href: "/repair/" }, { label: "Brine Tank Cleaning" }]}
+    heading={`Brine Tank Cleaning in ${site.city}, ${site.stateAbbr} | Trusted Local Specialists`}
+    primaryCta={primaryCta}
+    secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <a href="/" class="brand-link">{site.businessName}</a>
+      {" "}offers water softener brine tank cleaning services across {site.city} and {site.county}. Annual
+      cleaning is recommended at {site.gpgLow}–{site.gpgHigh} GPG hard water levels. Salt bridges, salt
+      mushing, and dirty brine reduce regeneration effectiveness and waste salt. Free diagnostic included with
+      every cleaning call. Same day availability.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p>The brine tank holds the salt solution a water softener uses to regenerate its resin bed. At {site.gpgLow}-{site.gpgHigh} GPG, {site.city} softeners regenerate more often than in a moderate-hardness market, which means more salt cycling through the tank and a shorter interval before it needs attention.</p>
+      </div>
+
+      <h2>Signs Your Brine Tank Needs Cleaning</h2>
+      <div class="grid grid-2">
+        {signs.map((s) => (
+          <div class="card">
+            <h3>{s.name}</h3>
+            <p>{s.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Brine Tank Cleaning Cost</h2>
+        <p>Most manufacturers consider brine tank cleaning routine maintenance rather than a repair, so it's typically bundled with an annual service visit at a modest fixed cost. Clearing a hardened salt bridge or replacing a stuck float valve costs more, depending on what's found during diagnosis.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2>How Brine Tank Cleaning Works</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="process-step">
+          <span class="process-number">1</span>
+          <h3>Drain and Empty</h3>
+          <p>Bypass the softener, drain remaining brine, and remove any leftover salt, sludge, or a hardened bridge.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-number">2</span>
+          <h3>Clean and Inspect</h3>
+          <p>Scrub the tank with soap and water, then inspect the float valve, injector, and grid plate for buildup or damage.</p>
+        </div>
+        <div class="process-step">
+          <span class="process-number">3</span>
+          <h3>Refill and Test</h3>
+          <p>Refill with fresh salt, run a manual regeneration cycle, and confirm the system is producing usable brine again.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Connection to Resin Bed Performance</h2>
+        <p>A dirty brine tank starves the resin bed of the concentrated brine it needs to fully regenerate. Left unaddressed, it can shorten resin lifespan the same way heavy iron or chlorine exposure does — see our <a href="/resin-bed-replacement/">resin bed replacement</a> page if the resin itself has already failed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Brine Tank Cleaning Questions</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>Brine Tank Acting Up in {site.city}?</h2>
+      <p>Free in-home diagnostic to confirm whether the brine tank is the cause.</p>
+      <a class="btn btn-primary" href="/contact/">Book a Diagnostic →</a>
+    </div>
+  </section>
+
+  <style>
+    .process-step { text-align: center; padding: 0 12px; }
+    .process-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full, 9999px);
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      font-family: var(--font-heading);
+      font-size: 1.125rem;
+      margin-bottom: 14px;
+    }
+    .process-step h3 { margin-bottom: 8px; }
+    .faq-list { max-width: 760px; margin: 24px auto 0; }
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+  </style>
+</Layout>
