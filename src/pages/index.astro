@@ -7,6 +7,7 @@ import homeHero from "../assets/images/home-hero.webp";
 import homeInstallation from "../assets/images/home-installation.webp";
 import homeHardWater from "../assets/images/home-hard-water.webp";
 import homeBestSystem from "../assets/images/header-products.webp";
+import homeResin from "../assets/images/header-resin-bed-replacement.webp";
 import { site } from "../lib/site";
 
 const services = [
@@ -198,6 +199,27 @@ const faqs = [
         </div>
         <div class="service-section-media">
           <Image src={homeHardWater} alt={`Hard water effects in ${site.city}, ${site.stateAbbr}`} width={600} height={400} loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resin replacement — plain H2, underlined link to /resin-bed-replacement/ below the copy -->
+  <section class="section" style="background: var(--color-surface);">
+    <div class="service-section-wrapper">
+      <h2 class="service-section-title">Water Softener Resin Replacement in {site.city}, {site.state}</h2>
+      <div class="service-section-grid">
+        <div class="service-section-text">
+          <p>
+            Softener resin beads trap the calcium and magnesium in your water, and they wear out after years
+            of heavy use. Spotted dishes, returning scale and soft water that feels hard again are the usual
+            signs. With {site.city} water at {site.gpgLow}-{site.gpgHigh} GPG, resin works harder than most.
+            Replacing the resin bed often costs less than a new softener, and we test your water first to confirm the real cause.
+          </p>
+          <a class="underline-link" href="/resin-bed-replacement/">See Resin Bed Replacement in {site.city}</a>
+        </div>
+        <div class="service-section-media">
+          <Image src={homeResin} alt={`Fresh water softener resin beads being poured into a tank in ${site.city}, ${site.stateAbbr}`} width={600} height={400} loading="lazy" />
         </div>
       </div>
     </div>
