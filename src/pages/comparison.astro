@@ -1,5 +1,6 @@
 ---
 import Layout from "../components/Layout.astro";
+import GPGSliderMini from "../components/GPGSliderMini.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../lib/site";
 
@@ -54,6 +55,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
 
   <section class="section" style="background: var(--color-surface);">
     <div class="container">
+      <GPGSliderMini />
       <div class="section-header center">
         <p class="eyebrow">Our Recommendation</p>
         <h2>SpringWell Systems for {site.city} Homes</h2>

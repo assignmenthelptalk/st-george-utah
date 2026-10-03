@@ -1,7 +1,23 @@
 ---
 import { site } from "../lib/site";
 
-const defaultGpg = Math.round((site.gpgLow + site.gpgHigh) / 2);
+// Start the slider at the midpoint of the local range, clamped inside the tier
+// that matches site.gpgLabel so the badge and the copy never contradict
+// (e.g. a 13-24 GPG range labelled "Very Hard" starts at 18, not 19).
+const tierBounds: Record<string, [number, number]> = {
+  "Soft": [0, 1],
+  "Slightly Hard": [2, 3],
+  "Moderately Hard": [4, 7],
+  "Hard": [8, 10],
+  "Very Hard": [11, 18],
+  "Extremely Hard": [19, 40],
+  "Extreme": [19, 40],
+};
+const [tierLow, tierHigh] = tierBounds[site.gpgLabel] ?? [0, 40];
+const defaultGpg = Math.min(
+  Math.max(Math.round((site.gpgLow + site.gpgHigh) / 2), tierLow),
+  tierHigh,
+);
 ---
 
 <div class="gpg-mini-card">

@@ -1,5 +1,6 @@
 ---
 import Layout from "../components/Layout.astro";
+import GPGSliderMini from "../components/GPGSliderMini.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../lib/site";
 
@@ -49,6 +50,12 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
           <p>Hard water can leave skin feeling dry and hair looking dull, since mineral residue interferes with soap and shampoo rinsing cleanly.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <GPGSliderMini />
     </div>
   </section>
 
