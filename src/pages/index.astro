@@ -145,7 +145,7 @@ const faqs = [
   <!-- Best water softener system — keyword section, H2 links to /products/ -->
   <section class="section">
     <div class="service-section-wrapper">
-      <h2 class="service-section-title"><a class="h2-link" href="/products/">Best Water Softener System {site.city} {site.state}</a></h2>
+      <h2 class="service-section-title">Best Water Softener for {site.state}</h2>
       <div class="service-section-grid service-section-grid-reverse">
         <div class="service-section-text">
           <p>
@@ -153,8 +153,9 @@ const faqs = [
             area's {site.gpgLow}-{site.gpgHigh} GPG water. According to {site.waterAuthority}, softener settings
             between {site.gpgLow} and {site.gpgHigh} grains per gallon give the most effective treatment. We
             compare salt-based, salt-free and filtration options for your household size and budget, then
-            recommend one system. See the systems we install and request a free quote.
+            recommend one system and give you a free quote.
           </p>
+          <a class="underline-link" href="/products/">See the Best Water Softener for {site.state}</a>
         </div>
         <div class="service-section-media">
           <Image src={homeBestSystem} alt={`Water softener, filter and reverse osmosis systems available in ${site.city}, ${site.stateAbbr}`} width={600} height={400} loading="lazy" />
@@ -444,6 +445,16 @@ const faqs = [
       line-height: 1.75;
       color: var(--color-text-muted, inherit);
     }
+    .underline-link {
+      display: inline-block;
+      font-weight: 600;
+      color: var(--color-primary);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
+    }
+    .underline-link:hover { color: var(--color-accent); }
+    .underline-link:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; border-radius: 2px; }
     .h2-link { color: inherit; text-decoration: none; }
     .h2-link:hover { color: var(--color-accent); text-decoration: underline; text-underline-offset: 6px; }
     .h2-link:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 4px; border-radius: 2px; }
