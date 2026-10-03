@@ -141,17 +141,31 @@ const faqs = [
   </section>
 
   <!-- 4. Alternating image-text 1 of 4 — text left, image right -->
+  <!-- Best water softener system — keyword section, H2 links to /products/ -->
   <section class="section">
     <div class="service-section-wrapper">
-      <h2 class="service-section-title">Water Softener Installation in {site.city}, {site.stateAbbr}</h2>
+      <h2 class="service-section-title"><a class="h2-link" href="/products/">Best Water Softener System {site.city} {site.state}</a></h2>
+      <p class="service-section-copy">
+        The best water softener system for {site.city} is a salt-based ion exchange unit sized to the
+        area's {site.gpgLow}-{site.gpgHigh} GPG water. According to {site.waterAuthority}, softener settings
+        between {site.gpgLow} and {site.gpgHigh} grains per gallon give the most effective treatment. We
+        compare salt-based, salt-free and filtration options for your household size and budget, then
+        recommend one system. See the systems we install and request a free quote.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="service-section-wrapper">
+      <h2 class="service-section-title"><a class="h2-link" href="/installation/">Water Softener Installation in {site.city}, {site.state}</a></h2>
       <div class="service-section-grid">
         <div class="service-section-text">
           <p>
-            Every installation is sized to {site.city}'s {site.gpgLow}-{site.gpgHigh} GPG reading and your
-            household's water usage, not a statewide estimate. Most installations complete in a single visit,
-            and a free water test is included with every consultation.
+            Every water softener installation in {site.city} is sized to the local {site.gpgLow}-{site.gpgHigh}
+            GPG reading and your household's water use, not a statewide estimate. Our technician sets the
+            bypass, drain and brine line, programs the control head, and tests the water before leaving. Most
+            installations finish in a single visit, and we walk you through the settings and salt refills before we go. A free in-home water test comes with every consultation.
           </p>
-          <a class="service-learn-more" href="/installation/">See Installation Details →</a>
         </div>
         <div class="service-section-media">
           <Image src={homeInstallation} alt={`Water softener installation in ${site.city}, ${site.stateAbbr}`} width={600} height={400} loading="lazy" />
@@ -161,7 +175,7 @@ const faqs = [
   </section>
 
   <!-- 5. Alternating image-text 2 of 4 — image left, text right -->
-  <section class="section" style="background: var(--color-surface);">
+  <section class="section">
     <div class="service-section-wrapper">
       <h2 class="service-section-title">Hard Water Effects in {site.city}, {site.stateAbbr}</h2>
       <div class="service-section-grid service-section-grid-reverse">
@@ -416,6 +430,15 @@ const faqs = [
       line-height: 1.2;
       width: 100%;
     }
+    .service-section-copy {
+      max-width: 760px;
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: var(--color-text-muted, inherit);
+    }
+    .h2-link { color: inherit; text-decoration: none; }
+    .h2-link:hover { color: var(--color-accent); text-decoration: underline; text-underline-offset: 6px; }
+    .h2-link:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 4px; border-radius: 2px; }
     .service-section-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
