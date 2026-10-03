@@ -6,6 +6,7 @@ import { Image } from "astro:assets";
 import homeHero from "../assets/images/home-hero.webp";
 import homeInstallation from "../assets/images/home-installation.webp";
 import homeHardWater from "../assets/images/home-hard-water.webp";
+import homeBestSystem from "../assets/images/header-products.webp";
 import { site } from "../lib/site";
 
 const services = [
@@ -145,13 +146,20 @@ const faqs = [
   <section class="section">
     <div class="service-section-wrapper">
       <h2 class="service-section-title"><a class="h2-link" href="/products/">Best Water Softener System {site.city} {site.state}</a></h2>
-      <p class="service-section-copy">
-        The best water softener system for {site.city} is a salt-based ion exchange unit sized to the
-        area's {site.gpgLow}-{site.gpgHigh} GPG water. According to {site.waterAuthority}, softener settings
-        between {site.gpgLow} and {site.gpgHigh} grains per gallon give the most effective treatment. We
-        compare salt-based, salt-free and filtration options for your household size and budget, then
-        recommend one system. See the systems we install and request a free quote.
-      </p>
+      <div class="service-section-grid service-section-grid-reverse">
+        <div class="service-section-text">
+          <p>
+            The best water softener system for {site.city} is a salt-based ion exchange unit sized to the
+            area's {site.gpgLow}-{site.gpgHigh} GPG water. According to {site.waterAuthority}, softener settings
+            between {site.gpgLow} and {site.gpgHigh} grains per gallon give the most effective treatment. We
+            compare salt-based, salt-free and filtration options for your household size and budget, then
+            recommend one system. See the systems we install and request a free quote.
+          </p>
+        </div>
+        <div class="service-section-media">
+          <Image src={homeBestSystem} alt={`Water softener, filter and reverse osmosis systems available in ${site.city}, ${site.stateAbbr}`} width={600} height={400} loading="lazy" />
+        </div>
+      </div>
     </div>
   </section>
 
