@@ -19,7 +19,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
     secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
   >
     <p slot="opening">
-      <a href="/" class="brand-link">{site.businessName}</a>
+      {site.businessName} (<a href="/" class="brand-link">https://{site.domain}</a>)
       {" "}offers water softener system comparison and selection guidance for {site.city} homeowners. At
       {site.gpgLow}–{site.gpgHigh} GPG from {site.waterAuthority}, not every system works. Salt-free
       conditioners do not remove calcium and magnesium at this hardness level. Salt-based ion exchange is the

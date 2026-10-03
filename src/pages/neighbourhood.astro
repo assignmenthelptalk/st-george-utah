@@ -19,7 +19,7 @@ const primaryCta = site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER"
     secondaryCta={{ href: "/quote/", text: "Get a Free Quote" }}
   >
     <p slot="opening">
-      <a href="/" class="brand-link">{site.businessName}</a>
+      {site.businessName} (<a href="/" class="brand-link">https://{site.domain}</a>)
       {" "}provides water softener installation and service across every {site.city} neighbourhood and
       surrounding {site.county} community. {site.waterAuthority} delivers the same {site.gpgLow}
       –{site.gpgHigh} GPG supply citywide. Every neighbourhood receives the same {site.gpgLabel} water
