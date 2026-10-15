@@ -8,7 +8,7 @@
 | `site.config.ts` | ✅ filled with St George data (see Site identity) |
 | Design tokens | ✅ navy `#17496B` primary, terracotta `#C2562B` accent, DM Serif Display and Inter |
 | Brand name | ✅ `St George Prime Water Softener` (exact match for the domain and keyword) |
-| Homepage H1 / title | ✅ H1 `St George Prime Water Softener - Premier Water Softener Installation in St George, UT`; title `St George Prime Water Softener \| Installation & Repair` |
+| Homepage H1 / title | ✅ H1 `St George Prime Water Softener - Water Softener Installation in St George, UT`; title `St George Prime Water Softener \| Installation & Repair` |
 | Inner page titles | ✅ `[Page] \| St George Prime Water Softener` (the old repeated "Water Softener Installation and Repair" suffix was removed) |
 | Homepage backlink variety | ✅ 4 anchor styles across 21 inner pages (4 exact, 6 naked URL, 5 partial, 6 plain). Hand-written here; the boilerplate has the reusable `HomeLink.astro` version |
 | Varied CTA button text | ✅ 4 installation and sizing pages use distinct button copy |
