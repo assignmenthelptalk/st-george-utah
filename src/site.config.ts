@@ -301,7 +301,7 @@ export const siteConfig: SiteConfig = {
   affiliateRO: "https://springwellwater.com/follow/ro/",
 
   // Business identity — edit directly, no CMS
-  businessName: "Water Softener St George Utah",
+  businessName: "St George Prime Water Softener",
   phoneNumber: "PHONE_NUMBER",
   businessEmail: "BUSINESS_EMAIL",
   address: "",

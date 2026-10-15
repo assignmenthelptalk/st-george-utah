@@ -1,4 +1,4 @@
-# Water Softener St George Utah — Workspace
+# St George Prime Water Softener — Workspace
 
 ## Build status
 | Component | Status |
@@ -7,9 +7,9 @@
 | Output mode | ✅ Static (`output: "static"`, `@astrojs/vercel`, zero serverless functions) |
 | `site.config.ts` | ✅ filled with St George data (see Site identity) |
 | Design tokens | ✅ navy `#17496B` primary, terracotta `#C2562B` accent, DM Serif Display and Inter |
-| Brand name | ✅ `Water Softener St George Utah` (exact match for the domain and keyword) |
-| Homepage H1 / title | ✅ H1 `Water Softener St George Utah: Installation, Repair & Free Water Testing`; title `Water Softener St George Utah \| Installation & Repair` |
-| Inner page titles | ✅ `[Page] \| Water Softener St George Utah` (the old repeated "Water Softener Installation and Repair" suffix was removed) |
+| Brand name | ✅ `St George Prime Water Softener` (exact match for the domain and keyword) |
+| Homepage H1 / title | ✅ H1 `St George Prime Water Softener - Premier Water Softener Installation in St George, UT`; title `St George Prime Water Softener \| Installation & Repair` |
+| Inner page titles | ✅ `[Page] \| St George Prime Water Softener` (the old repeated "Water Softener Installation and Repair" suffix was removed) |
 | Homepage backlink variety | ✅ 4 anchor styles across 21 inner pages (4 exact, 6 naked URL, 5 partial, 6 plain). Hand-written here; the boilerplate has the reusable `HomeLink.astro` version |
 | Varied CTA button text | ✅ 4 installation and sizing pages use distinct button copy |
 | Homepage keyword sections | ✅ 3 H2 sections (about 70 words each): Best Water Softener for Utah, Water Softener Installation in St George Utah, Water Softener Resin Replacement in St George Utah. H2s are not links; each section ends with an underlined link to `/products/`, `/installation/` or `/resin-bed-replacement/`. Background shades alternate down the page |
@@ -112,7 +112,7 @@ Mirrors PROVISION.md step-for-step.
 - **Missing images:** whole-home-filtration header (falls back to the GPG stat card) and the About "Who Uses Our Services" banner (section is text only).
 - **Title length:** several inner-page titles run past about 60 characters once the brand suffix is added (for example water-quality at 76), so Google may truncate them.
 - **Homepage links:** the homepage keyword sections follow a set pattern (plain H2, underlined link below the copy). Keep new homepage sections consistent with it.
-- **Opening paragraphs** use the brand name as the sentence subject ("Water Softener St George Utah offers..."), which reads slightly awkwardly in places.
+- **Opening paragraphs** use the brand name as the sentence subject ("St George Prime Water Softener offers..."), which reads slightly awkwardly in places.
 - **`searchVol` is 0:** no keyword-tool access when this site was built.
 - **GPG range choice:** 13–24 comes from the city's own softener-setting recommendation. Third-party sources report 20–24 GPG as typical, so the real figure at a given tap is likely toward the upper end.
 - **Boilerplate sync:** the `HomeLink.astro` component and the "Homepage Backlink Variety" docs were added to the boilerplate after this site's version was built by hand. The boilerplate repo has no remote yet, so those changes exist locally only.

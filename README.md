@@ -1,4 +1,4 @@
-# Water Softener St George Utah
+# St George Prime Water Softener
 
 Rank-and-rent lead-generation site for **water softener St George, Utah**.
 
@@ -35,7 +35,7 @@ Everything above lives in `src/site.config.ts`, the only file that holds city da
 22 fixed pages plus `thank-you` (23 built): home, water quality, hard water, installation, comparison, FAQ, neighbourhoods, quote, products, repair, resin bed replacement, brine tank cleaning, whole home filtration, reverse osmosis, about, contact, salt-based installation, salt-free installation, water softener sizing, new construction installation, control head repair and free water test.
 
 Notable pieces:
-- **Brand and titles:** brand is `Water Softener St George Utah` (exact match). The homepage title is `Water Softener St George Utah | Installation & Repair`, and inner pages use `[Page] | Water Softener St George Utah`.
+- **Brand and titles:** brand is `St George Prime Water Softener` (exact match). The homepage title is `St George Prime Water Softener | Installation & Repair`, and inner pages use `[Page] | St George Prime Water Softener`.
 - **Homepage backlink variety:** the opening paragraph of each inner page links home using one of four anchor styles (exact, naked URL, partial, plain) to avoid repeating the exact-match anchor. The pattern is documented in PROVISION.md under "Homepage Backlink Variety" and implemented in the boilerplate as `HomeLink.astro`. This site still uses the hand-written version of the same pattern.
 - **Homepage keyword sections:** three H2 sections of about 70 words each: "Best Water Softener for Utah", "Water Softener Installation in St George, Utah" and "Water Softener Resin Replacement in St George, Utah". The H2s are plain text. Each section ends with an underlined link to its inner page (`/products/`, `/installation/`, `/resin-bed-replacement/`), and each has a photo reused from the matching page header.
 - **Hardness slider:** `GPGSliderMini` on the hard-water and comparison pages. It starts at 18 GPG so the badge matches the site's "Very Hard" label.

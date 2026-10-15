@@ -1,4 +1,4 @@
-# Image Prompts — Water Softener St George Utah
+# Image Prompts — St George Prime Water Softener
 
 28 images: 3 homepage, 21 inner-page headers, 4 About-page body images.
 Works with Gemini / Imagen, Midjourney, Flux, DALL-E, Ideogram.
