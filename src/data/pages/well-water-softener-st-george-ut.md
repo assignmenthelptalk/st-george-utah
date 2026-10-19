@@ -11,7 +11,7 @@ openingHtml: "A well water softener in St George, UT treats private well water t
 formHeading: ""
 formIntro: ""
 leadImage: {"file":"well-water-softener-st-george-ut.webp","alt":"Well water softener St George UT softener and iron filter beside a pressure tank"}
-images: [{"file":"well-water-softener-st-george-ut.webp","alt":"Well water softener St George UT softener and iron filter beside a pressure tank","exists":true},{"file":"card-well-water-softener-installation-st-george-ut.webp","alt":"Well Water Softener Installation St George UT","exists":true},{"file":"card-iron-filter-installation-st-george-ut.webp","alt":"Iron Filter Installation St George UT","exists":true},{"file":"card-hydrogen-sulfide-filter-st-george-ut.webp","alt":"Hydrogen Sulfide Filter St George UT","exists":false},{"file":"card-well-water-sediment-filter-st-george-ut.webp","alt":"Well Water Sediment Filter St George UT","exists":true},{"file":"card-why-well-water-in-the-st-george-area-needs-special-treatment-st-george-ut.webp","alt":"Why Well Water in the St George Area Needs Special Treatment St George UT","exists":true}]
+images: [{"file":"well-water-softener-st-george-ut.webp","alt":"Well water softener St George UT softener and iron filter beside a pressure tank","exists":true},{"file":"card-well-water-softener-installation-st-george-ut.webp","alt":"Well Water Softener Installation St George UT","exists":true},{"file":"card-iron-filter-installation-st-george-ut.webp","alt":"Iron Filter Installation St George UT","exists":true},{"file":"card-hydrogen-sulfide-filter-st-george-ut.webp","alt":"Hydrogen Sulfide Filter St George UT","exists":true},{"file":"card-well-water-sediment-filter-st-george-ut.webp","alt":"Well Water Sediment Filter St George UT","exists":true},{"file":"card-why-well-water-in-the-st-george-area-needs-special-treatment-st-george-ut.webp","alt":"Why Well Water in the St George Area Needs Special Treatment St George UT","exists":true}]
 faq: [{"q":"Do I need a water softener on a private well?","a":"If the well tests hard, yes. Well water in the St George area runs hard to very hard, and a test shows by how much."},{"q":"What goes first, the filter or the softener?","a":"Filters for iron, sulfur and sediment go before the softener, because they protect the resin."},{"q":"Why does my well water smell like rotten eggs?","a":"A sulfur smell usually means hydrogen sulfide. A hydrogen sulfide filter removes it."},{"q":"Does a well water system cost more?","a":"It can, because wells often need filters as well as a softener. St George Prime Water Softener UT provides well water softener and treatment for homes and businesses across St George and Washington County."}]
 markerCount: 3
 ---
@@ -49,7 +49,10 @@ An iron filter removes dissolved and particulate iron before the softener. Iron 
 <div class="svc-card">
 
 
-![Hydrogen Sulfide Filter St George UT](/placeholders/card.svg)
+
+![Hydrogen Sulfide Filter St George UT](../../assets/images/card-hydrogen-sulfide-filter-st-george-ut.webp)
+
+
 
 ### Hydrogen Sulfide Filter
 
