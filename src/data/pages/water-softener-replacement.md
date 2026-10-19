@@ -10,8 +10,8 @@ crumb: "Water Softener Replacement"
 openingHtml: "Water softener replacement in St George, UT swaps a failing softener for a correctly sized new system, so your home gets softened water again. <a href=\"/\">St George Prime Water Softener</a> removes the old unit, sizes the new one to your hardness, 13 to 24 GPG for St George water, and reconnects the plumbing. Request a free estimate and the technician will compare repair and replacement prices."
 formHeading: ""
 formIntro: ""
-leadImage: null
-images: [{"file":"water-softener-replacement-st-george-ut.webp","alt":"Water softener replacement St George UT old softener beside a new unit","exists":false}]
+leadImage: {"file":"water-softener-replacement-st-george-ut.webp","alt":"Water softener replacement St George UT old softener beside a new unit"}
+images: [{"file":"water-softener-replacement-st-george-ut.webp","alt":"Water softener replacement St George UT old softener beside a new unit","exists":true}]
 faq: [{"q":"How do I know it is time to replace my water softener?","a":"Replace it when water is hard even after a repair, the tank leaks or cracks, or the unit is past about 10 to 15 years old . Rising salt use and repeat service calls point the same way."},{"q":"How long does a replacement take?","a":"Most replacements finish in a single visit, because the old unit's plumbing is reused where it is sound. The technician confirms the schedule at your estimate."},{"q":"Can you reuse my existing brine tank or plumbing?","a":"A sound brine tank and clean plumbing can stay in place. The technician inspects them at the estimate and replaces only what has worn out."},{"q":"Will a new softener use less salt?","a":"Newer control heads regenerate by demand rather than on a fixed timer, which cuts salt and water use when the household uses less water. The saving depends on your hardness and usage."},{"q":"What happens to my old softener?","a":"The technician removes it as part of the job. St George Prime Water Softener UT provides water softener replacement for homes and businesses across St George and Washington County."}]
 markerCount: 4
 ---

@@ -10,8 +10,8 @@ crumb: "Water Treatment Services"
 openingHtml: "Water treatment services in St George, UT begin with a water test, because hardness works out at 13 to 24 GPG and a tap reading shows what your own plumbing adds. <a href=\"/\">St George Prime Water Softener</a> tests your tap, then recommends filtration, reverse osmosis, UV purification or a softener to match the result. Request a free estimate and book a free water test."
 formHeading: ""
 formIntro: ""
-leadImage: null
-images: [{"file":"water-treatment-st-george-ut.webp","alt":"Water treatment St George UT filtration and testing equipment","exists":false},{"file":"card-why-test-before-you-treat-st-george-ut.webp","alt":"Why Test Before You Treat? St George UT","exists":false},{"file":"card-water-quality-testing-st-george-ut.webp","alt":"Water Quality Testing St George UT","exists":false},{"file":"card-water-filtration-system-installation-st-george-ut.webp","alt":"Water Filtration System Installation St George UT","exists":false},{"file":"card-well-water-softener-and-treatment-st-george-ut.webp","alt":"Well Water Softener and Treatment St George UT","exists":false},{"file":"card-water-contaminant-removal-st-george-ut.webp","alt":"Water Contaminant Removal St George UT","exists":false},{"file":"card-reverse-osmosis-system-installation-st-george-ut.webp","alt":"Reverse Osmosis System Installation St George UT","exists":false},{"file":"card-uv-water-purification-system-installation-st-george-ut.webp","alt":"UV Water Purification System Installation St George UT","exists":false},{"file":"card-drinking-water-system-installation-st-george-ut.webp","alt":"Drinking Water System Installation St George UT","exists":false}]
+leadImage: {"file":"water-treatment-st-george-ut.webp","alt":"Water treatment St George UT filtration and testing equipment"}
+images: [{"file":"water-treatment-st-george-ut.webp","alt":"Water treatment St George UT filtration and testing equipment","exists":true},{"file":"card-why-test-before-you-treat-st-george-ut.webp","alt":"Why Test Before You Treat? St George UT","exists":false},{"file":"card-water-quality-testing-st-george-ut.webp","alt":"Water Quality Testing St George UT","exists":true},{"file":"card-water-filtration-system-installation-st-george-ut.webp","alt":"Water Filtration System Installation St George UT","exists":false},{"file":"card-well-water-softener-and-treatment-st-george-ut.webp","alt":"Well Water Softener and Treatment St George UT","exists":false},{"file":"card-water-contaminant-removal-st-george-ut.webp","alt":"Water Contaminant Removal St George UT","exists":false},{"file":"card-reverse-osmosis-system-installation-st-george-ut.webp","alt":"Reverse Osmosis System Installation St George UT","exists":false},{"file":"card-uv-water-purification-system-installation-st-george-ut.webp","alt":"UV Water Purification System Installation St George UT","exists":false},{"file":"card-drinking-water-system-installation-st-george-ut.webp","alt":"Drinking Water System Installation St George UT","exists":false}]
 faq: [{"q":"Do I need a water test before installing a softener?","a":"Yes. A test gives your hardness in grains per gallon and flags iron or sulfur, so the technician sizes the softener correctly and adds filters where needed."},{"q":"Does a water softener make water safe to drink?","a":"A softener removes hardness minerals and does not treat bacteria or most contaminants. A filter, reverse osmosis or UV system handles those, based on your test."},{"q":"Is St George tap water safe to drink?","a":"The City of St. George publishes its results in an annual drinking water quality report. A home test shows what reaches your tap after your own plumbing."},{"q":"What is the difference between filtration and softening?","a":"A filter removes particles and chemicals. A softener removes calcium and magnesium. Many homes need both. St George Prime Water Softener UT provides water treatment services for homes and businesses across St George and Washington County."}]
 markerCount: 1
 ---
@@ -36,7 +36,10 @@ A water test shows what is in your water before you buy equipment, so the treatm
 <div class="svc-card">
 
 
-![Water Quality Testing St George UT](/placeholders/card.svg)
+
+![Water Quality Testing St George UT](../../assets/images/card-water-quality-testing-st-george-ut.webp)
+
+
 
 ### Water Quality Testing
 

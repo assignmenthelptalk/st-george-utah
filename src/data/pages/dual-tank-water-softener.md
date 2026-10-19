@@ -10,8 +10,8 @@ crumb: "Dual Tank Water Softener Installation"
 openingHtml: "A dual tank water softener in St George, UT uses two resin tanks so one always serves the house while the other regenerates, and softened water never stops. <a href=\"/\">St George Prime Water Softener</a> installs dual tank systems for large households and busy commercial sites that outgrow a single tank, on water that calls for softener settings of 13 to 24 GPG. Request a free estimate and a technician will check whether two tanks suit your water use."
 formHeading: ""
 formIntro: ""
-leadImage: null
-images: [{"file":"dual-tank-water-softener-st-george-ut.webp","alt":"Dual tank water softener St George UT twin resin tanks","exists":false}]
+leadImage: {"file":"dual-tank-water-softener-st-george-ut.webp","alt":"Dual tank water softener St George UT twin resin tanks"}
+images: [{"file":"dual-tank-water-softener-st-george-ut.webp","alt":"Dual tank water softener St George UT twin resin tanks","exists":true}]
 faq: [{"q":"How does a dual tank water softener differ from a single tank?","a":"A dual tank unit has two resin tanks that alternate, so softened water is continuous. A single tank pauses softening while it regenerates."},{"q":"Do dual tank softeners use more salt?","a":"Not necessarily. Most dual tank systems regenerate by demand, so salt use follows actual water use rather than a fixed schedule."},{"q":"How much space does a dual tank system need?","a":"It needs more floor area than one tank. The technician measures your utility room or garage before recommending it."},{"q":"Can a dual tank system serve a small business?","a":"Yes. It suits businesses that cannot tolerate hard water at any hour, and it is sized from peak flow. St George Prime Water Softener UT provides dual tank water softener installation for homes and businesses across St George and Washington County."}]
 markerCount: 3
 ---

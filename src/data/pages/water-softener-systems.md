@@ -10,8 +10,8 @@ crumb: "Water Softener Systems"
 openingHtml: "Water softener systems in St George, UT range from a single-tank salt-based unit to a dual-tank or commercial system, and the right one depends on your hardness reading and household size. The City of St. George advises softener settings of 13 to 24 GPG, Very Hard <mark class=\"data-gap\">[VERIFY: the City's reports give a softener-setting range, not a measured hardness]</mark>. <a href=\"/\">St George Prime Water Softener</a> installs, services and replaces every type. Request a free estimate to choose between them."
 formHeading: ""
 formIntro: ""
-leadImage: null
-images: [{"file":"water-softener-systems-st-george-ut.webp","alt":"Water softener systems St George UT installed salt-based softener","exists":false},{"file":"card-why-st-george-water-needs-a-water-softener-system-st-george-ut.webp","alt":"Why St George Water Needs a Water Softener System St George UT","exists":false},{"file":"card-water-softener-installation-st-george-ut.webp","alt":"Water Softener Installation St George UT","exists":false},{"file":"card-water-softener-replacement-st-george-ut.webp","alt":"Water Softener Replacement St George UT","exists":false},{"file":"card-salt-free-water-softener-systems-st-george-ut.webp","alt":"Salt-Free Water Softener Systems St George UT","exists":false},{"file":"card-dual-tank-water-softener-installation-st-george-ut.webp","alt":"Dual Tank Water Softener Installation St George UT","exists":false},{"file":"card-commercial-water-softener-installation-st-george-ut.webp","alt":"Commercial Water Softener Installation St George UT","exists":false},{"file":"card-water-softener-maintenance-st-george-ut.webp","alt":"Water Softener Maintenance St George UT","exists":false},{"file":"card-water-softener-repair-st-george-ut.webp","alt":"Water Softener Repair St George UT","exists":false},{"file":"card-water-conditioner-installation-st-george-ut.webp","alt":"Water Conditioner Installation St George UT","exists":false}]
+leadImage: {"file":"water-softener-systems-st-george-ut.webp","alt":"Water softener systems St George UT installed salt-based softener"}
+images: [{"file":"water-softener-systems-st-george-ut.webp","alt":"Water softener systems St George UT installed salt-based softener","exists":true},{"file":"card-why-st-george-water-needs-a-water-softener-system-st-george-ut.webp","alt":"Why St George Water Needs a Water Softener System St George UT","exists":false},{"file":"card-water-softener-installation-st-george-ut.webp","alt":"Water Softener Installation St George UT","exists":true},{"file":"card-water-softener-replacement-st-george-ut.webp","alt":"Water Softener Replacement St George UT","exists":true},{"file":"card-salt-free-water-softener-systems-st-george-ut.webp","alt":"Salt-Free Water Softener Systems St George UT","exists":true},{"file":"card-dual-tank-water-softener-installation-st-george-ut.webp","alt":"Dual Tank Water Softener Installation St George UT","exists":false},{"file":"card-commercial-water-softener-installation-st-george-ut.webp","alt":"Commercial Water Softener Installation St George UT","exists":false},{"file":"card-water-softener-maintenance-st-george-ut.webp","alt":"Water Softener Maintenance St George UT","exists":false},{"file":"card-water-softener-repair-st-george-ut.webp","alt":"Water Softener Repair St George UT","exists":false},{"file":"card-water-conditioner-installation-st-george-ut.webp","alt":"Water Conditioner Installation St George UT","exists":false}]
 faq: [{"q":"What is the difference between a water softener and a water conditioner?","a":"A water softener removes calcium and magnesium by ion exchange, so the water is soft. A water conditioner changes how scale forms and leaves the minerals in the water."},{"q":"Do I need a softener if my St George water tests hard?","a":"If your water tests above 120 mg/L, scale builds in the plumbing and appliances, and a softener removes the cause. A free test shows your reading."},{"q":"How do I choose between salt-based and salt-free?","a":"Choose salt-based for the strongest result in very hard water. Choose salt-free if you want no salt or brine drain and accept a milder effect."},{"q":"What size softener does a St George home need?","a":"Size depends on household size, daily water use and hardness in grains per gallon. the City's softener-setting range is 13 to 24 gpg. St George Prime Water Softener UT provides water softener systems for homes and businesses across St George and Washington County."}]
 markerCount: 1
 ---
@@ -36,7 +36,10 @@ St George water is very hard, so scale builds in water heaters, pipes and fixtur
 <div class="svc-card">
 
 
-![Water Softener Installation St George UT](/placeholders/card.svg)
+
+![Water Softener Installation St George UT](../../assets/images/card-water-softener-installation-st-george-ut.webp)
+
+
 
 ### Water Softener Installation
 
@@ -47,7 +50,10 @@ Installation sizes and connects a softener to your main line with a bypass valve
 <div class="svc-card">
 
 
-![Water Softener Replacement St George UT](/placeholders/card.svg)
+
+![Water Softener Replacement St George UT](../../assets/images/card-water-softener-replacement-st-george-ut.webp)
+
+
 
 ### Water Softener Replacement
 
@@ -58,7 +64,10 @@ Replacement removes a failing unit and installs a correctly sized new one. It fi
 <div class="svc-card">
 
 
-![Salt-Free Water Softener Systems St George UT](/placeholders/card.svg)
+
+![Salt-Free Water Softener Systems St George UT](../../assets/images/card-salt-free-water-softener-systems-st-george-ut.webp)
+
+
 
 ### Salt-Free Water Softener Systems
 

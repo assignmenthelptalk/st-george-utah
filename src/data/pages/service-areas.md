@@ -10,8 +10,8 @@ crumb: "Water Softener Service Areas Near St George, UT"
 openingHtml: "Water softener service areas near St George, UT follow the water provider, because the City of St. George serves St George with Virgin River surface water from the Quail Creek plant blended with City groundwater, while nearby cities run their own systems. The City's water quality reports advise softener settings of 13 to 24 GPG. <a href=\"/\">St George Prime Water Softener</a> installs, repairs and replaces softeners in St George and Washington County. Request a free estimate and confirm your address."
 formHeading: ""
 formIntro: ""
-leadImage: null
-images: [{"file":"water-softener-service-areas-st-george-ut.webp","alt":"Water softener service areas St George UT residential street","exists":false}]
+leadImage: {"file":"water-softener-service-areas-st-george-ut.webp","alt":"Water softener service areas St George UT residential street"}
+images: [{"file":"water-softener-service-areas-st-george-ut.webp","alt":"Water softener service areas St George UT residential street","exists":true}]
 faq: [{"q":"Does water hardness differ between St George and nearby cities?","a":"It can. Hardness depends on the provider and the blend of sources, and the City of St. George advises softener settings of 13 to 24 GPG . A test at your tap gives the real figure."},{"q":"How do I find out who provides my water?","a":"Your water bill names the provider. St George addresses are served by the City of St. George, and nearby cities use their own utilities."},{"q":"Do you serve my neighborhood?","a":"Call or use the form with your address. St George Prime Water Softener UT provides water softener installation, replacement, repair and water testing for homes and businesses across St George and Washington County."}]
 markerCount: 5
 ---

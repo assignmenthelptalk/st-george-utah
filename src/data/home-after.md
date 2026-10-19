@@ -11,7 +11,10 @@ Water softener installation follows four steps from the first call to a tested r
 <div class="steps-photo">
 
 
-![Technician installing a water softener in a St George TX home](/placeholders/tall.svg)
+
+![Water softener installed with bypass valve and drain line in a St George TX home](../assets/images/water-softener-installation-steps-st-george-ut.webp)
+
+
 
 </div>
 
