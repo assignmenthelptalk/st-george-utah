@@ -11,7 +11,7 @@ openingHtml: "Water conditioner installation in St George, UT adds a system that
 formHeading: ""
 formIntro: ""
 leadImage: {"file":"water-conditioner-installation-st-george-ut.webp","alt":"Water conditioner installation St George UT conditioner on a water line"}
-images: [{"file":"water-conditioner-installation-st-george-ut.webp","alt":"Water conditioner installation St George UT conditioner on a water line","exists":true},{"file":"card-salt-free-water-conditioners-st-george-ut.webp","alt":"Salt-Free Water Conditioners St George UT","exists":false},{"file":"card-potassium-chloride-water-softener-systems-st-george-ut.webp","alt":"Potassium Chloride Water Softener Systems St George UT","exists":true},{"file":"card-hard-water-treatment-service-st-george-ut.webp","alt":"Hard Water Treatment Service St George UT","exists":true},{"file":"card-limescale-treatment-service-st-george-ut.webp","alt":"Limescale Treatment Service St George UT","exists":true},{"file":"card-scale-inhibitor-system-installation-st-george-ut.webp","alt":"Scale Inhibitor System Installation St George UT","exists":true}]
+images: [{"file":"water-conditioner-installation-st-george-ut.webp","alt":"Water conditioner installation St George UT conditioner on a water line","exists":true},{"file":"card-salt-free-water-conditioners-st-george-ut.webp","alt":"Salt-Free Water Conditioners St George UT","exists":true},{"file":"card-potassium-chloride-water-softener-systems-st-george-ut.webp","alt":"Potassium Chloride Water Softener Systems St George UT","exists":true},{"file":"card-hard-water-treatment-service-st-george-ut.webp","alt":"Hard Water Treatment Service St George UT","exists":true},{"file":"card-limescale-treatment-service-st-george-ut.webp","alt":"Limescale Treatment Service St George UT","exists":true},{"file":"card-scale-inhibitor-system-installation-st-george-ut.webp","alt":"Scale Inhibitor System Installation St George UT","exists":true}]
 faq: [{"q":"What is the difference between a water conditioner and a water softener?","a":"A softener removes calcium and magnesium. A conditioner leaves them in the water but changes how they form scale."},{"q":"Is a potassium chloride softener better than a salt softener?","a":"It softens the same way but adds potassium instead of sodium. It costs more to run, so it fits households avoiding sodium."},{"q":"Will a conditioner remove existing limescale?","a":"Not fully. Existing buildup needs a descaling service, and the conditioner slows new buildup."},{"q":"Do scale inhibitors work for a whole house?","a":"They protect pipes and heaters, but they do not make water feel soft. They suit equipment protection more than comfort."},{"q":"What does water conditioner installation cost in St George?","a":"The estimate is free and itemized. St George Prime Water Softener UT provides water conditioner installation for homes and businesses across St George and Washington County."}]
 markerCount: 1
 ---
@@ -25,7 +25,10 @@ Five options treat scale and [hard water](/water-softener-guides/hard-water-st-g
 <div class="svc-card">
 
 
-![Salt-Free Water Conditioners St George UT](/placeholders/card.svg)
+
+![Salt-Free Water Conditioners St George UT](../../assets/images/card-salt-free-water-conditioners-st-george-ut.webp)
+
+
 
 ### Salt-Free Water Conditioners
 

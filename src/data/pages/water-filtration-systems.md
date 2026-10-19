@@ -11,7 +11,7 @@ openingHtml: "Water filtration system installation in St George, UT adds filters
 formHeading: ""
 formIntro: ""
 leadImage: {"file":"water-filtration-systems-st-george-ut.webp","alt":"Water filtration systems St George UT whole-house filter on a main line"}
-images: [{"file":"water-filtration-systems-st-george-ut.webp","alt":"Water filtration systems St George UT whole-house filter on a main line","exists":true},{"file":"card-whole-house-water-filter-st-george-ut.webp","alt":"Whole House Water Filter St George UT","exists":true},{"file":"card-under-sink-water-filter-st-george-ut.webp","alt":"Under Sink Water Filter St George UT","exists":false},{"file":"card-sediment-filter-installation-st-george-ut.webp","alt":"Sediment Filter Installation St George UT","exists":false},{"file":"card-carbon-block-filter-st-george-ut.webp","alt":"Carbon Block Filter St George UT","exists":false},{"file":"card-shower-filter-installation-st-george-ut.webp","alt":"Shower Filter Installation St George UT","exists":false},{"file":"card-refrigerator-filter-replacement-st-george-ut.webp","alt":"Refrigerator Filter Replacement St George UT","exists":false}]
+images: [{"file":"water-filtration-systems-st-george-ut.webp","alt":"Water filtration systems St George UT whole-house filter on a main line","exists":true},{"file":"card-whole-house-water-filter-st-george-ut.webp","alt":"Whole House Water Filter St George UT","exists":true},{"file":"card-under-sink-water-filter-st-george-ut.webp","alt":"Under Sink Water Filter St George UT","exists":true},{"file":"card-sediment-filter-installation-st-george-ut.webp","alt":"Sediment Filter Installation St George UT","exists":true},{"file":"card-carbon-block-filter-st-george-ut.webp","alt":"Carbon Block Filter St George UT","exists":true},{"file":"card-shower-filter-installation-st-george-ut.webp","alt":"Shower Filter Installation St George UT","exists":true},{"file":"card-refrigerator-filter-replacement-st-george-ut.webp","alt":"Refrigerator Filter Replacement St George UT","exists":true}]
 faq: [{"q":"Do I need a filter if I have a water softener?","a":"Often yes. A softener removes hardness, and a filter removes sediment, chlorine taste and odor. They solve different problems."},{"q":"How often do I replace filter cartridges?","a":"It depends on the filter and your water use. The technician sets a schedule at installation, following the maker's rating."},{"q":"What does a whole-house filter remove?","a":"It removes particles and reduces chlorine taste and odor. For specific contaminants, a certified filter chosen from your test is needed."},{"q":"What does filtration cost in St George?","a":"The estimate is free and itemized. St George Prime Water Softener UT provides water filtration system installation for homes and businesses across St George and Washington County."}]
 markerCount: 1
 ---
@@ -39,7 +39,10 @@ A whole-house filter treats water where it enters the home, so every tap, shower
 <div class="svc-card">
 
 
-![Under Sink Water Filter St George UT](/placeholders/card.svg)
+
+![Under Sink Water Filter St George UT](../../assets/images/card-under-sink-water-filter-st-george-ut.webp)
+
+
 
 ### Under Sink Water Filter
 
@@ -50,7 +53,10 @@ An under-sink filter sits in the cabinet and filters the water at one faucet, ty
 <div class="svc-card">
 
 
-![Sediment Filter Installation St George UT](/placeholders/card.svg)
+
+![Sediment Filter Installation St George UT](../../assets/images/card-sediment-filter-installation-st-george-ut.webp)
+
+
 
 ### Sediment Filter Installation
 
@@ -61,7 +67,10 @@ A sediment filter traps sand, rust and silt before they reach fixtures and softe
 <div class="svc-card">
 
 
-![Carbon Block Filter St George UT](/placeholders/card.svg)
+
+![Carbon Block Filter St George UT](../../assets/images/card-carbon-block-filter-st-george-ut.webp)
+
+
 
 ### Carbon Block Filter
 
@@ -72,7 +81,10 @@ A carbon block filter uses dense carbon to reduce chlorine, taste, odor and some
 <div class="svc-card">
 
 
-![Shower Filter Installation St George UT](/placeholders/card.svg)
+
+![Shower Filter Installation St George UT](../../assets/images/card-shower-filter-installation-st-george-ut.webp)
+
+
 
 ### Shower Filter Installation
 
@@ -83,7 +95,10 @@ A shower filter screws onto the shower arm and reduces chlorine at the point of 
 <div class="svc-card">
 
 
-![Refrigerator Filter Replacement St George UT](/placeholders/card.svg)
+
+![Refrigerator Filter Replacement St George UT](../../assets/images/card-refrigerator-filter-replacement-st-george-ut.webp)
+
+
 
 ### Refrigerator Filter Replacement
 
