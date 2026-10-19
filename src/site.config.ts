@@ -223,6 +223,8 @@ export interface SiteConfig {
   /** Google Business Profile URL — blank until claimed; used as the
    * footer link and the LocalBusiness schema's sameAs URL. */
   googleBusinessUrl: string;
+  /** Google Search Console verification token (the content value of the google-site-verification meta tag); blank to omit. */
+  googleSiteVerification?: string;
   /** Fully-qualified site URL derived from `domain`, e.g. "https://example.com" */
   siteUrl: string;
 
@@ -268,7 +270,7 @@ export interface SiteConfig {
 
 // Declared separately so siteUrl below can derive from it without
 // duplicating the literal.
-const domain = "watersoftenerstgeorgeutah.com";
+const domain = "www.watersoftenerstgeorgeutah.com";
 
 export const siteConfig: SiteConfig = {
   // Identity
@@ -306,6 +308,7 @@ export const siteConfig: SiteConfig = {
   businessEmail: "BUSINESS_EMAIL",
   address: "",
   googleBusinessUrl: "",
+  googleSiteVerification: "5ZinwdRLaU8H9vtc_Gz6GxI8lAF_uyVmYlwUuQ2kL0E",
   siteUrl: `https://${domain}`,
 
   // About page facts — edit directly, no CMS

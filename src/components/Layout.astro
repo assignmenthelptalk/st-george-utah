@@ -99,6 +99,7 @@ const footerNavLinks = [
       twitter={{ card: "summary_large_image" }}
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    {site.googleSiteVerification && <meta name="google-site-verification" content={site.googleSiteVerification} />}
   </head>
   <body>
     <!-- Utility bar — thin strip above the main nav, phone-call-first -->
