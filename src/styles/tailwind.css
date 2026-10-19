@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary:       #0F6E78;
-  --color-primary-light: #E1F5EE;
-  --color-accent:        #E65100;
+  --color-primary:       #17496B;
+  --color-primary-light: #E6EFF5;
+  --color-accent:        #C2562B;
   --font-heading:        'DM Serif Display', Georgia, serif;
   --font-body:           'Inter', system-ui, sans-serif;
   --radius-brand:        8px;

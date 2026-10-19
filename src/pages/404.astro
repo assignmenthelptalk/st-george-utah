@@ -1,0 +1,19 @@
+---
+import Layout from "../components/Layout.astro";
+import { site } from "../lib/site";
+---
+
+<Layout title="Page Not Found" fullTitle={`Page Not Found | ${site.businessName}`} description="This page could not be found." noindex>
+  <section class="section not-found">
+    <div class="container">
+      <h1>Page Not Found</h1>
+      <p>We could not find that page. Return to the homepage to find water softener services in {site.city}, {site.stateAbbr}.</p>
+      <a class="btn btn-primary" href="/">Back to Homepage</a>
+    </div>
+  </section>
+
+  <style>
+    .not-found { text-align: center; padding-block: clamp(80px, 14vw, 160px); }
+    .not-found p { max-width: 48ch; margin: 0 auto 24px; color: var(--color-text-muted); }
+  </style>
+</Layout>

@@ -1,0 +1,46 @@
+---
+/**
+ * PageSchema: page-level JSON-LD that sits beside the site-wide business schema (LocalSchema, in Layout)
+ * and the BreadcrumbList (Breadcrumbs component).
+ *
+ *   service  -> a schema.org Service for the page's primary service (service, core-service and location pages)
+ *   faq      -> a FAQPage built from the page's own FAQ section (the importer extracts it into frontmatter)
+ *
+ * Both are optional. Answers are plain text with no markers or HTML.
+ */
+import { site } from "../lib/site";
+
+interface Props {
+  service?: { name: string; area?: string };
+  faq?: Array<{ q: string; a: string }>;
+}
+const { service, faq = [] } = Astro.props;
+const url = new URL(Astro.url.pathname, site.siteUrl).toString();
+
+const serviceSchema = service
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: service.name,
+      serviceType: service.name,
+      url,
+      provider: { "@type": "HomeAndConstructionBusiness", name: site.businessName, url: site.siteUrl },
+      areaServed: { "@type": "City", name: service.area || site.city },
+    }
+  : null;
+
+const faqSchema = faq.length
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faq.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    }
+  : null;
+---
+
+{serviceSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />}
+{faqSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}

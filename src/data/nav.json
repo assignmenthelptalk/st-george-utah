@@ -1,0 +1,101 @@
+{
+  "menuLabels": [
+    "Services",
+    "Other Services"
+  ],
+  "hubs": [
+    {
+      "href": "/water-softener-systems/",
+      "label": "Water Softener Systems"
+    },
+    {
+      "href": "/water-treatment-and-testing/",
+      "label": "Water Treatment Services"
+    }
+  ],
+  "services": [
+    {
+      "href": "/water-softener-installation/",
+      "label": "Water Softener Installation",
+      "parent": "/water-softener-systems/"
+    },
+    {
+      "href": "/water-softener-replacement/",
+      "label": "Water Softener Replacement",
+      "parent": "/water-softener-systems/"
+    },
+    {
+      "href": "/salt-free-water-softener-systems/",
+      "label": "Salt-Free Water Softener Systems",
+      "parent": "/water-softener-systems/"
+    },
+    {
+      "href": "/dual-tank-water-softener/",
+      "label": "Dual Tank Water Softener Installation",
+      "parent": "/water-softener-systems/"
+    },
+    {
+      "href": "/commercial-water-softener/",
+      "label": "Commercial Water Softener Installation",
+      "parent": "/water-softener-systems/"
+    },
+    {
+      "href": "/water-softener-maintenance/",
+      "label": "Water Softener Maintenance",
+      "parent": "/water-softener-systems/"
+    },
+    {
+      "href": "/water-softener-repair/",
+      "label": "Water Softener Repair",
+      "parent": "/water-softener-systems/"
+    },
+    {
+      "href": "/water-conditioner-installation/",
+      "label": "Water Conditioner Installation",
+      "parent": "/water-softener-systems/"
+    },
+    {
+      "href": "/water-filtration-systems/",
+      "label": "Water Filtration System Installation",
+      "parent": "/water-treatment-and-testing/"
+    },
+    {
+      "href": "/well-water-softener-st-george-ut/",
+      "label": "Well Water Softener and Treatment",
+      "parent": "/water-treatment-and-testing/"
+    },
+    {
+      "href": "/water-contaminant-removal-st-george-ut/",
+      "label": "Water Contaminant Removal",
+      "parent": "/water-treatment-and-testing/"
+    },
+    {
+      "href": "/reverse-osmosis-installation/",
+      "label": "Reverse Osmosis System Installation",
+      "parent": "/water-treatment-and-testing/"
+    },
+    {
+      "href": "/uv-water-purification/",
+      "label": "UV Water Purification System Installation",
+      "parent": "/water-treatment-and-testing/"
+    },
+    {
+      "href": "/drinking-water-systems/",
+      "label": "Drinking Water System Installation",
+      "parent": "/water-treatment-and-testing/"
+    },
+    {
+      "href": "/water-quality-testing/",
+      "label": "Water Quality Testing",
+      "parent": "/water-treatment-and-testing/"
+    }
+  ],
+  "guideHub": {
+    "href": "/water-softener-guides/",
+    "label": "Water Softener Guides for St George Homeowners"
+  },
+  "geoHub": {
+    "href": "/service-areas/",
+    "label": "Water Softener Service Areas Near St George, UT"
+  }
+}

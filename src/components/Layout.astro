@@ -1,6 +1,9 @@
 ---
 import { SEO } from "astro-seo";
+import { Image } from "astro:assets";
+import LocalSchema from "./LocalSchema.astro";
 import { site } from "../lib/site";
+import navData from "../data/nav.json";
 import "../styles/global.css";
 import "../styles/tailwind.css";
 
@@ -16,53 +19,44 @@ interface Props {
 
 const { title, fullTitle, description = site.metaDescription, noindex = false } = Astro.props;
 
+// Optional image logo: drop src/assets/logo.png (or .webp/.jpg) into the project and the header
+// shows it; without one the built-in text-and-drop mark is used exactly as before.
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>("../assets/logo.{png,webp,jpg}", { eager: true });
+const logoImage = Object.values(logoFiles)[0]?.default;
+// Optional footer logo for the dark footer: drop src/assets/logo-reversed.png (white lettering) into the project.
+const footerLogoFiles = import.meta.glob<{ default: ImageMetadata }>("../assets/logo-reversed.{png,webp,jpg}", { eager: true });
+const footerLogo = Object.values(footerLogoFiles)[0]?.default;
+// tel: links keep digits and "+" only, so formatted numbers like "(806) 555-0100" still dial.
+const telDigits = site.phoneNumber ? site.phoneNumber.replace(/[^\d+]/g, "") : "";
+
 const canonical = new URL(Astro.url.pathname, site.siteUrl).toString();
 
-const servicesDropdown = [
-  { href: "/water-quality/", label: "Water Quality" },
-  { href: "/hard-water/", label: "Hard Water" },
-  { href: "/installation/", label: "Installation" },
-  { href: "/repair/", label: "Repair" },
-  { href: "/resin-bed-replacement/", label: "Resin Bed Replacement" },
-  { href: "/comparison/", label: "Comparison" },
-  { href: "/neighbourhood/", label: "Neighbourhoods" },
-];
-
-const productsDropdown = [
-  { href: "/products/", label: "Water Softener" },
-  { href: "/whole-home-filtration/", label: "Whole House Filtration" },
-  { href: "/reverse-osmosis/", label: "Reverse Osmosis" },
-];
-
-// Locations dropdown — every city site has site.neighbourhoods, so this
-// works out of the box for any clone. Requires each neighbourhood section
-// on neighbourhood.astro to carry a matching id (see that file).
-const locationsDropdown = site.neighbourhoods.map((hood) => ({
-  href: `/neighbourhood/#${hood.toLowerCase().replace(/\s+/g, "-")}`,
-  label: hood,
-}));
-
-const verifiedServiceAreas = site.serviceAreas.filter((a) => a.qdp.verified && a.qdp.verdict === "PASS");
-
-// Footer keeps a flat single row of every real page, including verified
-// service-area pages by name — not a column layout, just more items in
-// the same list.
-const footerNavLinks = [
+// Navigation is generated from the topical map by `npm run import-content` (src/data/nav.json).
+// A starter nav.json with empty menus ships with the boilerplate so a fresh clone builds.
+interface NavLink { href: string; label: string; parent?: string }
+interface NavData { hubs: NavLink[]; services: NavLink[]; guideHub: NavLink | null; geoHub: NavLink | null; menuLabels?: string[] }
+const nav = navData as NavData;
+const navGroups = nav.hubs.map((hub) => ({ hub, items: nav.services.filter((service) => service.parent === hub.href) }));
+const navLabels: string[] = nav.menuLabels ?? [];
+// Footer: only the menu's own top-level links, with the menu's labels (like the header), so the footer adds no
+// extra outgoing links. The guides hub is reached from the "Other Services" dropdown.
+const footerLinks: NavLink[] = [
   { href: "/", label: "Home" },
-  { href: "/water-quality/", label: "Water Quality" },
-  { href: "/hard-water/", label: "Hard Water" },
-  { href: "/installation/", label: "Installation" },
-  { href: "/repair/", label: "Repair" },
-  { href: "/comparison/", label: "Compare" },
-  { href: "/products/", label: "Products" },
-  { href: "/whole-home-filtration/", label: "Whole Home Filtration" },
-  { href: "/reverse-osmosis/", label: "Reverse Osmosis" },
-  { href: "/faq/", label: "FAQ" },
-  { href: "/neighbourhood/", label: "Locations" },
+  ...nav.hubs.map((hub, i) => ({ href: hub.href, label: navLabels[i] ?? hub.label })),
+  ...(nav.geoHub ? [{ href: nav.geoHub.href, label: "Service Areas" }] : []),
   { href: "/about/", label: "About" },
-  ...verifiedServiceAreas.map((area) => ({ href: `/${area.slug}/`, label: area.city })),
   { href: "/contact/", label: "Contact" },
 ];
+const hasEmail = site.businessEmail && site.businessEmail !== "BUSINESS_EMAIL";
+// Footer social icons: a network with a URL becomes a link; a blank one shows as an inert icon (no outgoing link).
+const SOCIALS = [
+  { key: "facebook", label: "Facebook", svg: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#1877F2"/><path d="M14 8h2V5h-2.5C11.3 5 10 6.4 10 8.5V11H8v3h2v6h3v-6h2.2l.5-3H13V8.8c0-.5.3-.8 1-.8z" fill="#fff"/></svg>' },
+  { key: "instagram", label: "Instagram", svg: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="#E1306C" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="#E1306C" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.2" fill="#E1306C"/></svg>' },
+  { key: "pinterest", label: "Pinterest", svg: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#E60023"/><path d="M10.2 18.5V6.5h3a3.2 3.2 0 010 6.4h-3" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+  { key: "x", label: "X (Twitter)", svg: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round"/></svg>' },
+  { key: "youtube", label: "YouTube", svg: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="#FF0000"/><path d="M10 9l5 3-5 3z" fill="#fff"/></svg>' },
+];
+const socialUrl = (key: string): string => ((site.socialLinks as Record<string, string> | undefined)?.[key] ?? "").trim();
 ---
 
 <!doctype html>
@@ -71,9 +65,6 @@ const footerNavLinks = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <!-- Loaded as a <link>, not @import, so it fetches in parallel with the
          rest of head instead of blocking on global.css first. 700 added
          alongside the requested 400/500/600 because several UI elements
@@ -84,7 +75,7 @@ const footerNavLinks = [
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <SEO
-      title={fullTitle || `${title} | ${site.businessName}`}
+      title={fullTitle || `${title} | ${site.businessName}: Water Softener Installation and Repair`}
       description={description}
       canonical={canonical}
       noindex={noindex}
@@ -102,12 +93,13 @@ const footerNavLinks = [
     {site.googleSiteVerification && <meta name="google-site-verification" content={site.googleSiteVerification} />}
   </head>
   <body>
+    <LocalSchema />
     <!-- Utility bar — thin strip above the main nav, phone-call-first -->
     <div class="utility-bar">
       <div class="container utility-bar-inner">
-        <span class="utility-bar-left">Serving {site.city}, {site.stateAbbr} &middot; Licensed and Insured</span>
+        <span class="utility-bar-left">Serving {site.city}, {site.stateAbbr} and {site.region}</span>
         {site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER" && (
-          <a href={`tel:${site.phoneNumber}`} class="utility-phone">
+          <a href={`tel:${telDigits}`} class="utility-phone">
             {site.phoneNumber}
           </a>
         )}
@@ -117,9 +109,34 @@ const footerNavLinks = [
     <header class="site-header">
       <div class="container site-header-inner">
         <a class="logo" href="/" aria-label={`${site.businessName} home`}>
-          <img src="/logo-mark.svg" alt="" width="36" height="36" class="logo-mark" />
-          <span>{site.businessName}</span>
+          {logoImage ? (
+            <Image src={logoImage} alt={site.businessName} height={108} format="webp" quality="high" loading="eager" class="logo-img" />
+          ) : (
+            <>
+            <svg class="logo-mark" width="48" height="48" viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="32" r="28" fill="#FFFFFF" stroke="var(--color-primary)" stroke-width="5" />
+              <path d="M32 11C32 11 21.5 24.5 21.5 33C21.5 38.8 26.2 43.5 32 43.5C37.8 43.5 42.5 38.8 42.5 33C42.5 24.5 32 11 32 11Z" fill="var(--color-primary)" />
+              <path d="M27 33.5C27 36.4 28.8 38.6 31.2 39.2" fill="none" stroke="var(--color-primary-light)" stroke-width="2.4" stroke-linecap="round" />
+              <path d="M2 43C13 34.5 24 36 33 41.5C42 47 53 46 62 37C60.5 45 52 54 41 53C33 52.5 28 47.5 21 47.5C14 47.5 8 49.5 2 43Z" fill="var(--color-accent)" />
+              <path d="M5 49C14 44 22 45.5 30 50C38 54.5 50 55 59 47" fill="none" stroke="var(--color-primary)" stroke-width="3" stroke-linecap="round" />
+            </svg>
+            <span class="logo-text" aria-hidden="true">
+              {site.businessName.split(" ").map((word) => (
+                <span class="logo-line">{word}</span>
+              ))}
+            </span>
+            </>
+          )}
         </a>
+
+        {site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER" && (
+          <a class="header-phone" href={`tel:${telDigits}`} aria-label={`Call ${site.phoneNumber}`}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" fill="currentColor" />
+            </svg>
+            <span>{site.phoneNumber}</span>
+          </a>
+        )}
 
         <button
           type="button"
@@ -140,39 +157,23 @@ const footerNavLinks = [
           <ul>
             <li><a href="/">Home</a></li>
 
-            <li class="nav-has-dropdown">
-              <button type="button" class="nav-has-dropdown-btn" aria-haspopup="true">
-                Services
-              </button>
-              <div class="nav-dropdown">
-                {servicesDropdown.map((item) => (
-                  <a href={item.href}>{item.label}</a>
-                ))}
-              </div>
-            </li>
+            {navGroups.map((group, index) => (
+              <li class="nav-has-dropdown">
+                <button type="button" class="nav-has-dropdown-btn" aria-haspopup="true">
+                  {navLabels[index] ?? group.hub.label}
+                </button>
+                <div class={index === navGroups.length - 1 ? "nav-dropdown nav-dropdown-right" : "nav-dropdown"}>
+                  <a class="nav-group-title" href={group.hub.href}>{group.hub.label}</a>
+                  {group.items.map((item) => (
+                    <a href={item.href}>{item.label}</a>
+                  ))}
+                  {index === navGroups.length - 1 && nav.guideHub && <a href={nav.guideHub.href}>Guides</a>}
+                </div>
+              </li>
+            ))
+          }
 
-            <li class="nav-has-dropdown">
-              <button type="button" class="nav-has-dropdown-btn" aria-haspopup="true">
-                Products
-              </button>
-              <div class="nav-dropdown">
-                {productsDropdown.map((item) => (
-                  <a href={item.href}>{item.label}</a>
-                ))}
-              </div>
-            </li>
-
-            <li class="nav-has-dropdown">
-              <button type="button" class="nav-has-dropdown-btn" aria-haspopup="true">
-                Locations
-              </button>
-              <div class="nav-dropdown">
-                {locationsDropdown.map((item) => (
-                  <a href={item.href}>{item.label}</a>
-                ))}
-              </div>
-            </li>
-
+            {nav.geoHub && <li><a href={nav.geoHub.href}>Service Areas</a></li>}
             <li><a href="/about/">About</a></li>
             <li><a class="nav-contact-btn" href="/contact/">Contact</a></li>
           </ul>
@@ -186,22 +187,41 @@ const footerNavLinks = [
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <span class="footer-brand">{site.businessName}</span>
-        {site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER" && (
-          <a class="footer-phone" href={`tel:${site.phoneNumber}`}>{site.phoneNumber}</a>
+        {footerLogo ? (
+          <Image src={footerLogo} alt={site.businessName} height={72} format="webp" quality="high" loading="lazy" class="footer-logo" />
+        ) : (
+          <span class="footer-brand">{site.businessName}</span>
         )}
+        <div class="footer-contact">
+          {site.phoneNumber && site.phoneNumber !== "PHONE_NUMBER" && (
+            <a class="footer-phone" href={`tel:${telDigits}`}>{site.phoneNumber}</a>
+          )}
+          {hasEmail && <a class="footer-email" href={`mailto:${site.businessEmail}`}>{site.businessEmail}</a>}
+        </div>
 
         <nav class="footer-nav" aria-label="Footer">
-          {footerNavLinks.map((link) => (
+          {footerLinks.map((link) => (
             <a href={link.href}>{link.label}</a>
           ))}
         </nav>
 
         <div class="footer-bottom">
-          <div>
-            <p class="footer-copyright">&copy; {new Date().getFullYear()} {site.businessName}. All rights reserved.</p>
-          </div>
-          <p class="footer-copyright">{site.city}, {site.stateAbbr}</p>
+          <p class="footer-legal">
+            <span>&copy; {new Date().getFullYear()} {site.businessName}. All Rights Reserved.</span>
+            <a class="footer-legal-item" href="/privacy-policy/">Privacy Policy</a>
+            <a class="footer-legal-item" href="/terms-of-service/">Terms of Service</a>
+          </p>
+          <ul class="footer-social" aria-label="Social media">
+            {SOCIALS.map((n) => (
+              <li>
+                {socialUrl(n.key) ? (
+                  <a href={socialUrl(n.key)} target="_blank" rel="noopener noreferrer" aria-label={n.label}><Fragment set:html={n.svg} /></a>
+                ) : (
+                  <span class="social-off" title={`${n.label}: add the URL in site.config.ts`}><Fragment set:html={n.svg} /></span>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>
@@ -290,8 +310,40 @@ const footerNavLinks = [
         color: var(--color-primary);
         text-decoration: none;
       }
-      .logo { display: inline-flex; align-items: center; gap: 0.6rem; }
-      .logo-mark { flex: none; border-radius: 8px; }
+      .logo { display: inline-flex; align-items: center; gap: 10px; }
+      .logo-mark { flex-shrink: 0; }
+      .logo-text { display: flex; flex-direction: column; line-height: 1; }
+      .logo-line { font-family: var(--font-body); font-weight: 800; font-size: 0.95rem; line-height: 1.12; letter-spacing: 0.04em; text-transform: uppercase; }
+      .logo :global(.logo-img) { display: block; height: 60px; width: auto; }
+      .site-header-inner:has(.logo-img) { padding-block: 10px; }
+      @media (max-width: 860px) { .logo :global(.logo-img) { height: 46px; } }
+
+      /* Phone button inside the sticky header: mobile only, always visible */
+      .header-phone { display: none; }
+      @media (max-width: 860px) {
+        .header-phone {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          order: 2;
+          margin-left: auto;
+          padding: 9px 14px;
+          background: var(--color-accent);
+          color: #ffffff;
+          border-radius: 6px;
+          font-family: var(--font-body);
+          font-size: 14px;
+          font-weight: 700;
+          text-decoration: none;
+          white-space: nowrap;
+        }
+        .header-phone:hover { color: #ffffff; background: var(--color-accent-dark); }
+        .header-phone:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+      }
+      @media (max-width: 400px) {
+        .header-phone span { display: none; }
+        .header-phone { padding: 10px 12px; }
+      }
       .logo:hover { color: var(--color-accent); }
       .logo:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; border-radius: 2px; }
 
@@ -382,6 +434,16 @@ const footerNavLinks = [
         outline-offset: -3px;
       }
 
+      /* Content-driven menus: hub link as a heading, last menu opens leftward so it
+         never runs off the right edge. Unused on sites without src/data/nav.json. */
+      .nav-dropdown a.nav-group-title {
+        font-weight: 700;
+        color: var(--color-primary);
+        border-bottom: 1px solid var(--color-border);
+        margin-bottom: 4px;
+      }
+      .nav-has-dropdown .nav-dropdown.nav-dropdown-right { left: auto; right: 0; }
+
       /* Contact — orange pill button, last nav item. Uses the "a.nav-contact-btn"
          type+class selector form so it out-specificities the generic
          ".site-nav a" rules above — a bare class selector would lose to
@@ -468,6 +530,7 @@ const footerNavLinks = [
           min-width: 0;
         }
         .nav-dropdown a { color: var(--color-text-muted); padding: 8px 4px; }
+        .nav-has-dropdown .nav-dropdown.nav-dropdown-right { right: auto; }
 
         /* Contact — full-width button at the bottom of the mobile list */
         a.nav-contact-btn { display: block; width: 100%; text-align: center; margin-top: 8px; }
@@ -481,6 +544,7 @@ const footerNavLinks = [
         margin-top: 64px;
       }
       .footer-inner { max-width: 1000px; margin: 0 auto; padding: 0; }
+      .footer-logo { display: block; height: 72px; width: auto; margin-bottom: 14px; }
       .footer-brand {
         font-family: var(--font-heading);
         font-size: 20px;
@@ -488,17 +552,21 @@ const footerNavLinks = [
         margin-bottom: 8px;
         display: block;
       }
-      .footer-phone {
+      .footer-contact { margin-bottom: 24px; }
+      .footer-phone,
+      .footer-email {
         font-family: var(--font-body);
         font-size: 14px;
         color: rgba(255, 255, 255, 0.70);
         text-decoration: none;
         display: block;
-        margin-bottom: 24px;
+        margin-bottom: 4px;
         transition: color 150ms ease;
       }
-      .footer-phone:hover { color: #ffffff; }
-      .footer-phone:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.50); outline-offset: 2px; }
+      .footer-phone:hover,
+      .footer-email:hover { color: #ffffff; }
+      .footer-phone:focus-visible,
+      .footer-email:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.50); outline-offset: 2px; }
       .footer-nav {
         display: flex;
         flex-wrap: wrap;
@@ -519,10 +587,29 @@ const footerNavLinks = [
       .footer-bottom {
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
         flex-wrap: wrap;
-        gap: 8px;
+        gap: 14px 24px;
       }
+      .footer-legal {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px 0;
+        margin: 0;
+        font-family: var(--font-body);
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.5;
+      }
+      .footer-legal-item { border-left: 2px solid var(--color-accent); padding-left: 12px; margin-left: 12px; }
+      .footer-social { display: flex; align-items: center; gap: 16px; list-style: none; margin: 0; padding: 0; }
+      .footer-social a,
+      .social-off { display: block; line-height: 0; }
+      .footer-social a { transition: transform 150ms ease, opacity 150ms ease; }
+      .footer-social a:hover { transform: translateY(-2px); }
+      .footer-social a:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.60); outline-offset: 3px; border-radius: 4px; }
+      .social-off { opacity: 0.6; cursor: default; }
       .footer-copyright {
         font-family: var(--font-body);
         font-size: 12px;

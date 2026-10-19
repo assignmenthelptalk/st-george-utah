@@ -1,0 +1,84 @@
+---
+import LegalPage from "../components/LegalPage.astro";
+import { site } from "../lib/site";
+---
+
+<LegalPage
+  title="Terms of Service"
+  description={`The terms for using the ${site.businessName} website and requesting water softener estimates and services in ${site.city}, ${site.stateAbbr}.`}
+  updated="October 12, 2026"
+>
+  <p>
+    These Terms of Service govern your use of {site.domain}, operated by {site.businessName} ("we", "us").
+    By using the website you agree to them. If you do not agree, please do not use the website.
+  </p>
+
+  <h2>What this website does</h2>
+  <p>
+    This website gives general information about water softeners, filtration and water testing in
+    {site.city}, {site.stateAbbr} and nearby areas, and lets you request a free estimate. Information on the
+    website is for general guidance only and is not engineering, plumbing, legal or health advice.
+  </p>
+
+  <h2>Estimates and services</h2>
+  <ul>
+    <li>A free estimate is not a contract. A price is confirmed only in a written quote you accept.</li>
+    <li>Work may be carried out by independent licensed professionals who serve your area. The terms, warranty and price for any work are set out in the written quote or invoice from the provider who performs it.</li>
+    <li>Water test results show conditions at the time and place of the test and can change over time.</li>
+  </ul>
+
+  <h2>Accuracy of information</h2>
+  <p>
+    We work to keep the information on this website accurate, including local water data. Public water quality
+    figures change; check your water utility's latest Consumer Confidence Report for current numbers.
+    We do not guarantee that the website is complete, current or error free.
+  </p>
+
+  <h2>Acceptable use</h2>
+  <p>You agree not to misuse the website, including by:</p>
+  <ul>
+    <li>submitting false, misleading or another person's information;</li>
+    <li>trying to disrupt, probe or gain unauthorised access to the website or its systems;</li>
+    <li>copying or scraping the website content at scale without our written permission.</li>
+  </ul>
+
+  <h2>Intellectual property</h2>
+  <p>
+    The text, images, logo and design on this website belong to us or our licensors. You may view and print pages
+    for your own personal use. Any other use needs our written permission.
+  </p>
+
+  <h2>Disclaimer of warranties</h2>
+  <p>
+    The website is provided "as is" and "as available", without warranties of any kind, express or implied, to
+    the fullest extent the law allows.
+  </p>
+
+  <h2>Limitation of liability</h2>
+  <p>
+    To the fullest extent the law allows, we are not liable for any indirect, incidental or consequential
+    damages arising from your use of the website or reliance on its content. Nothing in these terms limits
+    liability that cannot be limited by law.
+  </p>
+
+  <h2>Links to other websites</h2>
+  <p>We are not responsible for the content or practices of any third-party websites we link to.</p>
+
+  <h2>Governing law</h2>
+  <p>
+    These terms are governed by the laws of the State of {site.state}, without regard to conflict-of-law rules.
+    Any dispute will be brought in the state or federal courts located in {site.state}.
+  </p>
+
+  <h2>Changes to these terms</h2>
+  <p>
+    We may update these terms from time to time. The date at the top shows when they last changed. Continued use of
+    the website means you accept the updated terms.
+  </p>
+
+  <h2>Contact us</h2>
+  <p>
+    {site.businessName}, {site.city}, {site.stateAbbr}.
+    Email <a href={`mailto:${site.businessEmail}`}>{site.businessEmail}</a>.
+  </p>
+</LegalPage>

@@ -1,17 +1,14 @@
 ---
 /**
- * PageHero — split inner-page hero: content left, real photo (or a GPG
- * stat card fallback when no photo is available) right. Replaces the
- * old single-column `.page-header` + separate `.page-header-image-section`
- * pattern that every inner page used before this component existed.
- *
- * Colors/fonts are adapted to this project's actual design tokens
- * (--color-primary/--color-accent, blue) rather than the green/navy
- * values from the original spec, which don't exist anywhere in this
- * codebase's theme.
+ * PageHero — inner-page hero matching the home page: full-bleed background
+ * photo with a dark overlay, content on the left and a compact lead-capture
+ * form card on the right. On mobile the form stacks ABOVE the content.
+ * Without a photo it falls back to the brand gradient. Pages that already
+ * embed their own quote form (quote, contact) pass showForm={false}.
  */
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
+import QuoteForm from "./QuoteForm.astro";
 import Breadcrumbs from "./Breadcrumbs.astro";
 import { site } from "../lib/site";
 
@@ -21,31 +18,53 @@ interface CtaLink {
 }
 
 interface Props {
-  breadcrumbs: Array<{ label: string; href?: string }>;
+  /** Omit (or pass []) for a page with no breadcrumb trail. */
+  breadcrumbs?: Array<{ label: string; href?: string }>;
   heading: string;
   primaryCta: CtaLink;
-  secondaryCta: CtaLink;
-  /** Real photo for the right column. Omit to render the GPG stat card
-   * fallback instead — this is the only fallback path, so it must never
-   * reference a specific city/GPG value directly; it reads site.* live. */
+  /** Omit to show a single call-to-action button. */
+  secondaryCta?: CtaLink;
+  /** Trust chips under the breadcrumbs. Defaults to claims every site can back (free estimate, no
+   * obligation, service area). Add licence or same-day chips only once the business confirms them. */
+  badges?: string[];
+  /** Real photo used as the full-bleed hero background. Omit for the
+   * brand-gradient fallback. */
   image?: ImageMetadata;
+  /** Render the compact quote form in the right column (default true). */
+  showForm?: boolean;
 }
 
-const { breadcrumbs, heading, primaryCta, secondaryCta, image } = Astro.props;
+const {
+  breadcrumbs = [],
+  heading,
+  primaryCta,
+  secondaryCta,
+  image,
+  showForm = true,
+  badges = ["✓ Free Estimate", "✓ No Obligation", `✓ Serving ${site.city}, ${site.stateAbbr}`],
+} = Astro.props;
 ---
 
 <section class="page-hero">
+  {image && (
+    <Image
+      src={image}
+      alt=""
+      class="page-hero-bg-img"
+      loading="eager"
+      decoding="async"
+      width={1600}
+      height={700}
+    />
+  )}
   <div class="page-hero-bg" aria-hidden="true"></div>
 
-  <div class="page-hero-inner">
+  <div class={showForm ? "page-hero-inner" : "page-hero-inner page-hero-inner-single"}>
     <div class="page-hero-content">
-      <Breadcrumbs items={breadcrumbs} />
+      {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
 
       <div class="page-hero-badges">
-        <span class="page-hero-badge">✓ Licensed and Insured</span>
-        <span class="page-hero-badge">✓ Free Water Test</span>
-        <span class="page-hero-badge">✓ Same Day Service</span>
-        <span class="page-hero-badge">✓ No Obligation</span>
+        {badges.map((badge) => <span class="page-hero-badge">{badge}</span>)}
       </div>
 
       <h1 class="page-hero-h1">{heading}</h1>
@@ -56,31 +75,15 @@ const { breadcrumbs, heading, primaryCta, secondaryCta, image } = Astro.props;
 
       <div class="page-hero-ctas">
         <a href={primaryCta.href} class="page-hero-btn-primary">{primaryCta.text}</a>
-        <a href={secondaryCta.href} class="page-hero-btn-secondary">{secondaryCta.text}</a>
+        {secondaryCta && <a href={secondaryCta.href} class="page-hero-btn-secondary">{secondaryCta.text}</a>}
       </div>
     </div>
 
-    <div class="page-hero-visual">
-      {image ? (
-        <Image
-          src={image}
-          alt={`${heading.replace(" | Trusted Local Specialists", "")} — water softener service`}
-          class="page-hero-img"
-          loading="eager"
-          decoding="async"
-          width={600}
-          height={480}
-        />
-      ) : (
-        <div class="page-hero-stat-card">
-          <div class="page-hero-stat-gpg">{site.gpgLow}–{site.gpgHigh}</div>
-          <div class="page-hero-stat-unit">GPG</div>
-          <div class="page-hero-stat-label">{site.gpgLabel}</div>
-          <div class="page-hero-stat-source">Source: {site.waterAuthority}</div>
-          <div class="page-hero-stat-badge">Water Quality Association</div>
-        </div>
-      )}
-    </div>
+    {showForm && (
+      <div class="page-hero-form" id="estimate">
+        <QuoteForm heading="Get a FREE Quote" compact />
+      </div>
+    )}
   </div>
 </section>
 
@@ -88,25 +91,33 @@ const { breadcrumbs, heading, primaryCta, secondaryCta, image } = Astro.props;
   /* ── PAGE HERO — SPLIT LAYOUT ── */
   .page-hero {
     position: relative;
-    background: var(--surface-footer);
+    background: linear-gradient(135deg, var(--surface-footer) 0%, var(--color-primary-dark) 60%, var(--color-primary) 100%);
     overflow: hidden;
     min-height: 420px;
     display: flex;
     align-items: stretch;
   }
 
-  /* Subtle diagonal gradient overlay for depth */
+  /* Background photo, then overlay (gradient alone when there is no photo) */
+  .page-hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
   .page-hero-bg {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-      135deg,
-      var(--surface-footer) 0%,
-      var(--color-primary-dark) 60%,
-      var(--color-primary) 100%
+      100deg,
+      rgba(5, 20, 23, 0.86) 0%,
+      rgba(5, 20, 23, 0.72) 45%,
+      rgba(5, 20, 23, 0.5) 100%
     );
-    opacity: 0.92;
-    z-index: 0;
+    z-index: 1;
   }
 
   /* Inner grid — two columns, exactly half/half on desktop */
@@ -118,11 +129,12 @@ const { breadcrumbs, heading, primaryCta, secondaryCta, image } = Astro.props;
     padding: 0 24px;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: 48px;
     align-items: center;
     min-height: 420px;
   }
+  .page-hero-inner-single { grid-template-columns: 1fr; }
 
   /* LEFT — content column */
   .page-hero-content {
@@ -177,6 +189,15 @@ const { breadcrumbs, heading, primaryCta, secondaryCta, image } = Astro.props;
     margin-bottom: 28px;
     max-width: 540px;
   }
+  /* Any link in the opening paragraph (imported content uses plain anchors) */
+  .page-hero-opening :global(a) {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .page-hero-opening :global(a:hover) { color: var(--color-accent-light); }
+  .page-hero-opening :global(a:focus-visible) { outline: 3px solid #ffffff; outline-offset: 2px; border-radius: 2px; }
   .page-hero-opening :global(.brand-link) {
     color: #ffffff;
     text-decoration: underline;
@@ -250,83 +271,16 @@ const { breadcrumbs, heading, primaryCta, secondaryCta, image } = Astro.props;
   }
   .page-hero-btn-secondary:active { transform: scale(0.98); }
 
-  /* RIGHT — visual column */
-  .page-hero-visual {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    min-height: 320px;
+  /* RIGHT — compact quote form card (semi-transparent, as on the home page) */
+  .page-hero-form { padding: 40px 0; }
+  .page-hero-form :global(.quote-form) {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 24px 48px -16px rgba(5, 20, 23, 0.5);
   }
 
-  /* Real image — fills the right column flush */
-  .page-hero-img {
-    width: 100%;
-    height: 420px;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    border-radius: 0;
-  }
-
-  /* GPG stat card fallback */
-  .page-hero-stat-card {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 16px;
-    padding: 40px 36px;
-    text-align: center;
-    width: 100%;
-    max-width: 320px;
-    backdrop-filter: blur(8px);
-  }
-  .page-hero-stat-gpg {
-    font-family: var(--font-heading);
-    font-size: clamp(52px, 7vw, 80px);
-    font-weight: 700;
-    color: #ffffff;
-    line-height: 1;
-    letter-spacing: -0.03em;
-  }
-  .page-hero-stat-unit {
-    font-family: var(--font-body);
-    font-size: 18px;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .page-hero-stat-label {
-    font-family: var(--font-body);
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--color-accent-light, var(--color-accent));
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 16px;
-  }
-  .page-hero-stat-source {
-    font-family: var(--font-body);
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.45);
-    line-height: 1.5;
-    margin-bottom: 16px;
-  }
-  .page-hero-stat-badge {
-    display: inline-block;
-    padding: 5px 14px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    font-family: var(--font-body);
-    font-size: 11px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
-    letter-spacing: 0.04em;
-  }
-
-  /* Mobile — stack vertically, image above content */
+  /* Mobile — stack vertically, quote form above content */
   @media (max-width: 768px) {
     .page-hero { min-height: auto; }
     .page-hero-inner {
@@ -352,17 +306,7 @@ const { breadcrumbs, heading, primaryCta, secondaryCta, image } = Astro.props;
       width: 100%;
       text-align: center;
     }
-    .page-hero-visual {
-      min-height: 240px;
-      order: -1;
-    }
-    .page-hero-img {
-      height: 240px;
-      border-radius: 0;
-    }
-    .page-hero-stat-card {
-      margin: 0 20px 32px;
-      padding: 28px 24px;
-    }
+    /* Form first on mobile, content below */
+    .page-hero-form { order: -1; padding: 24px 20px 0; }
   }
 </style>

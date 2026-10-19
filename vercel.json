@@ -1,3 +1,195 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/installation",
+      "destination": "/water-softener-installation/",
+      "permanent": true
+    },
+    {
+      "source": "/installation/",
+      "destination": "/water-softener-installation/",
+      "permanent": true
+    },
+    {
+      "source": "/repair",
+      "destination": "/water-softener-repair/",
+      "permanent": true
+    },
+    {
+      "source": "/repair/",
+      "destination": "/water-softener-repair/",
+      "permanent": true
+    },
+    {
+      "source": "/control-head-repair",
+      "destination": "/water-softener-repair/",
+      "permanent": true
+    },
+    {
+      "source": "/control-head-repair/",
+      "destination": "/water-softener-repair/",
+      "permanent": true
+    },
+    {
+      "source": "/hard-water",
+      "destination": "/water-softener-guides/hard-water-st-george-ut/",
+      "permanent": true
+    },
+    {
+      "source": "/hard-water/",
+      "destination": "/water-softener-guides/hard-water-st-george-ut/",
+      "permanent": true
+    },
+    {
+      "source": "/water-quality",
+      "destination": "/water-quality-testing/",
+      "permanent": true
+    },
+    {
+      "source": "/water-quality/",
+      "destination": "/water-quality-testing/",
+      "permanent": true
+    },
+    {
+      "source": "/free-water-test",
+      "destination": "/water-quality-testing/",
+      "permanent": true
+    },
+    {
+      "source": "/free-water-test/",
+      "destination": "/water-quality-testing/",
+      "permanent": true
+    },
+    {
+      "source": "/comparison",
+      "destination": "/water-softener-guides/salt-vs-salt-free-water-softener/",
+      "permanent": true
+    },
+    {
+      "source": "/comparison/",
+      "destination": "/water-softener-guides/salt-vs-salt-free-water-softener/",
+      "permanent": true
+    },
+    {
+      "source": "/products",
+      "destination": "/water-softener-systems/",
+      "permanent": true
+    },
+    {
+      "source": "/products/",
+      "destination": "/water-softener-systems/",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/water-softener-guides/",
+      "permanent": true
+    },
+    {
+      "source": "/faq/",
+      "destination": "/water-softener-guides/",
+      "permanent": true
+    },
+    {
+      "source": "/quote",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/quote/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/neighbourhood",
+      "destination": "/service-areas/",
+      "permanent": true
+    },
+    {
+      "source": "/neighbourhood/",
+      "destination": "/service-areas/",
+      "permanent": true
+    },
+    {
+      "source": "/brine-tank-cleaning",
+      "destination": "/water-softener-maintenance/",
+      "permanent": true
+    },
+    {
+      "source": "/brine-tank-cleaning/",
+      "destination": "/water-softener-maintenance/",
+      "permanent": true
+    },
+    {
+      "source": "/resin-bed-replacement",
+      "destination": "/water-softener-replacement/",
+      "permanent": true
+    },
+    {
+      "source": "/resin-bed-replacement/",
+      "destination": "/water-softener-replacement/",
+      "permanent": true
+    },
+    {
+      "source": "/reverse-osmosis",
+      "destination": "/reverse-osmosis-installation/",
+      "permanent": true
+    },
+    {
+      "source": "/reverse-osmosis/",
+      "destination": "/reverse-osmosis-installation/",
+      "permanent": true
+    },
+    {
+      "source": "/salt-based-installation",
+      "destination": "/water-softener-installation/",
+      "permanent": true
+    },
+    {
+      "source": "/salt-based-installation/",
+      "destination": "/water-softener-installation/",
+      "permanent": true
+    },
+    {
+      "source": "/salt-free-installation",
+      "destination": "/salt-free-water-softener-systems/",
+      "permanent": true
+    },
+    {
+      "source": "/salt-free-installation/",
+      "destination": "/salt-free-water-softener-systems/",
+      "permanent": true
+    },
+    {
+      "source": "/water-softener-sizing",
+      "destination": "/water-softener-guides/water-softener-size-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/water-softener-sizing/",
+      "destination": "/water-softener-guides/water-softener-size-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/whole-home-filtration",
+      "destination": "/water-filtration-systems/",
+      "permanent": true
+    },
+    {
+      "source": "/whole-home-filtration/",
+      "destination": "/water-filtration-systems/",
+      "permanent": true
+    },
+    {
+      "source": "/new-construction-installation",
+      "destination": "/water-softener-installation/",
+      "permanent": true
+    },
+    {
+      "source": "/new-construction-installation/",
+      "destination": "/water-softener-installation/",
+      "permanent": true
+    }
+  ]
 }

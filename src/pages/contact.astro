@@ -1,0 +1,51 @@
+---
+/**
+ * Contact page: phone, service area and the full quote form.
+ */
+import Layout from "../components/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import QuoteForm from "../components/QuoteForm.astro";
+import { site } from "../lib/site";
+
+const telHref = `tel:${site.phoneNumber.replace(/[^\d+]/g, "")}`;
+---
+
+<Layout
+  title={`Contact ${site.businessName}`}
+  fullTitle={`Contact ${site.businessName} | ${site.businessName}: Water Softener Installation and Repair`}
+  description={`Contact ${site.businessName} for a free water softener estimate in ${site.city}, ${site.stateAbbr}. Call or send a request and we will reply within 24 hours.`}
+>
+  <PageHero
+    showForm={false}
+    breadcrumbs={[{ label: "Contact" }]}
+    heading={`Contact ${site.businessName} | Trusted Local Specialists`}
+    primaryCta={{ href: telHref, text: `📞 ${site.phoneNumber}` }}
+  >
+    <p slot="opening">
+      Call or send a request for a free water softener estimate in {site.city}. We reply within 24 hours.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container contact-grid">
+      <div class="contact-details">
+        <h2>Get in Touch</h2>
+        <p>Call for a free estimate, or send the form and we will contact you within 24 hours.</p>
+        <p class="contact-row"><strong>Phone:</strong> <a href={telHref}>{site.phoneNumber}</a></p>
+        <p class="contact-row"><strong>Service area:</strong> {site.city}, {site.county} and nearby towns</p>
+        {site.address
+          ? <p class="contact-row"><strong>Address:</strong> {site.address}</p>
+          : <p class="contact-row"><mark class="data-gap">[NEEDS DATA: business address or "service area only"]</mark></p>}
+      </div>
+      <div class="contact-form" id="estimate">
+        <QuoteForm heading="Request Your Free Estimate" />
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .contact-row { margin: 0 0 12px; }
+    @media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; gap: 28px; } }
+  </style>
+</Layout>

@@ -1,0 +1,321 @@
+---
+/**
+ * About page, laid out like the Tampa site's About: hero, What We Do, What Makes
+ * Us Different, Who Uses Our Services, Team, How It Works, Key Facts, FAQ and a
+ * closing CTA, each with a photo. Plus the Henderson backlink pair (exact brand
+ * in the hero paragraph, brand + state in a closing paragraph).
+ * Built only from site.config.ts values. Anything the
+ * owner has not confirmed renders as a highlighted marker; no facts, prices,
+ * licences, timings, review counts or competitor names are invented.
+ * Copied from the Lubbock site, which also shows a photo under each section
+ * heading; add <Image> blocks if you have photos. Before launch confirm the
+ * hardness range, water source and service links, and swap the licence row for
+ * the state's own requirement.
+ */
+import Layout from "../components/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import HomeLink from "../components/HomeLink.astro";
+import ContentProse from "../components/ContentProse.astro";
+import PageSchema from "../components/PageSchema.astro";
+import { site } from "../lib/site";
+
+const telHref = `tel:${site.phoneNumber.replace(/[^\d+]/g, "")}`;
+const isPlaceholder = (value: string) => /^[A-Z0-9_]+$/.test(value);
+// Links to other pages appear only when that page exists, so a fresh clone (before
+// npm run import-content) still passes npm run verify.
+const pageModules = import.meta.glob("../data/pages/*.md", { eager: true }) as Record<string, any>;
+const routes = new Set(Object.values(pageModules).map((m) => m.frontmatter.slug as string));
+const linkTo = (href: string, label: string) => (routes.has(href) ? `<a href="${href}">${label}</a>` : label);
+const marker = (text: string) => `<mark class="data-gap">[${text}]</mark>`;
+const fact = (value: string, label: string) => (isPlaceholder(value) ? marker(`NEEDS DATA: ${label}`) : value);
+const gpgText = site.gpgLow === site.gpgHigh ? `${site.gpgLow}` : `${site.gpgLow} to ${site.gpgHigh}`;
+const hardnessVerified = site.hardnessVerified !== false;
+const verifyHardness = hardnessVerified ? "" : ` ${marker("VERIFY: confirm average hardness with the utility")}`;
+const hardness = `${gpgText} gpg (about ${Math.round(site.gpgHigh * 17.1)} mg/L)${verifyHardness}`;
+
+const services = [
+  {
+    name: "Water Softener Installation",
+    body: "We install salt-based water softener systems that remove the hard minerals from your water supply. The result is cleaner water, longer-lasting appliances and less scale.",
+    href: "/water-softener-installation/",
+  },
+  {
+    name: "Water Softener Replacement",
+    body: "We replace worn-out tanks and control heads with a correctly sized system, so you are not paying to patch a unit that is past repairing.",
+    href: "/water-softener-replacement/",
+  },
+  {
+    name: "Water Softener Repair",
+    body: "We diagnose and repair water softener systems to restore performance quickly, which helps you avoid a replacement you do not need.",
+    href: "/water-softener-repair/",
+  },
+  {
+    name: "Water Quality Testing",
+    body: "We test your water to find its hardness and any other mineral issues, so you get the right system and not a generic one.",
+    href: "/water-quality-testing/",
+  },
+];
+
+const differentiators = [
+  { name: "Sized to Your Water", body: `We size every system to your household and your hardness reading, not a one-size package.` },
+  { name: "Custom Water Softener Systems", body: "We recommend systems based on your water and your plumbing, whether that is a single tank, a dual-tank unit or a salt-free conditioner." },
+  { name: "Clear, Upfront Estimates", body: "You get a free estimate before any work begins, with no obligation to go ahead." },
+  { name: "Local Water Expertise", body: `We know ${site.city}'s water: ${site.waterAuthority} supplies water from ${site.waterSource}, and the calcium and magnesium in it are what leave scale behind.` },
+  { name: "Full Service Support", body: "Testing, installation, replacement, repair and maintenance from one company, so nothing is handed off between providers." },
+];
+
+const audiences = [
+  `Homeowners dealing with hard water in ${site.city}`,
+  "Families who want softer water for showers, laundry and dishes",
+  "Owners of an aging softener that needs repair or replacement",
+  "Rental and small commercial property owners",
+  `Homes outside the city limits in ${site.county} and ${site.region}`,
+];
+
+const icons: Record<string, string> = {
+  droplet: '<path d="M12 2c0 0-7 8.5-7 13a7 7 0 0 0 14 0c0-4.5-7-13-7-13z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />',
+  clipboard: '<rect x="6" y="4" width="12" height="17" rx="2" stroke="currentColor" stroke-width="1.8" /><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><line x1="9" y1="11" x2="15" y2="11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><line x1="9" y1="15" x2="15" y2="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />',
+  wrench: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />',
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />',
+};
+
+const steps = [
+  { step: "Step 1", text: "Request a free estimate and a water test", icon: "droplet" },
+  { step: "Step 2", text: "Get a system recommendation sized to your home", icon: "clipboard" },
+  { step: "Step 3", text: "Professional installation, with the old unit removed on a replacement", icon: "wrench" },
+  { step: "Step 4", text: "Ongoing repair and maintenance support", icon: "shield" },
+];
+
+const keyFacts = [
+  { label: "Company Name", value: site.businessName },
+  { label: "Type", value: `Water softener installation and service company in ${site.city}, ${site.stateAbbr}` },
+  { label: "Founded", value: fact(site.foundedYear, "year founded") },
+  { label: "Founder", value: fact(site.founderNames, "founder or team names") },
+  { label: "Headquarters", value: `${site.city}, ${site.state}, USA` },
+  { label: "Website", value: site.domain },
+  { label: "Core Offering", value: `Water softener ${site.city} ${site.stateAbbr} installation and service` },
+  { label: "Pricing", value: "Free estimate first, then a written quote for your home and system type" },
+  { label: "Contract Terms", value: marker("NEEDS DATA: confirm contract terms") },
+  { label: "Services", value: "Installation, replacement, repair, maintenance, filtration, reverse osmosis, UV purification and water testing" },
+  { label: "Service Area", value: `${site.city}, ${site.county} and nearby towns` },
+  { label: "Water Treatment Licence", value: marker("NEEDS DATA: state water treatment licence number, if your state requires one") },
+  { label: "Communication", value: "Phone and email" },
+  { label: "Customers Served", value: fact(site.customersServed, "customers served") },
+  { label: "Projects Delivered", value: fact(site.projectsDelivered, "projects delivered") },
+  { label: "Social", value: marker("NEEDS DATA: Facebook and Google Business Profile links") },
+];
+
+const faqs = [
+  {
+    q: `Do I need a water softener in ${site.city}?`,
+    a: `${site.city} water is hard, roughly ${hardness}. Hard water leaves scale on fixtures and in appliances, so most homes here benefit from a softener.`,
+  },
+  {
+    q: "How long does water softener installation take?",
+    a: `Most installations finish in a single visit. ${marker("NEEDS DATA: typical install time")}`,
+  },
+  {
+    q: `How much does a water softener cost in ${site.city}?`,
+    a: `Cost depends on system size, type and the plumbing in your home. See our ${linkTo("/water-softener-guides/", "guides")} or request a free estimate. ${marker("NEEDS DATA: confirmed price ranges")}`,
+  },
+  {
+    q: "How often does maintenance need to be done?",
+    a: `It depends on the system and how much water the household uses. See ${linkTo("/water-softener-maintenance/", "water softener maintenance")} for what we check. ${marker("NEEDS DATA: recommended interval")}`,
+  },
+  {
+    q: "Can you repair existing water softeners?",
+    a: `Yes. We repair existing systems and replace the ones that are past repairing, and we will tell you which makes more sense. See ${linkTo("/water-softener-repair/", "water softener repair")}.`,
+  },
+];
+---
+
+<Layout
+  title={`About ${site.businessName}`}
+  fullTitle={`About ${site.businessName} | ${site.businessName}: Water Softener Installation and Repair`}
+  description={`About ${site.businessName}: water softener installation, replacement, repair and water testing for ${site.city}, ${site.stateAbbr} and ${site.region}.`}
+>
+  <PageSchema faq={faqs.map((f) => ({ q: f.q, a: f.a.replace(/<mark[^>]*>[^<]*<\/mark>/g, "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim() }))} />
+  <PageHero
+    breadcrumbs={[{ label: "About" }]}
+    heading={`About ${site.businessName} | Trusted Local Specialists`}
+    primaryCta={{ href: telHref, text: `📞 ${site.phoneNumber}` }}
+    secondaryCta={{ href: "/contact/", text: "Get a Free Quote" }}
+  >
+    <p slot="opening">
+      <HomeLink variant="exact" />
+      {" "}provides professional water softener installation, replacement, repair and maintenance across
+      {" "}{site.city} and {site.county}. {site.waterAuthority} delivers roughly {gpgText} gpg
+      water to {site.city} homes.<Fragment set:html={verifyHardness} /> We size every system to your actual hardness reading, not a regional estimate.
+    </p>
+  </PageHero>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2>What We Do | Water Softener {site.city} {site.stateAbbr} Services</h2>
+      </div>
+      <div class="grid grid-2">
+        {services.map((s) => (
+          <div class="card">
+            <h3>{s.name} {site.city} {site.stateAbbr}</h3>
+            <p>{s.body}</p>
+            {routes.has(s.href) && <a class="service-learn-more" href={s.href}>Learn more →</a>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>What Makes {site.businessName} Different | Water Softener {site.city} {site.stateAbbr} Experts</h2>
+      </div>
+      <div class="grid grid-3">
+        {differentiators.map((d) => (
+          <div class="card">
+            <h3>{d.name}</h3>
+            <p>{d.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Who Uses Our Water Softener {site.city} {site.stateAbbr} Services</h2>
+      </div>
+      <ul class="about-audience-list">
+        {audiences.map((a) => <li>{a}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>The Team Behind {site.businessName}</h2>
+      </div>
+      <ContentProse>
+        <p>
+          {site.businessName} was founded by <Fragment set:html={fact(site.founderNames, "founder or team names")} />,
+          specialists in plumbing and water treatment systems. <Fragment set:html={marker("NEEDS DATA: confirm background and experience")} />
+        </p>
+        <p>
+          The team is built around one job: sizing, installing and servicing water softeners for {site.city} homes and
+          businesses, with honest recommendations and no unnecessary complexity.
+        </p>
+        <p>
+          <a href="/" class="brand-link">{site.businessName} {site.stateAbbr}</a> provides water softener installation, replacement,
+          repair and maintenance for homes and businesses across {site.city} and {site.county}.
+        </p>
+      </ContentProse>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2>How Our Water Softener {site.city} {site.stateAbbr} Service Works</h2>
+      </div>
+      <div class="grid grid-2">
+        {steps.map((s) => (
+          <div class="card step-card">
+            <span class="step-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" set:html={icons[s.icon]} />
+            </span>
+            <p class="card-title">{s.step}</p>
+            <p>{s.text}</p>
+          </div>
+        ))}
+      </div>
+      <div class="about-process-meta">
+        <p><strong>Communication:</strong> Phone and email</p>
+        <p><strong>Response Time:</strong> <Fragment set:html={marker("NEEDS DATA: typical response time")} /></p>
+        <p><strong>Installation Time:</strong> <Fragment set:html={marker("NEEDS DATA: typical install time")} /></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Key Facts | Water Softener {site.city} {site.stateAbbr} Company</h2>
+      </div>
+      <table class="data-table">
+        <tbody>
+          {keyFacts.map((f) => (
+            <tr>
+              <td><strong>{f.label}</strong></td>
+              <td set:html={f.value} />
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2>Frequently Asked Questions | Water Softener {site.city} {site.stateAbbr}</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6.5 8 10.5 12 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <p set:html={item.a} />
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container final-cta">
+      <h2>{site.businessName} is your trusted local expert</h2>
+      <p>For water softener {site.city} {site.stateAbbr} installation, repair and maintenance, get a free, no-obligation estimate today.</p>
+      <a class="btn btn-primary" href="/contact/">Get in Touch →</a>
+    </div>
+  </section>
+
+  <style>
+    .final-cta { text-align: center; }
+    .final-cta p { max-width: 48ch; margin: 0 auto 24px; }
+    .about-audience-list {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+    .about-audience-list li {
+      padding: 14px 18px;
+      background: var(--surface-elevated, #fff);
+      border-radius: 8px;
+      border: 1px solid var(--color-border, #e5e5e5);
+    }
+    .about-process-meta { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+    .about-process-meta p { margin: 0; }
+    .step-card { text-align: center; }
+    .step-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      margin: 0 auto 16px;
+    }
+  </style>
+</Layout>

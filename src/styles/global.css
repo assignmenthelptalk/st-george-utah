@@ -1,7 +1,7 @@
 /* =============================================================================
    Water Softener Boilerplate — Design System
    =============================================================================
-   Deep teal (#0F6E78) as primary, warm orange (#E65100) reserved for CTAs
+   Deep teal (#17496B) as primary, warm orange (#C2562B) reserved for CTAs
    and key highlights, DM Serif Display for headings, Inter for body/labels/
    navigation. This file is NOT city-specific — every city site cloned from
    this boilerplate inherits it unchanged; only src/site.config.ts differs
@@ -14,17 +14,17 @@
 
 :root {
   /* Brand colors — exact hex values from the site's design tokens */
-  --color-primary:       #0F6E78;
-  --color-primary-dark:  #0A4F57; /* hero gradient endpoint */
-  --color-primary-light: #E1F5EE;
-  --color-accent:        #E65100;
-  --color-accent-dark:   #C2410C; /* accent hover/active state */
-  --color-accent-light:  #FDE4D0; /* light accent tint for badges */
+  --color-primary:       #17496B;
+  --color-primary-dark:  #0F3350; /* hero gradient endpoint */
+  --color-primary-light: #E6EFF5;
+  --color-accent:        #C2562B;
+  --color-accent-dark:   #9A4220; /* accent hover/active state */
+  --color-accent-light:  #F7E3D9; /* light accent tint for badges */
 
   /* Depth system: base -> elevated -> floating, never one flat z-plane */
   --surface-base:     #ffffff;
-  --surface-elevated: #F8FFFE;
-  --surface-footer:   #0A2E33; /* darkened primary, footer only */
+  --surface-elevated: #F5F9FC;
+  --surface-footer:   #0B2233; /* darkened primary, footer only */
 
   /* Never the same font for headings and body */
   --font-heading: 'DM Serif Display', Georgia, serif;

@@ -1,5 +1,5 @@
 {
-  "name": "water-softener-boilerplate",
+  "name": "watersoftenerstgeorgeut",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "import-content": "node scripts/import-content.mjs",
+    "verify": "node scripts/verify-build.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.5",

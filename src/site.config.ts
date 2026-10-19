@@ -150,6 +150,9 @@ export interface SiteConfig {
   state: string;
   /** Two-letter state abbreviation, e.g. "NV" */
   stateAbbr: string;
+  /** Wider region the business serves, used in the homepage "Why We're the
+   * Best" heading, e.g. "Greater Austin" */
+  region: string;
   /** Live domain, no protocol, no trailing slash, e.g. "lasvegaswatersoftener.com" */
   domain: string;
 
@@ -160,6 +163,9 @@ export interface SiteConfig {
   gpgHigh: number;
   /** Human label for the hardness range, e.g. "Very Hard" | "Extreme" */
   gpgLabel: string;
+  /** Set to false while the hardness range is not confirmed by the utility. The About page then shows
+   * a [VERIFY] marker beside the figure. Omit (or true) once the utility's own number is in. */
+  hardnessVerified?: boolean;
   /** Where the city's tap water comes from, e.g. "Municipal reservoir supply" */
   waterSource: string;
   /** The utility/authority that manages the water supply */
@@ -223,7 +229,10 @@ export interface SiteConfig {
   /** Google Business Profile URL — blank until claimed; used as the
    * footer link and the LocalBusiness schema's sameAs URL. */
   googleBusinessUrl: string;
-  /** Google Search Console verification token (the content value of the google-site-verification meta tag); blank to omit. */
+  /** Social profile URLs shown as icons in the footer. Leave a network blank until the profile exists: a blank one
+   * renders as an inert icon (no link). Filled-in URLs are also added to the LocalBusiness schema's sameAs. */
+  socialLinks: { facebook: string; instagram: string; pinterest: string; x: string; youtube: string };
+  /** Optional Google Search Console verification token, rendered as a meta tag in the page head */
   googleSiteVerification?: string;
   /** Fully-qualified site URL derived from `domain`, e.g. "https://example.com" */
   siteUrl: string;
@@ -277,26 +286,25 @@ export const siteConfig: SiteConfig = {
   city: "St George",
   state: "Utah",
   stateAbbr: "UT",
+  region: "Southern Utah",
   domain,
 
   // Water hardness data
   gpgLow: 13,
   gpgHigh: 24,
   gpgLabel: "Very Hard",
-  waterSource: "Virgin River water treated at the Quail Creek plant and delivered by the Washington County Water Conservancy District (about 70%), plus city-owned groundwater wells and springs in the Navajo Sandstone aquifer (about 30%)",
+  hardnessVerified: false, // UNCONFIRMED: set true (or delete) once the utility's own hardness is in
+  waterSource: "Virgin River surface water treated at the Quail Creek plant and delivered by the Washington County Water Conservancy District, blended with City groundwater wells and springs",
   waterAuthority: "City of St. George Water Services",
-
   // SEO
   primaryKeyword: "water softener st george utah",
-  searchVol: 0, // unverified — no keyword-tool access
-  metaDescription: "Water softener installation and repair in St George, UT. City water runs 13-24 GPG (very hard). Get a free quote from a local team today.",
-
+  searchVol: 0,
+  metaDescription: "St George Prime Water Softener offers water softener installation, repair and replacement in St George, UT. Get a free estimate today. Call now.",
   // Local data
   population: "95,342",
   county: "Washington County",
-  neighbourhoods: ["Bloomington", "Bloomington Hills", "Green Valley", "Sun River", "Little Valley"],
-  zipCodes: ["84770", "84790", "84791"],
-
+  neighbourhoods: ["Bloomington", "Bloomington Hills", "Green Valley", "Sun River", "Little Valley", "Washington City", "Santa Clara", "Ivins", "Hurricane"],
+  zipCodes: ["NEEDS_DATA_ZIP_1", "NEEDS_DATA_ZIP_2", "NEEDS_DATA_ZIP_3"],
   // Monetisation
   affiliateSoftener: "https://springwellwater.com/follow/softener/",
   affiliateCombo: "https://springwellwater.com/follow/combo/",
@@ -304,11 +312,12 @@ export const siteConfig: SiteConfig = {
 
   // Business identity — edit directly, no CMS
   businessName: "St George Prime Water Softener",
-  phoneNumber: "PHONE_NUMBER",
+  phoneNumber: "(435) 000-0000",
   businessEmail: "BUSINESS_EMAIL",
   address: "",
   googleBusinessUrl: "",
   googleSiteVerification: "5ZinwdRLaU8H9vtc_Gz6GxI8lAF_uyVmYlwUuQ2kL0E",
+  socialLinks: { facebook: "", instagram: "", pinterest: "", x: "", youtube: "" },
   siteUrl: `https://${domain}`,
 
   // About page facts — edit directly, no CMS

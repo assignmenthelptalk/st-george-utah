@@ -1,0 +1,87 @@
+---
+import LegalPage from "../components/LegalPage.astro";
+import { site } from "../lib/site";
+
+const telHref = `tel:${site.phoneNumber.replace(/[^\d+]/g, "")}`;
+---
+
+<LegalPage
+  title="Privacy Policy"
+  description={`How ${site.businessName} collects, uses and protects the information you give us when you request a water softener estimate in ${site.city}, ${site.stateAbbr}.`}
+  updated="October 12, 2026"
+>
+  <p>
+    This Privacy Policy explains what information {site.businessName} ("we", "us") collects through
+    {" "}{site.domain}, how we use it, and the choices you have. By using this website you agree to this policy.
+  </p>
+
+  <h2>Information we collect</h2>
+  <ul>
+    <li><strong>Information you give us.</strong> When you send a quote or contact request we receive your name, phone number, email address, service address or ZIP code, and any details you write about your water or equipment.</li>
+    <li><strong>Phone calls.</strong> When you call us we may record the caller's number and the time and length of the call so we can return missed calls and measure which pages lead to calls.</li>
+    <li><strong>Technical information.</strong> Like most websites, our hosting and any analytics tools we use may log your IP address, browser type, device, the pages you view and the page that referred you. We do not use this to identify you personally.</li>
+  </ul>
+
+  <h2>How we use your information</h2>
+  <ul>
+    <li>To reply to your request and give you an estimate.</li>
+    <li>To schedule and carry out water testing, installation, repair or maintenance.</li>
+    <li>To keep the website secure, understand how it is used and improve it.</li>
+    <li>To meet legal obligations.</li>
+  </ul>
+  <p>We do not sell your personal information.</p>
+
+  <h2>Who we share it with</h2>
+  <ul>
+    <li><strong>Service providers.</strong> Requests are sent through a third-party form delivery service (formsubmit.co) and our email provider so that we receive them. These providers process your details only to deliver the message.</li>
+    <li><strong>Local installers.</strong> To carry out the work you ask for, we may pass your name, phone number and service address to the independent licensed professional who will visit you.</li>
+    <li><strong>Legal reasons.</strong> We may disclose information when the law requires it or to protect our rights and the safety of others.</li>
+  </ul>
+
+  <h2>Cookies and analytics</h2>
+  <p>
+    This website may use cookies or similar tools for basic analytics and to remember simple preferences.
+    You can block or delete cookies in your browser settings; the site will still work.
+  </p>
+
+  <h2>How long we keep it</h2>
+  <p>
+    We keep your request details only as long as needed to answer you, complete any work and meet legal or
+    accounting requirements, then delete or anonymise them.
+  </p>
+
+  <h2>Security</h2>
+  <p>
+    We use reasonable safeguards, including encrypted (HTTPS) connections to this website. No method of
+    transmission over the internet is completely secure, so we cannot guarantee absolute security.
+  </p>
+
+  <h2>Your choices and rights</h2>
+  <p>
+    You can ask us to tell you what personal information we hold about you, to correct it, or to delete it.
+    You can also ask us to stop contacting you. Residents of Texas and other states may have additional rights
+    under their state privacy laws; we will honour valid requests as the law requires.
+    Email <a href={`mailto:${site.businessEmail}`}>{site.businessEmail}</a> or call <a href={telHref}>{site.phoneNumber}</a>.
+  </p>
+
+  <h2>Children</h2>
+  <p>This website is for adults. We do not knowingly collect information from children under 13.</p>
+
+  <h2>Links to other websites</h2>
+  <p>
+    If this website links to other sites, we are not responsible for their content or privacy practices.
+    Read the policy of any site you visit.
+  </p>
+
+  <h2>Changes to this policy</h2>
+  <p>
+    We may update this policy from time to time. The date at the top shows when it last changed. Continued use of
+    the website after a change means you accept the updated policy.
+  </p>
+
+  <h2>Contact us</h2>
+  <p>
+    {site.businessName}, {site.city}, {site.stateAbbr}.
+    Email <a href={`mailto:${site.businessEmail}`}>{site.businessEmail}</a>.
+  </p>
+</LegalPage>

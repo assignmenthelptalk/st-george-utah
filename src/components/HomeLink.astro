@@ -1,0 +1,43 @@
+---
+/**
+ * HomeLink.astro — the inner-page backlink to the homepage, in 4 anchor styles.
+ * ==============================================================================
+ * An exact-match brand (e.g. "Water Softener St George Utah") linked to "/" from
+ * every inner page is repetitive keyword-anchor stuffing. This component lets
+ * each page pick a different style so the homepage's inbound anchor profile
+ * looks natural. Use it in the opening paragraph's brand mention, in place of a
+ * hand-written <a href="/">. See PROVISION.md → "Homepage Backlink Variety".
+ *
+ *   exact   → <a>Brand Name</a>
+ *   naked   → Brand Name (<a>https://domain.com</a>)
+ *   partial → only the city part of the brand is linked, e.g.
+ *             "Water Softener <a>St George</a> Utah"
+ *   plain   → Brand Name, no link (the nav already links home)
+ *
+ * The brand name is always present as text in every variant, so the opening
+ * paragraph still passes the "brand OFFERS" quality-gate rule.
+ */
+import { site } from "../lib/site";
+
+interface Props {
+  variant?: "exact" | "naked" | "partial" | "plain";
+}
+
+const { variant = "exact" } = Astro.props;
+
+const brand = site.businessName;
+const cityIndex = brand.indexOf(site.city);
+// Partial needs the city inside the brand; fall back to exact if it isn't.
+const effective = variant === "partial" && cityIndex === -1 ? "exact" : variant;
+const before = cityIndex === -1 ? "" : brand.slice(0, cityIndex);
+const after = cityIndex === -1 ? "" : brand.slice(cityIndex + site.city.length);
+---
+
+{effective === "exact" && <a href="/" class="brand-link">{brand}</a>}
+{effective === "naked" && (
+  <Fragment>{brand} (<a href="/" class="brand-link">https://{site.domain}</a>)</Fragment>
+)}
+{effective === "partial" && (
+  <Fragment>{before}<a href="/" class="brand-link">{site.city}</a>{after}</Fragment>
+)}
+{effective === "plain" && <Fragment>{brand}</Fragment>}

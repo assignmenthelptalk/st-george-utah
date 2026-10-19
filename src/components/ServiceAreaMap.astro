@@ -1,0 +1,119 @@
+---
+/**
+ * ServiceAreaMap: interactive map of the city and every location page that has been built.
+ *
+ * Data comes from src/data/map-points.json, which `npm run import-content` writes from the
+ * strategy folder's map-points.json (only pins whose page exists are kept). With no points the
+ * component renders nothing, so a fresh clone builds without a map.
+ *
+ *   { "source": "...", "center": { "name": "Lubbock", "lat": 33.58, "lng": -101.85 },
+ *     "points": [ { "name": "Shallowater", "slug": "/water-softener-shallowater-tx/",
+ *                   "lat": 33.69, "lng": -101.99, "approx": false } ] }
+ *
+ * Tiles are plain OpenStreetMap (keep the attribution). Do not use CARTO or Stadia tiles: both
+ * now require an API key. Pins are CSS circles, so no marker image files are needed. The map
+ * frames itself on the pins and the scroll wheel is off so the page still scrolls.
+ */
+import { site } from "../lib/site";
+import mapData from "../data/map-points.json";
+
+interface MapPoint { name: string; slug: string; lat: number; lng: number; approx?: boolean }
+interface MapData { source?: string; center: { name: string; lat: number; lng: number } | null; points: MapPoint[] }
+
+const data = mapData as MapData;
+const hasMap = Boolean(data.center) && data.points.length > 0;
+const payload = JSON.stringify({ center: data.center, points: data.points });
+---
+
+{hasMap && (
+  <section class="sa-map-section" aria-labelledby="sa-map-heading">
+    <div class="container">
+      <h2 id="sa-map-heading">Where We Install Water Softeners Around {site.city}, {site.stateAbbr}</h2>
+      <p class="sa-map-intro">
+        Click a pin to open the page for that area.
+        {data.points.some((p) => p.approx) && " Neighbourhood pins are approximate."}
+      </p>
+      <div id="service-area-map" class="sa-map" data-map={payload} role="region" aria-label={`Map of ${site.city} service areas`}></div>
+      <noscript><p>The map needs JavaScript. The areas we serve are linked below on this page.</p></noscript>
+    </div>
+  </section>
+)}
+
+<script>
+  import L from "leaflet";
+  import "leaflet/dist/leaflet.css";
+
+  const el = document.getElementById("service-area-map");
+  if (el?.dataset.map) {
+    const { center, points } = JSON.parse(el.dataset.map) as {
+      center: { name: string; lat: number; lng: number };
+      points: Array<{ name: string; slug: string; lat: number; lng: number; approx?: boolean }>;
+    };
+    const map = L.map(el, { scrollWheelZoom: false, zoomControl: true });
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    const pin = (kind: "home" | "area") =>
+      L.divIcon({ className: `sa-pin sa-pin-${kind}`, html: "<span></span>", iconSize: [22, 22], iconAnchor: [11, 11], popupAnchor: [0, -12] });
+
+    const bounds: Array<[number, number]> = [[center.lat, center.lng]];
+    L.marker([center.lat, center.lng], { icon: pin("home"), title: center.name })
+      .addTo(map)
+      .bindPopup(`<strong>${center.name}</strong><br>Home base`);
+    for (const p of points) {
+      bounds.push([p.lat, p.lng]);
+      const popup = document.createElement("div");
+      const title = document.createElement("strong");
+      title.textContent = p.name;
+      const link = document.createElement("a");
+      link.href = p.slug;
+      link.textContent = `Water softener ${p.name} →`;
+      link.className = "sa-popup-link";
+      popup.append(title, document.createElement("br"), link);
+      L.marker([p.lat, p.lng], { icon: pin("area"), title: p.name }).addTo(map).bindPopup(popup);
+    }
+    // Leaflet measures the container when it is created. If the page styles have not applied yet
+    // the size is wrong and the framing is off, so re-measure and frame once it has a real size.
+    const frame = () => {
+      map.invalidateSize();
+      map.fitBounds(bounds, { padding: [48, 48], maxZoom: 12 });
+    };
+    frame();
+    const watcher = new ResizeObserver(() => {
+      if (el.clientHeight > 0 && el.clientWidth > 0) {
+        frame();
+        watcher.disconnect();
+      }
+    });
+    watcher.observe(el);
+    window.addEventListener("load", frame, { once: true });
+  }
+</script>
+
+<style is:global>
+  .sa-map-section { padding-block: 40px; }
+  .sa-map-section h2 { margin-bottom: 8px; }
+  .sa-map-intro { margin: 0 0 16px; color: var(--color-text-muted, #5b6770); }
+  .sa-map {
+    height: 420px;
+    width: 100%;
+    border-radius: var(--radius-brand, 8px);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    z-index: 0;
+  }
+  .sa-pin span {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+  }
+  .sa-pin-area span { background: var(--color-accent, #e87722); }
+  .sa-pin-home span { background: var(--color-primary, #1a3c5e); }
+  .sa-popup-link { color: var(--color-primary, #1a3c5e); font-weight: 700; }
+  @media (max-width: 640px) { .sa-map { height: 340px; } }
+</style>

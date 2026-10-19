@@ -1,53 +1,28 @@
-# St George Prime Water Softener
+# watersoftenerstgeorgeut
 
-Rank-and-rent lead-generation site for **water softener St George, Utah**.
+Rank-and-rent lead-generation site for **St George Prime Water Softener** (www.watersoftenerstgeorgeutah.com, target keyword "water softener st george utah").
+Astro 7 static site created from `water-softener-boilerplate` with `Local-SEO-Toolkit/scripts/create-site-project.mjs`.
 
-- Domain: https://watersoftenerstgeorgeutah.com (exact match for the target keyword "water softener st george utah")
-- Repo: https://github.com/assignmenthelptalk/st-george-utah
-- Stack: Astro 7 (static output) · Tailwind v4 · Leaflet map · formsubmit.co for the quote form · Vercel (adapter installed, project not yet created)
-- Cloned from `water-softener-boilerplate`. See [PROVISION.md](./PROVISION.md) for the provisioning process and [CLAUDE.md](./CLAUDE.md) for the design rules.
-
-## Local data
-
-| Field | Value |
-|---|---|
-| City | St George, Utah (Washington County) |
-| Water hardness | 13–24 GPG, Very Hard (the City of St. George's 2023 water quality report recommends softener settings of 13–24 GPG) |
-| Water authority | City of St. George Water Services |
-| Water source | About 70% Virgin River water from the Washington County Water Conservancy District (Quail Creek plant), about 30% city wells and springs |
-| ZIP codes | 84770, 84790, 84791 |
-| Neighbourhoods | Bloomington, Bloomington Hills, Green Valley, Sun River, Little Valley |
-| Population | 95,342 (2020 Census) |
-
-Everything above lives in `src/site.config.ts`, the only file that holds city data. Pages read from it and never hardcode city facts.
+**Status: scaffold only.** The site builds with starter pages (home, About, Contact, thank-you, 404). The topical map, briefs and
+research live in `Local-SEO-Toolkit/data/www/`. No copy has been written or imported yet, no images or logo have been added,
+and nothing is pushed or deployed.
 
 ## Commands
 
-| Command | Action |
-|---|---|
-| `npm install` | Install dependencies |
-| `npm run dev` | Dev server at http://localhost:4321 |
-| `npm run build` | Type check (`astro check`) and build to `dist/` |
-| `npm run preview` | Preview the built site |
+```bash
+npm install
+npm run import-content   # strategy folder -> src/data/pages, nav.json, map-points.json, LAUNCH-CHECKLIST.md (needs written-content/)
+npm run dev
+npm run build            # astro check + build, 0 errors and 0 warnings
+npm run verify           # structural checks on dist/
+```
 
-## Site structure
+## Next steps
 
-22 fixed pages plus `thank-you` (23 built): home, water quality, hard water, installation, comparison, FAQ, neighbourhoods, quote, products, repair, resin bed replacement, brine tank cleaning, whole home filtration, reverse osmosis, about, contact, salt-based installation, salt-free installation, water softener sizing, new construction installation, control head repair and free water test.
+1. Run the research in `Local-SEO-Toolkit/data/www/reports/cowork-research-prompt.md` and confirm the utility's hardness.
+2. Write the copy from the briefs, then `npm run import-content`.
+3. Logo, footer logo, favicon and the two diagrams: `node scripts/make-logo.mjs && node scripts/build-diagrams.mjs` (done for you with `--install`). Add the generated photos (`node scripts/prepare-images.mjs`) and `map-points.json`.
+4. Replace the placeholders in `src/site.config.ts` (phone, email, `socialLinks`, founder, population, ZIP codes) and set `hardnessVerified` once confirmed.
+5. Work through `LAUNCH-CHECKLIST.md`. Do not deploy while any marker remains.
 
-Notable pieces:
-- **Brand and titles:** brand is `St George Prime Water Softener` (exact match). The homepage title is `St George Prime Water Softener | Installation & Repair`, and inner pages use `[Page] | St George Prime Water Softener`.
-- **Homepage backlink variety:** the opening paragraph of each inner page links home using one of four anchor styles (exact, naked URL, partial, plain) to avoid repeating the exact-match anchor. The pattern is documented in PROVISION.md under "Homepage Backlink Variety" and implemented in the boilerplate as `HomeLink.astro`. This site still uses the hand-written version of the same pattern.
-- **Homepage keyword sections:** three H2 sections of about 70 words each: "Best Water Softener for Utah", "Water Softener Installation in St George, Utah" and "Water Softener Resin Replacement in St George, Utah". The H2s are plain text. Each section ends with an underlined link to its inner page (`/products/`, `/installation/`, `/resin-bed-replacement/`), and each has a photo reused from the matching page header.
-- **Hardness slider:** `GPGSliderMini` on the hard-water and comparison pages. It starts at 18 GPG so the badge matches the site's "Very Hard" label.
-- **Neighbourhood map:** `StGeorgeMap.astro` (Leaflet with OpenStreetMap tiles) on the homepage, with five pins geocoded from OpenStreetMap.
-- **Branding:** droplet-and-red-rock-mesa mark in navy `#17496B` and terracotta `#C2562B`. Files are in `public/` (`favicon.svg`, `logo.svg`, `logo-mark.svg`, PNG sizes, `og-default.jpg`).
-- **Images:** 27 optimized WebP photos in `src/assets/images/`, wired through `astro:assets`. Image prompts are in [IMAGE-PROMPTS.md](./IMAGE-PROMPTS.md). Original JPGs are kept locally in `source-images/` (git-ignored).
-
-## Still to do
-
-- Real phone number and email in `site.config.ts` (phone is hidden on the site until set).
-- Written page content: pages currently use the boilerplate wording with St George's data filled in. They have not been rewritten to the depth of the Indianapolis site or run through the quality gate.
-- Replace a few Albuquerque-style images (neighbourhood header, contact header, new-construction header, About driveway shot, homepage hero) with St George red-rock scenes.
-- Add images for the whole-home-filtration page header and the About "Who Uses Our Services" banner.
-- Verify search volume (`searchVol` is 0) and the population and ZIP figures against a source.
-- Deploy to Vercel, connect the domain, add Search Console and submit citations (PROVISION.md Steps 7 to 10).
+Full recipe: `Local-SEO-Toolkit/workflows/new-site-playbook.md`.

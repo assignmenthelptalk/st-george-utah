@@ -1,18 +1,26 @@
 ---
 /**
- * LocalSchema — emits LocalBusiness JSON-LD for the water treatment
- * service area. Reads exclusively from src/lib/site.ts (site.config.ts),
- * so it is identical for every page and automatically correct once a
- * city is provisioned.
+ * LocalSchema: emits the business JSON-LD (schema.org HomeAndConstructionBusiness, a LocalBusiness type)
+ * on every page from Layout. Reads only src/lib/site.ts (site.config.ts) and src/data/map-points.json,
+ * so it is identical for every page and correct once a city is provisioned.
+ *
+ * Nothing unconfirmed is published: a placeholder phone ("PHONE_NUMBER" or a number such as
+ * (830) 000-0000), a placeholder email, an empty address and unknown hours are all left out.
+ * `geo` is the city centre from map-points.json (OpenStreetMap), which is the right point for a
+ * service-area business. Add openingHoursSpecification only when the business confirms real hours.
  */
 import { site } from "../lib/site";
+import mapData from "../data/map-points.json";
+
+const isPlaceholderPhone = (p: string) => !p || p === "PHONE_NUMBER" || /000-0000/.test(p);
+const center = (mapData as { center: { lat: number; lng: number } | null }).center;
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "HomeAndConstructionBusiness",
   name: site.businessName,
   url: site.siteUrl,
-  telephone: site.phoneNumber !== "PHONE_NUMBER" ? site.phoneNumber : undefined,
+  telephone: isPlaceholderPhone(site.phoneNumber) ? undefined : site.phoneNumber,
   email: site.businessEmail !== "BUSINESS_EMAIL" ? site.businessEmail : undefined,
   address: {
     "@type": "PostalAddress",
@@ -21,19 +29,15 @@ const localBusinessSchema = {
     addressRegion: site.stateAbbr,
     addressCountry: "US",
   },
+  geo: center ? { "@type": "GeoCoordinates", latitude: center.lat, longitude: center.lng } : undefined,
   areaServed: [site.city, ...site.neighbourhoods].map((name) => ({
     "@type": "City",
     name,
   })),
   serviceType: "Water Softener Installation & Water Treatment",
-  // Placeholder until the rented business confirms real hours in Keystatic.
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    opens: "08:00",
-    closes: "17:00",
-  },
-  sameAs: site.googleBusinessUrl ? [site.googleBusinessUrl] : undefined,
+  sameAs: [site.googleBusinessUrl, ...Object.values(site.socialLinks ?? {})].filter(Boolean).length
+    ? [site.googleBusinessUrl, ...Object.values(site.socialLinks ?? {})].filter(Boolean)
+    : undefined,
 };
 ---
 

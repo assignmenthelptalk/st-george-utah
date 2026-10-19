@@ -7,4 +7,7 @@ dist/
 !.env.example
 .DS_Store
 npm-debug.log*
-source-images/
+
+# raw generated photos and untouched originals (kept locally, not published)
+brand_assets/unbranded-images/
+brand_assets/gemini-originals/

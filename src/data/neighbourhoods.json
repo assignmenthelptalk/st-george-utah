@@ -1,0 +1,44 @@
+{
+  "hardness": {
+    "value": "13 to 24",
+    "unit": "GPG",
+    "label": "Very Hard",
+    "short": "13 to 24 GPG (City softener range)",
+    "intro": "The City of St. George's water quality reports advise softener settings of 13 to 24 GPG for its blend of Virgin River surface water and groundwater. Click a community to see what that means for your home. [VERIFY: softener-setting range, not a measured hardness]",
+    "reportNote": "The City's 2023 and 2024 reports advise softener settings of 13 to 24 GPG (about 222 to 410 mg/L) and say most Southern Utah sources are hard, which puts the water above the 10.5 GPG Very Hard line on the Water Quality Association scale. The reports give no single measured hardness, so confirm it with a tap test. [VERIFY: softener-setting range]",
+    "footnote": "This is the City's recommended softener-setting range, not a reading at your tap. The supply is a mixture of surface water and groundwater for part of the year, so the number changes with the season; a free water test shows your own. [VERIFY: confirm against the City's current report]"
+  },
+  "issues": [
+    "White scale on faucets and showerheads",
+    "Spotting and film on glassware and dishes",
+    "Scale buildup in water heaters and appliances",
+    "Soap scum, dry skin and stiff laundry"
+  ],
+  "neighbourhoods": [
+    {
+      "name": "St George",
+      "lat": 37.1098772,
+      "lng": -113.5832063
+    },
+    {
+      "name": "Bloomington",
+      "lat": 37.046649,
+      "lng": -113.6060732
+    },
+    {
+      "name": "Green Valley",
+      "lat": 37.0946206,
+      "lng": -113.6185066
+    },
+    {
+      "name": "Sun River",
+      "lat": 37.0267803,
+      "lng": -113.6173795
+    },
+    {
+      "name": "Little Valley",
+      "lat": 37.0631574,
+      "lng": -113.5371393
+    }
+  ]
+}
