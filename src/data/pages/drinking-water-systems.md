@@ -11,7 +11,7 @@ openingHtml: "Drinking water system installation in St George, UT puts a dedicat
 formHeading: ""
 formIntro: ""
 leadImage: {"file":"drinking-water-systems-st-george-ut.webp","alt":"Drinking water systems St George UT under-sink drinking water filter"}
-images: [{"file":"drinking-water-systems-st-george-ut.webp","alt":"Drinking water systems St George UT under-sink drinking water filter","exists":true},{"file":"card-under-sink-drinking-water-systems-st-george-ut.webp","alt":"Under Sink Drinking Water Systems St George UT","exists":false},{"file":"card-countertop-purification-units-st-george-ut.webp","alt":"Countertop Purification Units St George UT","exists":false},{"file":"card-alkaline-water-systems-st-george-ut.webp","alt":"Alkaline Water Systems St George UT","exists":false}]
+images: [{"file":"drinking-water-systems-st-george-ut.webp","alt":"Drinking water systems St George UT under-sink drinking water filter","exists":true},{"file":"card-under-sink-drinking-water-systems-st-george-ut.webp","alt":"Under Sink Drinking Water Systems St George UT","exists":true},{"file":"card-countertop-purification-units-st-george-ut.webp","alt":"Countertop Purification Units St George UT","exists":true},{"file":"card-alkaline-water-systems-st-george-ut.webp","alt":"Alkaline Water Systems St George UT","exists":true}]
 faq: [{"q":"Is a drinking water system worth it with city water?","a":"It improves taste and lowers what your test finds. The choice is about taste and preference."},{"q":"Under-sink or countertop?","a":"Under-sink is out of sight and delivers on demand. Countertop needs no plumbing and is easy to move."},{"q":"How often do filters need replacing?","a":"On the maker's schedule, which depends on the system and your water use. The technician sets it at installation."},{"q":"Does a drinking water system soften water?","a":"No. Softening needs a water softener. The two work together. St George Prime Water Softener UT provides drinking water system installation for homes and businesses across St George and Washington County."}]
 markerCount: 2
 ---
@@ -25,7 +25,10 @@ Three drinking water systems cover most homes: under sink systems, countertop pu
 <div class="svc-card">
 
 
-![Under Sink Drinking Water Systems St George UT](/placeholders/card.svg)
+
+![Under Sink Drinking Water Systems St George UT](../../assets/images/card-under-sink-drinking-water-systems-st-george-ut.webp)
+
+
 
 ### Under Sink Drinking Water Systems
 
@@ -36,7 +39,10 @@ An under-sink drinking water system filters the water at one kitchen tap, from a
 <div class="svc-card">
 
 
-![Countertop Purification Units St George UT](/placeholders/card.svg)
+
+![Countertop Purification Units St George UT](../../assets/images/card-countertop-purification-units-st-george-ut.webp)
+
+
 
 ### Countertop Purification Units
 
@@ -47,7 +53,10 @@ A countertop purification unit sits beside the sink and connects to the faucet o
 <div class="svc-card">
 
 
-![Alkaline Water Systems St George UT](/placeholders/card.svg)
+
+![Alkaline Water Systems St George UT](../../assets/images/card-alkaline-water-systems-st-george-ut.webp)
+
+
 
 ### Alkaline Water Systems
 

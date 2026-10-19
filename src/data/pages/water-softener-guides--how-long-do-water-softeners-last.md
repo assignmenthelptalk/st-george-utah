@@ -10,8 +10,8 @@ crumb: "How Long Does a Water Softener Last"
 openingHtml: "A water softener commonly lasts 10 to 15 years <mark class=\"data-gap\">[VERIFY: cite a manufacturer or industry source]</mark>, and the figure shortens in very hard water where the resin and valve work harder. The City of St. George advises softener settings of 13 to 24 GPG, which is Very Hard above 10.5 GPG. St George Prime Water Softener explains what wears out and when replacement beats repair. Request a free estimate for an inspection."
 formHeading: ""
 formIntro: ""
-leadImage: null
-images: [{"file":"how-long-do-water-softeners-last-st-george-ut.webp","alt":"How long do water softeners last St George UT worn control head and tank","exists":false}]
+leadImage: {"file":"how-long-do-water-softeners-last-st-george-ut.webp","alt":"How long do water softeners last St George UT worn control head and tank"}
+images: [{"file":"how-long-do-water-softeners-last-st-george-ut.webp","alt":"How long do water softeners last St George UT worn control head and tank","exists":true}]
 faq: [{"q":"How do I know my softener is near the end of its life?","a":"Hard water returns after a repair, salt use rises sharply, the tank leaks or the unit is past about 10 to 15 years ."},{"q":"Can I extend the life of my softener?","a":"Yes. Monthly salt checks, brine tank cleaning, resin cleaning and a yearly inspection all help."},{"q":"Is it worth repairing an old softener?","a":"For one failed part on a young unit, yes. For repeated failures on an old unit, replacement costs less over time."},{"q":"Does well water shorten softener life?","a":"It can, because iron and sediment foul resin. A pre-filter protects it. St George Prime Water Softener UT provides water softener replacement for homes and businesses across St George and Washington County."}]
 markerCount: 2
 ---

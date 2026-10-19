@@ -11,7 +11,7 @@ openingHtml: "Reverse osmosis system installation in St George, UT adds a membra
 formHeading: ""
 formIntro: ""
 leadImage: {"file":"reverse-osmosis-installation-st-george-ut.webp","alt":"Reverse osmosis installation St George UT under-sink RO system"}
-images: [{"file":"reverse-osmosis-installation-st-george-ut.webp","alt":"Reverse osmosis installation St George UT under-sink RO system","exists":true},{"file":"card-how-reverse-osmosis-systems-work-st-george-ut.webp","alt":"How Reverse Osmosis Systems Work St George UT","exists":false},{"file":"card-under-sink-ro-installation-st-george-ut.webp","alt":"Under Sink RO Installation St George UT","exists":false},{"file":"card-whole-house-ro-systems-st-george-ut.webp","alt":"Whole House RO Systems St George UT","exists":false},{"file":"card-ro-membrane-replacement-st-george-ut.webp","alt":"RO Membrane Replacement St George UT","exists":false},{"file":"card-ro-and-water-softener-combination-st-george-ut.webp","alt":"RO and Water Softener Combination St George UT","exists":false}]
+images: [{"file":"reverse-osmosis-installation-st-george-ut.webp","alt":"Reverse osmosis installation St George UT under-sink RO system","exists":true},{"file":"card-how-reverse-osmosis-systems-work-st-george-ut.webp","alt":"How Reverse Osmosis Systems Work St George UT","exists":true},{"file":"card-under-sink-ro-installation-st-george-ut.webp","alt":"Under Sink RO Installation St George UT","exists":true},{"file":"card-whole-house-ro-systems-st-george-ut.webp","alt":"Whole House RO Systems St George UT","exists":true},{"file":"card-ro-membrane-replacement-st-george-ut.webp","alt":"RO Membrane Replacement St George UT","exists":true},{"file":"card-ro-and-water-softener-combination-st-george-ut.webp","alt":"RO and Water Softener Combination St George UT","exists":true}]
 faq: [{"q":"Does reverse osmosis remove hardness?","a":"It reduces dissolved minerals at the tap, but hard water scales the membrane, so a softener upstream protects it."},{"q":"Does RO waste water?","a":"Yes. RO sends rejected water to the drain. The ratio depends on the system, and the technician states it for the model."},{"q":"How often do I replace RO filters?","a":"Pre-filters are replaced more often than the membrane. The technician sets a schedule at installation."},{"q":"Is RO water safe to drink?","a":"Yes, when the system is maintained. Some people add minerals back with a remineralizing stage for taste. St George Prime Water Softener UT provides reverse osmosis system installation for homes and businesses across St George and Washington County."}]
 markerCount: 3
 ---
@@ -25,7 +25,10 @@ Reverse osmosis installation covers five topics: how RO systems work, under sink
 <div class="svc-card">
 
 
-![How Reverse Osmosis Systems Work St George UT](/placeholders/card.svg)
+
+![How Reverse Osmosis Systems Work St George UT](../../assets/images/card-how-reverse-osmosis-systems-work-st-george-ut.webp)
+
+
 
 ### How Reverse Osmosis Systems Work
 
@@ -36,7 +39,10 @@ A reverse osmosis system pushes water through a fine semi-permeable membrane tha
 <div class="svc-card">
 
 
-![Under Sink RO Installation St George UT](/placeholders/card.svg)
+
+![Under Sink RO Installation St George UT](../../assets/images/card-under-sink-ro-installation-st-george-ut.webp)
+
+
 
 ### Under Sink RO Installation
 
@@ -47,7 +53,10 @@ An under-sink RO unit mounts in the kitchen cabinet and supplies one tap for dri
 <div class="svc-card">
 
 
-![Whole House RO Systems St George UT](/placeholders/card.svg)
+
+![Whole House RO Systems St George UT](../../assets/images/card-whole-house-ro-systems-st-george-ut.webp)
+
+
 
 ### Whole House RO Systems
 
@@ -58,7 +67,10 @@ A whole-house RO system treats all the water entering the home. It needs a large
 <div class="svc-card">
 
 
-![RO Membrane Replacement St George UT](/placeholders/card.svg)
+
+![RO Membrane Replacement St George UT](../../assets/images/card-ro-membrane-replacement-st-george-ut.webp)
+
+
 
 ### RO Membrane Replacement
 
@@ -69,7 +81,10 @@ The RO membrane and pre-filters wear out and are replaced on a schedule that dep
 <div class="svc-card">
 
 
-![RO and Water Softener Combination St George UT](/placeholders/card.svg)
+
+![RO and Water Softener Combination St George UT](../../assets/images/card-ro-and-water-softener-combination-st-george-ut.webp)
+
+
 
 ### RO and Water Softener Combination
 

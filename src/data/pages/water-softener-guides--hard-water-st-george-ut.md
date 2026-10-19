@@ -10,8 +10,8 @@ crumb: "Hard Water"
 openingHtml: "Hard water in St George, UT calls for softener settings of 13 to 24 GPG (about 222 to 410 mg/L) in the City of St. George's own water quality reports, which the Water Quality Association classes as Very Hard above 10.5 GPG. The water is Virgin River surface water blended with City groundwater. <mark class=\"data-gap\">[VERIFY: the City's reports give a softener-setting range, not a measured hardness]</mark> St George Prime Water Softener explains what the figures mean and what to do about them. Request a free estimate for a test at your tap."
 formHeading: ""
 formIntro: ""
-leadImage: null
-images: [{"file":"hard-water-st-george-ut.webp","alt":"Hard water St George UT scale buildup on a showerhead","exists":false},{"file":"card-what-is-hard-water-st-george-ut.webp","alt":"What Is Hard Water? St George UT","exists":false},{"file":"card-why-is-st-george-water-hard-st-george-ut.webp","alt":"Why Is St George Water Hard? St George UT","exists":false},{"file":"card-how-hard-is-st-george-water-st-george-ut.webp","alt":"How Hard Is St George Water? St George UT","exists":false}]
+leadImage: {"file":"hard-water-st-george-ut.webp","alt":"Hard water St George UT scale buildup on a showerhead"}
+images: [{"file":"hard-water-st-george-ut.webp","alt":"Hard water St George UT scale buildup on a showerhead","exists":true},{"file":"card-what-is-hard-water-st-george-ut.webp","alt":"What Is Hard Water? St George UT","exists":true},{"file":"card-why-is-st-george-water-hard-st-george-ut.webp","alt":"Why Is St George Water Hard? St George UT","exists":true},{"file":"card-how-hard-is-st-george-water-st-george-ut.webp","alt":"How Hard Is St George Water? St George UT","exists":true}]
 faq: [{"q":"Is St George water hard?","a":"Yes. The City of St. George advises softener settings of 13 to 24 GPG, which is Very Hard on the WQA scale above 10.5 GPG, so scale builds quickly in water heaters and on fixtures."},{"q":"Is hard water bad for your health?","a":"Hard water is not a health risk in the amounts found in St George. It affects plumbing, appliances, skin and laundry rather than drinking safety."},{"q":"Why is my neighbor's water harder than mine?","a":"The City's supply is a mixture of Virgin River surface water and groundwater for part of the year, and the pipes in your home change what reaches the tap. A test shows your reading."},{"q":"Does boiling remove water hardness?","a":"Boiling precipitates some of the temporary hardness as scale, and it does not make hard water soft. A softener removes the minerals before they reach the pipes. St George Prime Water Softener UT provides water softener installation for homes and businesses across St George and Washington County."}]
 markerCount: 2
 ---
@@ -25,7 +25,10 @@ Three questions cover the basics: what hard water is, why St George water is har
 <div class="svc-card">
 
 
-![What Is Hard Water? St George UT](/placeholders/card.svg)
+
+![What Is Hard Water? St George UT](../../assets/images/card-what-is-hard-water-st-george-ut.webp)
+
+
 
 ### What Is Hard Water?
 
@@ -36,7 +39,10 @@ Hard water contains dissolved calcium and magnesium. It is measured in milligram
 <div class="svc-card">
 
 
-![Why Is St George Water Hard? St George UT](/placeholders/card.svg)
+
+![Why Is St George Water Hard? St George UT](../../assets/images/card-why-is-st-george-water-hard-st-george-ut.webp)
+
+
 
 ### Why Is St George Water Hard?
 
@@ -47,7 +53,10 @@ St George water is hard because both of its sources pick up minerals. The Virgin
 <div class="svc-card">
 
 
-![How Hard Is St George Water? St George UT](/placeholders/card.svg)
+
+![How Hard Is St George Water? St George UT](../../assets/images/card-how-hard-is-st-george-water-st-george-ut.webp)
+
+
 
 ### How Hard Is St George Water?
 

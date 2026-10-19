@@ -11,7 +11,7 @@ openingHtml: "Seven signs show that a water softener is failing in St George, UT
 formHeading: ""
 formIntro: ""
 leadImage: null
-images: [{"file":"signs-you-need-a-new-water-softener-st-george-ut.webp","alt":"Signs you need a new water softener St George UT scale on a faucet","exists":false},{"file":"card-hard-water-symptoms-return-st-george-ut.webp","alt":"Hard-Water Symptoms Return St George UT","exists":false},{"file":"card-salt-use-rises-sharply-st-george-ut.webp","alt":"Salt Use Rises Sharply St George UT","exists":false},{"file":"card-salt-bridges-or-mush-keep-returning-st-george-ut.webp","alt":"Salt Bridges or Mush Keep Returning St George UT","exists":false},{"file":"card-leaks-from-the-tank-head-or-drain-st-george-ut.webp","alt":"Leaks From the Tank, Head or Drain St George UT","exists":false},{"file":"card-error-codes-or-no-cycling-st-george-ut.webp","alt":"Error Codes or No Cycling St George UT","exists":false},{"file":"card-resin-beads-in-faucets-or-sinks-st-george-ut.webp","alt":"Resin Beads in Faucets or Sinks St George UT","exists":false}]
+images: [{"file":"signs-you-need-a-new-water-softener-st-george-ut.webp","alt":"Signs you need a new water softener St George UT scale on a faucet","exists":false},{"file":"card-hard-water-symptoms-return-st-george-ut.webp","alt":"Hard-Water Symptoms Return St George UT","exists":true},{"file":"card-salt-use-rises-sharply-st-george-ut.webp","alt":"Salt Use Rises Sharply St George UT","exists":true},{"file":"card-salt-bridges-or-mush-keep-returning-st-george-ut.webp","alt":"Salt Bridges or Mush Keep Returning St George UT","exists":true},{"file":"card-leaks-from-the-tank-head-or-drain-st-george-ut.webp","alt":"Leaks From the Tank, Head or Drain St George UT","exists":true},{"file":"card-error-codes-or-no-cycling-st-george-ut.webp","alt":"Error Codes or No Cycling St George UT","exists":true},{"file":"card-resin-beads-in-faucets-or-sinks-st-george-ut.webp","alt":"Resin Beads in Faucets or Sinks St George UT","exists":true}]
 faq: [{"q":"How do I test if my softener is working?","a":"Test the softened water for hardness. A reading near zero means it works, and a reading above 1 gpg means it needs service ."},{"q":"Why is my softened water still hard?","a":"Failed resin, a clogged injector, a stuck valve or a missed regeneration can all leave hard water. A technician finds which."},{"q":"Can resin be replaced without replacing the whole unit?","a":"Yes. A resin bed replacement keeps the tank and head when they are sound."},{"q":"What does a replacement cost?","a":"The estimate is free and itemized. St George Prime Water Softener UT provides water softener replacement for homes and businesses across St George and Washington County."}]
 markerCount: 5
 ---
@@ -25,7 +25,10 @@ Seven signs show a softener is failing, and the first six are listed below.
 <div class="svc-card">
 
 
-![Hard-Water Symptoms Return St George UT](/placeholders/card.svg)
+
+![Hard-Water Symptoms Return St George UT](../../assets/images/card-hard-water-symptoms-return-st-george-ut.webp)
+
+
 
 ### 1. Hard-Water Symptoms Return
 
@@ -36,7 +39,10 @@ White crust on faucets, spotted glass and stiff laundry mean the unit is not sof
 <div class="svc-card">
 
 
-![Salt Use Rises Sharply St George UT](/placeholders/card.svg)
+
+![Salt Use Rises Sharply St George UT](../../assets/images/card-salt-use-rises-sharply-st-george-ut.webp)
+
+
 
 ### 2. Salt Use Rises Sharply
 
@@ -47,7 +53,10 @@ A unit that suddenly burns through salt may have a stuck valve, a wrong setting 
 <div class="svc-card">
 
 
-![Salt Bridges or Mush Keep Returning St George UT](/placeholders/card.svg)
+
+![Salt Bridges or Mush Keep Returning St George UT](../../assets/images/card-salt-bridges-or-mush-keep-returning-st-george-ut.webp)
+
+
 
 ### 3. Salt Bridges or Mush Keep Returning
 
@@ -58,7 +67,10 @@ A hard crust or sludge in the brine tank blocks brine from reaching the resin. C
 <div class="svc-card">
 
 
-![Leaks From the Tank, Head or Drain St George UT](/placeholders/card.svg)
+
+![Leaks From the Tank, Head or Drain St George UT](../../assets/images/card-leaks-from-the-tank-head-or-drain-st-george-ut.webp)
+
+
 
 ### 4. Leaks From the Tank, Head or Drain
 
@@ -69,7 +81,10 @@ Leaks from fittings or seals are repairable. A leak from the tank itself means r
 <div class="svc-card">
 
 
-![Error Codes or No Cycling St George UT](/placeholders/card.svg)
+
+![Error Codes or No Cycling St George UT](../../assets/images/card-error-codes-or-no-cycling-st-george-ut.webp)
+
+
 
 ### 5. Error Codes or No Cycling
 
@@ -80,7 +95,10 @@ A control head that shows error codes or never starts a cycle has a failed motor
 <div class="svc-card">
 
 
-![Resin Beads in Faucets or Sinks St George UT](/placeholders/card.svg)
+
+![Resin Beads in Faucets or Sinks St George UT](../../assets/images/card-resin-beads-in-faucets-or-sinks-st-george-ut.webp)
+
+
 
 ### 6. Resin Beads in Faucets or Sinks
 
