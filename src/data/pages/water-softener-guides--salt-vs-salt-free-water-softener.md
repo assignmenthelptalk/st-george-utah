@@ -10,8 +10,8 @@ crumb: "Salt-Based vs Salt-Free Water Softener"
 openingHtml: "A salt-based softener removes the calcium and magnesium that make St George water hard, while a salt-free conditioner changes how scale forms and leaves those minerals in the water. The City of St. George advises softener settings of 13 to 24 GPG, which is Very Hard. St George Prime Water Softener installs both. Request a free estimate and a technician will recommend one for your water."
 formHeading: ""
 formIntro: ""
-leadImage: null
-images: [{"file":"salt-vs-salt-free-water-softener-st-george-ut.webp","alt":"Salt vs salt-free water softener St George UT side by side","exists":false}]
+leadImage: {"file":"salt-vs-salt-free-water-softener-st-george-ut.webp","alt":"Salt vs salt-free water softener St George UT side by side"}
+images: [{"file":"salt-vs-salt-free-water-softener-st-george-ut.webp","alt":"Salt vs salt-free water softener St George UT side by side","exists":true}]
 faq: [{"q":"Does a salt-free softener really soften water?","a":"No. It conditions water so scale forms less, but the hardness minerals stay in it. A salt-based softener removes them."},{"q":"Is softened water safe to drink?","a":"Softened water adds a small amount of sodium or potassium in proportion to the hardness removed. People on sodium-restricted diets should ask their doctor and can keep a drinking tap on unsoftened water."},{"q":"Can I switch from salt-based to salt-free later?","a":"Yes. The technician replaces the unit and updates the plumbing, and your hardness reading decides whether the conditioner will be enough."},{"q":"Which lasts longer?","a":"Both commonly last 10 to 15 years with care . Salt-based units need resin replacement over time, and conditioners have media that wears. St George Prime Water Softener UT provides salt-free water softener systems for homes and businesses across St George and Washington County."}]
 markerCount: 4
 ---

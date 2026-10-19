@@ -10,8 +10,8 @@ crumb: "Commercial Water Softener Installation"
 openingHtml: "A commercial water softener in St George, UT protects a business's boilers, dishwashers, ice machines and plumbing from the scale that hard water leaves behind. <a href=\"/\">St George Prime Water Softener</a> sizes, installs and services commercial systems from peak flow rate, not household size, on water that calls for softener settings of 13 to 24 GPG. Request a free commercial estimate and a technician will review your equipment and water use."
 formHeading: ""
 formIntro: ""
-leadImage: null
-images: [{"file":"commercial-water-softener-st-george-ut.webp","alt":"Commercial water softener St George UT large softener in a plant room","exists":false}]
+leadImage: {"file":"commercial-water-softener-st-george-ut.webp","alt":"Commercial water softener St George UT large softener in a plant room"}
+images: [{"file":"commercial-water-softener-st-george-ut.webp","alt":"Commercial water softener St George UT large softener in a plant room","exists":true}]
 faq: [{"q":"How do you size a commercial water softener?","a":"The technician sizes it from peak flow rate and daily water use, plus the hardness of your water. Household size does not apply."},{"q":"Can installation happen without shutting down my business?","a":"Most installs need a short water shutoff. The technician schedules around your busiest hours to limit downtime."},{"q":"What equipment does a commercial softener protect?","a":"It protects boilers, water heaters, dishwashers, ice machines, steamers and plumbing from scale buildup."},{"q":"Do you offer service contracts?","a":"The proposal states what is included."},{"q":"Does a commercial system need filtration too?","a":"Often yes. Sediment and chlorine can harm resin and equipment, and a test shows what your water carries. St George Prime Water Softener UT provides commercial water softener installation for homes and businesses across St George and Washington County."}]
 markerCount: 4
 ---

@@ -10,8 +10,8 @@ crumb: "Water Softener Cost"
 openingHtml: "Water softener cost in St George, UT depends on system type, grain capacity, plumbing changes and installation, and capacity follows the hardness of your water. The City of St. George advises softener settings of 13 to 24 GPG, so most homes need a larger unit than a household on moderately hard water. <mark class=\"data-gap\">[NEEDS DATA: installed price ranges for St George, from the tenant or a sourced Utah report; none is invented here.]</mark> Request a free estimate for an itemized price."
 formHeading: ""
 formIntro: ""
-leadImage: null
-images: [{"file":"water-softener-cost-st-george-ut.webp","alt":"Water softener cost St George UT clipboard with an itemized estimate form on a water softener brine tank lid","exists":false}]
+leadImage: {"file":"water-softener-cost-st-george-ut.webp","alt":"Water softener cost St George UT clipboard with an itemized estimate form on a water softener brine tank lid"}
+images: [{"file":"water-softener-cost-st-george-ut.webp","alt":"Water softener cost St George UT clipboard with an itemized estimate form on a water softener brine tank lid","exists":true}]
 faq: [{"q":"How much does a water softener cost in St George?","a":"The factors above decide where your home falls, and a free estimate gives the exact figure."},{"q":"Is installation included in the price?","a":"Ask whether the quote includes installation, the bypass valve and the drain connection. The itemized estimate lists each."},{"q":"What are the running costs?","a":"Salt, water for regeneration and a yearly service visit."},{"q":"Can I pay less by sizing down?","a":"An undersized unit regenerates too often and lets hard water through at peak use, so it costs more over time. The sizing guide shows the formula. St George Prime Water Softener UT provides water softener installation for homes and businesses across St George and Washington County."}]
 markerCount: 4
 ---

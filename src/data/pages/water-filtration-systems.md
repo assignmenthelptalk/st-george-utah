@@ -11,7 +11,7 @@ openingHtml: "Water filtration system installation in St George, UT adds filters
 formHeading: ""
 formIntro: ""
 leadImage: {"file":"water-filtration-systems-st-george-ut.webp","alt":"Water filtration systems St George UT whole-house filter on a main line"}
-images: [{"file":"water-filtration-systems-st-george-ut.webp","alt":"Water filtration systems St George UT whole-house filter on a main line","exists":true},{"file":"card-whole-house-water-filter-st-george-ut.webp","alt":"Whole House Water Filter St George UT","exists":false},{"file":"card-under-sink-water-filter-st-george-ut.webp","alt":"Under Sink Water Filter St George UT","exists":false},{"file":"card-sediment-filter-installation-st-george-ut.webp","alt":"Sediment Filter Installation St George UT","exists":false},{"file":"card-carbon-block-filter-st-george-ut.webp","alt":"Carbon Block Filter St George UT","exists":false},{"file":"card-shower-filter-installation-st-george-ut.webp","alt":"Shower Filter Installation St George UT","exists":false},{"file":"card-refrigerator-filter-replacement-st-george-ut.webp","alt":"Refrigerator Filter Replacement St George UT","exists":false}]
+images: [{"file":"water-filtration-systems-st-george-ut.webp","alt":"Water filtration systems St George UT whole-house filter on a main line","exists":true},{"file":"card-whole-house-water-filter-st-george-ut.webp","alt":"Whole House Water Filter St George UT","exists":true},{"file":"card-under-sink-water-filter-st-george-ut.webp","alt":"Under Sink Water Filter St George UT","exists":false},{"file":"card-sediment-filter-installation-st-george-ut.webp","alt":"Sediment Filter Installation St George UT","exists":false},{"file":"card-carbon-block-filter-st-george-ut.webp","alt":"Carbon Block Filter St George UT","exists":false},{"file":"card-shower-filter-installation-st-george-ut.webp","alt":"Shower Filter Installation St George UT","exists":false},{"file":"card-refrigerator-filter-replacement-st-george-ut.webp","alt":"Refrigerator Filter Replacement St George UT","exists":false}]
 faq: [{"q":"Do I need a filter if I have a water softener?","a":"Often yes. A softener removes hardness, and a filter removes sediment, chlorine taste and odor. They solve different problems."},{"q":"How often do I replace filter cartridges?","a":"It depends on the filter and your water use. The technician sets a schedule at installation, following the maker's rating."},{"q":"What does a whole-house filter remove?","a":"It removes particles and reduces chlorine taste and odor. For specific contaminants, a certified filter chosen from your test is needed."},{"q":"What does filtration cost in St George?","a":"The estimate is free and itemized. St George Prime Water Softener UT provides water filtration system installation for homes and businesses across St George and Washington County."}]
 markerCount: 1
 ---
@@ -25,7 +25,10 @@ Seven filtration options cover the whole house, the sink, the shower and the ref
 <div class="svc-card">
 
 
-![Whole House Water Filter St George UT](/placeholders/card.svg)
+
+![Whole House Water Filter St George UT](../../assets/images/card-whole-house-water-filter-st-george-ut.webp)
+
+
 
 ### Whole House Water Filter
 
