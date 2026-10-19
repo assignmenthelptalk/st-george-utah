@@ -11,7 +11,7 @@ openingHtml: "Water treatment services in St George, UT begin with a water test,
 formHeading: ""
 formIntro: ""
 leadImage: {"file":"water-treatment-st-george-ut.webp","alt":"Water treatment St George UT filtration and testing equipment"}
-images: [{"file":"water-treatment-st-george-ut.webp","alt":"Water treatment St George UT filtration and testing equipment","exists":true},{"file":"card-why-test-before-you-treat-st-george-ut.webp","alt":"Why Test Before You Treat? St George UT","exists":false},{"file":"card-water-quality-testing-st-george-ut.webp","alt":"Water Quality Testing St George UT","exists":true},{"file":"card-water-filtration-system-installation-st-george-ut.webp","alt":"Water Filtration System Installation St George UT","exists":false},{"file":"card-well-water-softener-and-treatment-st-george-ut.webp","alt":"Well Water Softener and Treatment St George UT","exists":false},{"file":"card-water-contaminant-removal-st-george-ut.webp","alt":"Water Contaminant Removal St George UT","exists":false},{"file":"card-reverse-osmosis-system-installation-st-george-ut.webp","alt":"Reverse Osmosis System Installation St George UT","exists":false},{"file":"card-uv-water-purification-system-installation-st-george-ut.webp","alt":"UV Water Purification System Installation St George UT","exists":false},{"file":"card-drinking-water-system-installation-st-george-ut.webp","alt":"Drinking Water System Installation St George UT","exists":false}]
+images: [{"file":"water-treatment-st-george-ut.webp","alt":"Water treatment St George UT filtration and testing equipment","exists":true},{"file":"card-why-test-before-you-treat-st-george-ut.webp","alt":"Why Test Before You Treat? St George UT","exists":true},{"file":"card-water-quality-testing-st-george-ut.webp","alt":"Water Quality Testing St George UT","exists":true},{"file":"card-water-filtration-system-installation-st-george-ut.webp","alt":"Water Filtration System Installation St George UT","exists":true},{"file":"card-well-water-softener-and-treatment-st-george-ut.webp","alt":"Well Water Softener and Treatment St George UT","exists":true},{"file":"card-water-contaminant-removal-st-george-ut.webp","alt":"Water Contaminant Removal St George UT","exists":true},{"file":"card-reverse-osmosis-system-installation-st-george-ut.webp","alt":"Reverse Osmosis System Installation St George UT","exists":true},{"file":"card-uv-water-purification-system-installation-st-george-ut.webp","alt":"UV Water Purification System Installation St George UT","exists":true},{"file":"card-drinking-water-system-installation-st-george-ut.webp","alt":"Drinking Water System Installation St George UT","exists":true}]
 faq: [{"q":"Do I need a water test before installing a softener?","a":"Yes. A test gives your hardness in grains per gallon and flags iron or sulfur, so the technician sizes the softener correctly and adds filters where needed."},{"q":"Does a water softener make water safe to drink?","a":"A softener removes hardness minerals and does not treat bacteria or most contaminants. A filter, reverse osmosis or UV system handles those, based on your test."},{"q":"Is St George tap water safe to drink?","a":"The City of St. George publishes its results in an annual drinking water quality report. A home test shows what reaches your tap after your own plumbing."},{"q":"What is the difference between filtration and softening?","a":"A filter removes particles and chemicals. A softener removes calcium and magnesium. Many homes need both. St George Prime Water Softener UT provides water treatment services for homes and businesses across St George and Washington County."}]
 markerCount: 1
 ---
@@ -25,7 +25,10 @@ Water treatment starts with testing and covers filtration, well water treatment,
 <div class="svc-card">
 
 
-![Why Test Before You Treat? St George UT](/placeholders/card.svg)
+
+![Why Test Before You Treat? St George UT](../../assets/images/card-why-test-before-you-treat-st-george-ut.webp)
+
+
 
 ### Why Test Before You Treat?
 
@@ -50,7 +53,10 @@ A free water test reads hardness, and a fuller test adds total dissolved solids,
 <div class="svc-card">
 
 
-![Water Filtration System Installation St George UT](/placeholders/card.svg)
+
+![Water Filtration System Installation St George UT](../../assets/images/card-water-filtration-system-installation-st-george-ut.webp)
+
+
 
 ### Water Filtration System Installation
 
@@ -61,7 +67,10 @@ A whole-house or point-of-use filter removes sediment, chlorine taste and odor. 
 <div class="svc-card">
 
 
-![Well Water Softener and Treatment St George UT](/placeholders/card.svg)
+
+![Well Water Softener and Treatment St George UT](../../assets/images/card-well-water-softener-and-treatment-st-george-ut.webp)
+
+
 
 ### Well Water Softener and Treatment
 
@@ -72,7 +81,10 @@ Private wells need a test for iron, sulfur and bacteria before a softener goes i
 <div class="svc-card">
 
 
-![Water Contaminant Removal St George UT](/placeholders/card.svg)
+
+![Water Contaminant Removal St George UT](../../assets/images/card-water-contaminant-removal-st-george-ut.webp)
+
+
 
 ### Water Contaminant Removal
 
@@ -83,7 +95,10 @@ Targeted filters reduce specific contaminants such as lead, chloramine, fluoride
 <div class="svc-card">
 
 
-![Reverse Osmosis System Installation St George UT](/placeholders/card.svg)
+
+![Reverse Osmosis System Installation St George UT](../../assets/images/card-reverse-osmosis-system-installation-st-george-ut.webp)
+
+
 
 ### Reverse Osmosis System Installation
 
@@ -94,7 +109,10 @@ A reverse osmosis system filters drinking and cooking water through a fine membr
 <div class="svc-card">
 
 
-![UV Water Purification System Installation St George UT](/placeholders/card.svg)
+
+![UV Water Purification System Installation St George UT](../../assets/images/card-uv-water-purification-system-installation-st-george-ut.webp)
+
+
 
 ### UV Water Purification System Installation
 
@@ -105,7 +123,10 @@ A UV unit disinfects water with ultraviolet light, which suits private wells and
 <div class="svc-card">
 
 
-![Drinking Water System Installation St George UT](/placeholders/card.svg)
+
+![Drinking Water System Installation St George UT](../../assets/images/card-drinking-water-system-installation-st-george-ut.webp)
+
+
 
 ### Drinking Water System Installation
 

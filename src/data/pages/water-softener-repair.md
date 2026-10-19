@@ -11,7 +11,7 @@ openingHtml: "Water softener repair in St George, UT finds and fixes the failed 
 formHeading: ""
 formIntro: ""
 leadImage: {"file":"water-softener-repair-st-george-ut.webp","alt":"Water softener repair St George UT control head opened for service"}
-images: [{"file":"water-softener-repair-st-george-ut.webp","alt":"Water softener repair St George UT control head opened for service","exists":true},{"file":"card-water-softener-control-valve-repair-st-george-ut.webp","alt":"Water Softener Control Valve Repair St George UT","exists":false},{"file":"card-water-softener-motor-replacement-st-george-ut.webp","alt":"Water Softener Motor Replacement St George UT","exists":false},{"file":"card-float-valve-repair-st-george-ut.webp","alt":"Float Valve Repair St George UT","exists":false},{"file":"card-injector-cleaning-st-george-ut.webp","alt":"Injector Cleaning St George UT","exists":false},{"file":"card-head-replacement-st-george-ut.webp","alt":"Head Replacement St George UT","exists":false},{"file":"card-brine-line-repair-st-george-ut.webp","alt":"Brine Line Repair St George UT","exists":false},{"file":"card-water-softener-leak-repair-st-george-ut.webp","alt":"Water Softener Leak Repair St George UT","exists":false}]
+images: [{"file":"water-softener-repair-st-george-ut.webp","alt":"Water softener repair St George UT control head opened for service","exists":true},{"file":"card-water-softener-control-valve-repair-st-george-ut.webp","alt":"Water Softener Control Valve Repair St George UT","exists":true},{"file":"card-water-softener-motor-replacement-st-george-ut.webp","alt":"Water Softener Motor Replacement St George UT","exists":true},{"file":"card-float-valve-repair-st-george-ut.webp","alt":"Float Valve Repair St George UT","exists":true},{"file":"card-injector-cleaning-st-george-ut.webp","alt":"Injector Cleaning St George UT","exists":true},{"file":"card-head-replacement-st-george-ut.webp","alt":"Head Replacement St George UT","exists":true},{"file":"card-brine-line-repair-st-george-ut.webp","alt":"Brine Line Repair St George UT","exists":true},{"file":"card-water-softener-leak-repair-st-george-ut.webp","alt":"Water Softener Leak Repair St George UT","exists":true}]
 faq: [{"q":"Why is my water still hard even though the softener has salt?","a":"Salt alone does not soften water. A clogged injector, fouled resin, a failed valve or a missed regeneration cycle can all leave hard water. St George water is very hard at 13 to 24 GPG, so the difference shows quickly."},{"q":"How do I fix a water softener that is not regenerating?","a":"Check power and the control head settings first. If the unit still does not cycle, the motor, valve or head needs repair, and a technician diagnoses which."},{"q":"What causes a salt bridge?","a":"Humidity and salt type cause a crust to form above the water in the brine tank. Breaking the crust and cleaning the tank restores brine."},{"q":"Why is my water softener leaking?","a":"Leaks come from loose fittings, worn seals, a cracked drain line or a failing tank. A technician finds the source and replaces the part."},{"q":"How much does water softener repair cost?","a":"The cost depends on the part. We give a price before work begins."},{"q":"Do you offer same-day repair in St George?","a":"Same-day service depends on technician availability . Call and we will schedule you as soon as a technician is free. St George Prime Water Softener UT provides water softener repair for homes and businesses across St George and Washington County."}]
 markerCount: 3
 ---
@@ -25,7 +25,10 @@ Seven repairs cover the common failures: control valve repair, motor [replacemen
 <div class="svc-card">
 
 
-![Water Softener Control Valve Repair St George UT](/placeholders/card.svg)
+
+![Water Softener Control Valve Repair St George UT](../../assets/images/card-water-softener-control-valve-repair-st-george-ut.webp)
+
+
 
 ### Water Softener Control Valve Repair
 
@@ -36,7 +39,10 @@ The control valve directs water through the service, backwash, brine and rinse s
 <div class="svc-card">
 
 
-![Water Softener Motor Replacement St George UT](/placeholders/card.svg)
+
+![Water Softener Motor Replacement St George UT](../../assets/images/card-water-softener-motor-replacement-st-george-ut.webp)
+
+
 
 ### Water Softener Motor Replacement
 
@@ -47,7 +53,10 @@ The motor turns the valve through its regeneration cycle. A failed motor leaves 
 <div class="svc-card">
 
 
-![Float Valve Repair St George UT](/placeholders/card.svg)
+
+![Float Valve Repair St George UT](../../assets/images/card-float-valve-repair-st-george-ut.webp)
+
+
 
 ### Float Valve Repair
 
@@ -58,7 +67,10 @@ The float valve controls the water level in the brine tank. A stuck float lets t
 <div class="svc-card">
 
 
-![Injector Cleaning St George UT](/placeholders/card.svg)
+
+![Injector Cleaning St George UT](../../assets/images/card-injector-cleaning-st-george-ut.webp)
+
+
 
 ### Injector Cleaning
 
@@ -69,7 +81,10 @@ The injector draws brine into the resin tank. Grit blocks it, and the unit then 
 <div class="svc-card">
 
 
-![Head Replacement St George UT](/placeholders/card.svg)
+
+![Head Replacement St George UT](../../assets/images/card-head-replacement-st-george-ut.webp)
+
+
 
 ### Head Replacement
 
@@ -80,7 +95,10 @@ The control head holds the timer and valve. When it fails, repair costs more tha
 <div class="svc-card">
 
 
-![Brine Line Repair St George UT](/placeholders/card.svg)
+
+![Brine Line Repair St George UT](../../assets/images/card-brine-line-repair-st-george-ut.webp)
+
+
 
 ### Brine Line Repair
 
@@ -91,7 +109,10 @@ The brine line carries salty water from the brine tank to the resin tank. A crac
 <div class="svc-card">
 
 
-![Water Softener Leak Repair St George UT](/placeholders/card.svg)
+
+![Water Softener Leak Repair St George UT](../../assets/images/card-water-softener-leak-repair-st-george-ut.webp)
+
+
 
 ### Water Softener Leak Repair
 

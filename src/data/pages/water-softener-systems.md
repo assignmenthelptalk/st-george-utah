@@ -11,7 +11,7 @@ openingHtml: "Water softener systems in St George, UT range from a single-tank s
 formHeading: ""
 formIntro: ""
 leadImage: {"file":"water-softener-systems-st-george-ut.webp","alt":"Water softener systems St George UT installed salt-based softener"}
-images: [{"file":"water-softener-systems-st-george-ut.webp","alt":"Water softener systems St George UT installed salt-based softener","exists":true},{"file":"card-why-st-george-water-needs-a-water-softener-system-st-george-ut.webp","alt":"Why St George Water Needs a Water Softener System St George UT","exists":false},{"file":"card-water-softener-installation-st-george-ut.webp","alt":"Water Softener Installation St George UT","exists":true},{"file":"card-water-softener-replacement-st-george-ut.webp","alt":"Water Softener Replacement St George UT","exists":true},{"file":"card-salt-free-water-softener-systems-st-george-ut.webp","alt":"Salt-Free Water Softener Systems St George UT","exists":true},{"file":"card-dual-tank-water-softener-installation-st-george-ut.webp","alt":"Dual Tank Water Softener Installation St George UT","exists":false},{"file":"card-commercial-water-softener-installation-st-george-ut.webp","alt":"Commercial Water Softener Installation St George UT","exists":false},{"file":"card-water-softener-maintenance-st-george-ut.webp","alt":"Water Softener Maintenance St George UT","exists":false},{"file":"card-water-softener-repair-st-george-ut.webp","alt":"Water Softener Repair St George UT","exists":false},{"file":"card-water-conditioner-installation-st-george-ut.webp","alt":"Water Conditioner Installation St George UT","exists":false}]
+images: [{"file":"water-softener-systems-st-george-ut.webp","alt":"Water softener systems St George UT installed salt-based softener","exists":true},{"file":"card-why-st-george-water-needs-a-water-softener-system-st-george-ut.webp","alt":"Why St George Water Needs a Water Softener System St George UT","exists":true},{"file":"card-water-softener-installation-st-george-ut.webp","alt":"Water Softener Installation St George UT","exists":true},{"file":"card-water-softener-replacement-st-george-ut.webp","alt":"Water Softener Replacement St George UT","exists":true},{"file":"card-salt-free-water-softener-systems-st-george-ut.webp","alt":"Salt-Free Water Softener Systems St George UT","exists":true},{"file":"card-dual-tank-water-softener-installation-st-george-ut.webp","alt":"Dual Tank Water Softener Installation St George UT","exists":true},{"file":"card-commercial-water-softener-installation-st-george-ut.webp","alt":"Commercial Water Softener Installation St George UT","exists":true},{"file":"card-water-softener-maintenance-st-george-ut.webp","alt":"Water Softener Maintenance St George UT","exists":true},{"file":"card-water-softener-repair-st-george-ut.webp","alt":"Water Softener Repair St George UT","exists":true},{"file":"card-water-conditioner-installation-st-george-ut.webp","alt":"Water Conditioner Installation St George UT","exists":true}]
 faq: [{"q":"What is the difference between a water softener and a water conditioner?","a":"A water softener removes calcium and magnesium by ion exchange, so the water is soft. A water conditioner changes how scale forms and leaves the minerals in the water."},{"q":"Do I need a softener if my St George water tests hard?","a":"If your water tests above 120 mg/L, scale builds in the plumbing and appliances, and a softener removes the cause. A free test shows your reading."},{"q":"How do I choose between salt-based and salt-free?","a":"Choose salt-based for the strongest result in very hard water. Choose salt-free if you want no salt or brine drain and accept a milder effect."},{"q":"What size softener does a St George home need?","a":"Size depends on household size, daily water use and hardness in grains per gallon. the City's softener-setting range is 13 to 24 gpg. St George Prime Water Softener UT provides water softener systems for homes and businesses across St George and Washington County."}]
 markerCount: 1
 ---
@@ -25,7 +25,10 @@ This page covers installation, replacement, salt-free systems, dual tank systems
 <div class="svc-card">
 
 
-![Why St George Water Needs a Water Softener System St George UT](/placeholders/card.svg)
+
+![Why St George Water Needs a Water Softener System St George UT](../../assets/images/card-why-st-george-water-needs-a-water-softener-system-st-george-ut.webp)
+
+
 
 ### Why St George Water Needs a Water Softener System
 
@@ -78,7 +81,10 @@ A salt-free conditioner changes how scale forms without removing the hardness mi
 <div class="svc-card">
 
 
-![Dual Tank Water Softener Installation St George UT](/placeholders/card.svg)
+
+![Dual Tank Water Softener Installation St George UT](../../assets/images/card-dual-tank-water-softener-installation-st-george-ut.webp)
+
+
 
 ### Dual Tank Water Softener Installation
 
@@ -89,7 +95,10 @@ A dual tank softener keeps soft water flowing while one tank regenerates. It sui
 <div class="svc-card">
 
 
-![Commercial Water Softener Installation St George UT](/placeholders/card.svg)
+
+![Commercial Water Softener Installation St George UT](../../assets/images/card-commercial-water-softener-installation-st-george-ut.webp)
+
+
 
 ### Commercial Water Softener Installation
 
@@ -100,7 +109,10 @@ A commercial system is sized to a building's flow rate and peak demand, not to a
 <div class="svc-card">
 
 
-![Water Softener Maintenance St George UT](/placeholders/card.svg)
+
+![Water Softener Maintenance St George UT](../../assets/images/card-water-softener-maintenance-st-george-ut.webp)
+
+
 
 ### Water Softener Maintenance
 
@@ -111,7 +123,10 @@ Maintenance keeps a softener at full capacity with salt refills, resin cleaning 
 <div class="svc-card">
 
 
-![Water Softener Repair St George UT](/placeholders/card.svg)
+
+![Water Softener Repair St George UT](../../assets/images/card-water-softener-repair-st-george-ut.webp)
+
+
 
 ### Water Softener Repair
 
@@ -122,7 +137,10 @@ Repair finds and fixes valves, motors, injectors and leaks so the unit softens a
 <div class="svc-card">
 
 
-![Water Conditioner Installation St George UT](/placeholders/card.svg)
+
+![Water Conditioner Installation St George UT](../../assets/images/card-water-conditioner-installation-st-george-ut.webp)
+
+
 
 ### Water Conditioner Installation
 

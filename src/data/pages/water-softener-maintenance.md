@@ -11,7 +11,7 @@ openingHtml: "Water softener maintenance in St George, UT keeps a softener remov
 formHeading: ""
 formIntro: ""
 leadImage: {"file":"water-softener-maintenance-st-george-ut.webp","alt":"Water softener maintenance St George UT brine tank with salt pellets"}
-images: [{"file":"water-softener-maintenance-st-george-ut.webp","alt":"Water softener maintenance St George UT brine tank with salt pellets","exists":true},{"file":"card-water-softener-resin-cleaning-service-st-george-ut.webp","alt":"Water Softener Resin Cleaning Service St George UT","exists":false},{"file":"card-water-softener-salt-refill-service-st-george-ut.webp","alt":"Water Softener Salt Refill Service St George UT","exists":false},{"file":"card-water-softener-brine-tank-cleaning-st-george-ut.webp","alt":"Water Softener Brine Tank Cleaning St George UT","exists":false},{"file":"card-annual-maintenance-plans-st-george-ut.webp","alt":"Annual Maintenance Plans St George UT","exists":false}]
+images: [{"file":"water-softener-maintenance-st-george-ut.webp","alt":"Water softener maintenance St George UT brine tank with salt pellets","exists":true},{"file":"card-water-softener-resin-cleaning-service-st-george-ut.webp","alt":"Water Softener Resin Cleaning Service St George UT","exists":true},{"file":"card-water-softener-salt-refill-service-st-george-ut.webp","alt":"Water Softener Salt Refill Service St George UT","exists":true},{"file":"card-water-softener-brine-tank-cleaning-st-george-ut.webp","alt":"Water Softener Brine Tank Cleaning St George UT","exists":true},{"file":"card-annual-maintenance-plans-st-george-ut.webp","alt":"Annual Maintenance Plans St George UT","exists":true}]
 faq: [{"q":"How often should I add salt to my water softener?","a":"Check the salt level monthly and refill it when the tank is below one third full. Households with very hard water use salt faster."},{"q":"What kind of salt should I use?","a":"Use the salt type the manufacturer lists for your unit, usually clean pellets or crystals. Rock salt can leave more residue in the tank."},{"q":"Why does my softener use so much salt?","a":"A salt bridge, a stuck valve or settings that do not match your hardness waste salt. The technician checks all three."},{"q":"Do I need a service plan?","a":"A plan suits homeowners who prefer a scheduled yearly check over remembering it. Your free estimate lists what each plan covers."},{"q":"How do I know my softener is working?","a":"Soap lathers easily, fixtures stay free of white crust and a hardness test of softened water reads near zero. A reading above 1 gpg means the system needs service . St George Prime Water Softener UT provides water softener maintenance for homes and businesses across St George and Washington County."}]
 markerCount: 6
 ---
@@ -25,7 +25,10 @@ Four services keep a softener at full capacity: resin cleaning, salt refills, br
 <div class="svc-card">
 
 
-![Water Softener Resin Cleaning Service St George UT](/placeholders/card.svg)
+
+![Water Softener Resin Cleaning Service St George UT](../../assets/images/card-water-softener-resin-cleaning-service-st-george-ut.webp)
+
+
 
 ### Water Softener Resin Cleaning Service
 
@@ -36,7 +39,10 @@ Resin beads collect iron and sediment over time and lose capacity. Cleaning the 
 <div class="svc-card">
 
 
-![Water Softener Salt Refill Service St George UT](/placeholders/card.svg)
+
+![Water Softener Salt Refill Service St George UT](../../assets/images/card-water-softener-salt-refill-service-st-george-ut.webp)
+
+
 
 ### Water Softener Salt Refill Service
 
@@ -47,7 +53,10 @@ A salt refill delivers and loads the correct salt for your unit, so the tank nev
 <div class="svc-card">
 
 
-![Water Softener Brine Tank Cleaning St George UT](/placeholders/card.svg)
+
+![Water Softener Brine Tank Cleaning St George UT](../../assets/images/card-water-softener-brine-tank-cleaning-st-george-ut.webp)
+
+
 
 ### Water Softener Brine Tank Cleaning
 
@@ -58,7 +67,10 @@ Salt bridges and mushing form in the brine tank and stop brine from reaching the
 <div class="svc-card">
 
 
-![Annual Maintenance Plans St George UT](/placeholders/card.svg)
+
+![Annual Maintenance Plans St George UT](../../assets/images/card-annual-maintenance-plans-st-george-ut.webp)
+
+
 
 ### Annual Maintenance Plans
 

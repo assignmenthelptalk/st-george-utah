@@ -11,7 +11,7 @@ openingHtml: "Water quality testing in St George, UT measures what is in the wat
 formHeading: ""
 formIntro: ""
 leadImage: {"file":"water-quality-testing-st-george-ut.webp","alt":"Water quality testing St George UT tap water test vial and meter"}
-images: [{"file":"water-quality-testing-st-george-ut.webp","alt":"Water quality testing St George UT tap water test vial and meter","exists":true},{"file":"card-free-hard-water-test-st-george-ut.webp","alt":"Free Hard Water Test St George UT","exists":true},{"file":"card-tds-testing-st-george-ut.webp","alt":"TDS Testing St George UT","exists":true},{"file":"card-iron-content-testing-st-george-ut.webp","alt":"Iron Content Testing St George UT","exists":true},{"file":"card-ph-level-testing-st-george-ut.webp","alt":"pH Level Testing St George UT","exists":false},{"file":"card-chlorine-testing-st-george-ut.webp","alt":"Chlorine Testing St George UT","exists":false},{"file":"card-sulfur-testing-st-george-ut.webp","alt":"Sulfur Testing St George UT","exists":false},{"file":"card-heavy-metals-testing-st-george-ut.webp","alt":"Heavy Metals Testing St George UT","exists":false}]
+images: [{"file":"water-quality-testing-st-george-ut.webp","alt":"Water quality testing St George UT tap water test vial and meter","exists":true},{"file":"card-free-hard-water-test-st-george-ut.webp","alt":"Free Hard Water Test St George UT","exists":true},{"file":"card-tds-testing-st-george-ut.webp","alt":"TDS Testing St George UT","exists":true},{"file":"card-iron-content-testing-st-george-ut.webp","alt":"Iron Content Testing St George UT","exists":true},{"file":"card-ph-level-testing-st-george-ut.webp","alt":"pH Level Testing St George UT","exists":true},{"file":"card-chlorine-testing-st-george-ut.webp","alt":"Chlorine Testing St George UT","exists":true},{"file":"card-sulfur-testing-st-george-ut.webp","alt":"Sulfur Testing St George UT","exists":true},{"file":"card-heavy-metals-testing-st-george-ut.webp","alt":"Heavy Metals Testing St George UT","exists":true}]
 faq: [{"q":"Is the water test really free?","a":"The hard water test is free with an estimate."},{"q":"How long does a test take?","a":"A hardness test takes a few minutes at your tap. A fuller panel can take longer, and the technician tells you when results are ready."},{"q":"What hardness is high for St George?","a":"Above 180 mg/L (10.5 gpg) is very hard by the USGS scale. The City of St. George's softener-setting range of 13 to 24 GPG is about 222 to 410 mg/L, which is very hard."},{"q":"Do I need to test if the city already tests the water?","a":"City reports describe the supply, not your plumbing. A home test shows what reaches your tap and sets the softener size. St George Prime Water Softener UT provides water quality testing for homes and businesses across St George and Washington County."}]
 markerCount: 3
 ---
@@ -67,7 +67,10 @@ Iron stains fixtures and laundry and fouls softener resin. A reading above the s
 <div class="svc-card">
 
 
-![pH Level Testing St George UT](/placeholders/card.svg)
+
+![pH Level Testing St George UT](../../assets/images/card-ph-level-testing-st-george-ut.webp)
+
+
 
 ### pH Level Testing
 
@@ -78,7 +81,10 @@ pH shows whether water is acidic or alkaline. Low pH corrodes pipes, and the rea
 <div class="svc-card">
 
 
-![Chlorine Testing St George UT](/placeholders/card.svg)
+
+![Chlorine Testing St George UT](../../assets/images/card-chlorine-testing-st-george-ut.webp)
+
+
 
 ### Chlorine Testing
 
@@ -89,7 +95,10 @@ Chlorine is the disinfectant in utility water. A tap test shows the level at you
 <div class="svc-card">
 
 
-![Sulfur Testing St George UT](/placeholders/card.svg)
+
+![Sulfur Testing St George UT](../../assets/images/card-sulfur-testing-st-george-ut.webp)
+
+
 
 ### Sulfur Testing
 
@@ -100,7 +109,10 @@ Sulfur gives a rotten-egg smell, and it is mainly a [private well](/well-water-s
 <div class="svc-card">
 
 
-![Heavy Metals Testing St George UT](/placeholders/card.svg)
+
+![Heavy Metals Testing St George UT](../../assets/images/card-heavy-metals-testing-st-george-ut.webp)
+
+
 
 ### Heavy Metals Testing
 
