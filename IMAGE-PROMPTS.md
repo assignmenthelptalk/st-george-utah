@@ -342,7 +342,7 @@ A worn water softener in a lived-in Utah home utility area, an attached garage u
 ### `water-softener-cost-st-george-ut`
 - **Size:** 3:2 (export about 1200x800)
 - **Used on:** /water-softener-guides/water-softener-cost-st-george-ut/
-- **Alt text (from the page copy):** Water softener cost St George UT installer writing an itemized estimate
+- **Alt text (from the page copy):** Water softener cost St George UT clipboard with an itemized estimate form on a water softener brine tank lid
 
 ```
 A clipboard with a blank itemized form (ruled lines only, no writing) resting on the brine tank lid of a newly installed generic water softener in a lived-in Utah home utility area, an attached garage utility corner, with a sealed concrete floor, white-painted walls, plain wooden storage shelves, a floor drain and a water heater nearby; a tape measure and a pen lie beside it. No people. Photorealistic documentary photograph, shot on a full-frame camera with a 35mm lens at f/4, natural window light mixed with soft ambient room light, true-to-life colour and white balance, slight natural lens depth of field, visible real-world texture and small imperfections (fine dust, a few water spots, light wear on fittings, slightly uneven pipe runs, a worn edge on a shelf), no CGI gloss, no stock-photo staging, only subtle muted navy-blue and warm copper accents. No text, letters, numbers or logos anywhere; screens, dials, gauges and paper stay blank. No people of any kind: no faces, no hands, no gloved hands, no arms, no figures, no silhouettes and no reflections of people. Show the equipment and the room only. Generic, unbranded equipment. Aspect ratio 3:2.
@@ -351,7 +351,7 @@ A clipboard with a blank itemized form (ruled lines only, no writing) resting on
 ### `water-softener-guides-st-george-ut`
 - **Size:** 3:2 (export about 1200x800)
 - **Used on:** /water-softener-guides/
-- **Alt text (from the page copy):** Water softener guides St George UT homeowner reading a hardness report
+- **Alt text (from the page copy):** Water softener guides St George UT desk with a hardness report and a glass of water
 
 ```
 A tidy home office desk with a laptop showing a blank page, a notepad with blank ruled lines, a glass of water and a single small salt-pellet sample jar, window light from the side. No people. Photorealistic documentary photograph, shot on a full-frame camera with a 35mm lens at f/4, natural window light mixed with soft ambient room light, true-to-life colour and white balance, slight natural lens depth of field, visible real-world texture and small imperfections (fine dust, a few water spots, light wear on fittings, slightly uneven pipe runs, a worn edge on a shelf), no CGI gloss, no stock-photo staging, only subtle muted navy-blue and warm copper accents. No text, letters, numbers or logos anywhere; screens, dials, gauges and paper stay blank. No people of any kind: no faces, no hands, no gloved hands, no arms, no figures, no silhouettes and no reflections of people. Show the equipment and the room only. Generic, unbranded equipment. Aspect ratio 3:2.

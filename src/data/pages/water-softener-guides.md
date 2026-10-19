@@ -11,7 +11,7 @@ openingHtml: "Water softener guides for St George, UT answer the questions homeo
 formHeading: ""
 formIntro: ""
 leadImage: null
-images: [{"file":"water-softener-guides-st-george-ut.webp","alt":"Water softener guides St George UT homeowner reading a hardness report","exists":false}]
+images: [{"file":"water-softener-guides-st-george-ut.webp","alt":"Water softener guides St George UT desk with a hardness report and a glass of water","exists":false}]
 faq: [{"q":"Where do the hardness figures in these guides come from?","a":"They start from the City of St. George's advised softener settings of 13 to 24 GPG, which still needs confirming against the City's reports or a tap test. The guides say so where it matters."},{"q":"Do the guides give prices?","a":"Prices appear only once they are confirmed. Until then, each guide lists the factors that move the cost. St George Prime Water Softener UT provides water softener installation, replacement, repair and water testing for homes and businesses across St George and Washington County."}]
 markerCount: 0
 ---
