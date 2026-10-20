@@ -91,6 +91,17 @@ const socialUrl = (key: string): string => ((site.socialLinks as Record<string, 
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
     {site.googleSiteVerification && <meta name="google-site-verification" content={site.googleSiteVerification} />}
+    {site.ga4MeasurementId && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${site.ga4MeasurementId}`}></script>
+        <script is:inline define:vars={{ measurementId: site.ga4MeasurementId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', measurementId);
+        </script>
+      </>
+    )}
   </head>
   <body>
     <LocalSchema />

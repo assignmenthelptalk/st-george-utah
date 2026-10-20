@@ -236,6 +236,8 @@ export interface SiteConfig {
   googleSiteVerification?: string;
   /** Fully-qualified site URL derived from `domain`, e.g. "https://example.com" */
   siteUrl: string;
+  /** GA4 web-stream Measurement ID ("G-XXXXXXXXXX"). Leave unset to turn GA4 off. */
+  ga4MeasurementId?: string;
 
   // ── About page facts — edit directly, no CMS ─────────────────────────────
   /** Founder/team name(s) shown on the About page — SCREAMING_SNAKE_CASE
@@ -319,6 +321,7 @@ export const siteConfig: SiteConfig = {
   googleSiteVerification: "5ZinwdRLaU8H9vtc_Gz6GxI8lAF_uyVmYlwUuQ2kL0E",
   socialLinks: { facebook: "", instagram: "", pinterest: "", x: "", youtube: "" },
   siteUrl: `https://${domain}`,
+  ga4MeasurementId: "G-FN7ZK2E5GN",
 
   // About page facts — edit directly, no CMS
   founderNames: "FOUNDER_NAMES",
